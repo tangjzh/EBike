@@ -1,0 +1,79 @@
+@hostname = http://localhost:8000
+
+### 注册新用户
+POST {{hostname}}/users/register/
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "newpassword123",
+  "email": "newuser@example.com"
+}
+
+### 获取 JWT Tokens
+POST {{hostname}}/users/login/
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "newpassword123"
+}
+
+###
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MDMyMjIyLCJpYXQiOjE3MTQwMzA0MjIsImp0aSI6IjA5OTE4ZWIzMGFlMTQ3NmZiYWVlN2RhZjUxNGViNTFlIiwidXNlcl9pZCI6MX0.178TVJqhUYJAGRdcyIvFU0Q4oUf5EGeOLeddKcNaeOg
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNDExNjgyMiwiaWF0IjoxNzE0MDMwNDIyLCJqdGkiOiI2M2M4ZTMzYjVkZGY0Y2U2YWU4YmMwMTBiNWJkMWNlYiIsInVzZXJfaWQiOjF9.aH-T_bHjkB3CHd6VmKOorXZtY5ICKxOmTQRAxjU-M7o
+
+###
+
+### 使用 Access Token 请求受保护的资源
+GET {{hostname}}/users/profile/
+Authorization: Bearer {{authToken}}
+
+###
+
+### Update User Profile
+PUT {{hostname}}/users/profile/update/
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "nickname": "NewNick",
+  "signature": "Updated Signature",
+  "birthday": "1990-01-01",
+  "gender": "M"
+}
+
+###
+
+### Bind Vehicle Permit
+POST {{hostname}}/users/bind-permit/
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "permit_number": "123456789",
+  "issued_date": "2024-01-01",
+  "expiry_date": "2025-01-01",
+  "owner_name": "New Owner"
+}
+
+###
+
+### Unbind Vehicle Permit
+DELETE {{hostname}}/users/unbind-permit/
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+
+###
+
+### 刷新 Access Token
+POST {{hostname}}/users/refresh/
+Content-Type: application/json
+
+{
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNDA2ODA1MSwiaWF0IjoxNzEzOTgxNjUxLCJqdGkiOiI2OGEyZjY3NmQ5YzI0MzlkOTRhNTYwNGVhZjMxZjY5ZSIsInVzZXJfaWQiOjF9.pdpY7yEsszoQrH-q1xH88HhxDk6cqs0o3Dkzj5NvnPc"
+}
+
+# > {% client.global.set("accessToken", response.body.json.access) %}
+

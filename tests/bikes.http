@@ -1,0 +1,109 @@
+@hostname = http://127.0.0.1:8000
+
+### 获取 JWT Tokens
+POST {{hostname}}/users/login/
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "newpassword123"
+}
+
+###
+
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MDM0Mjk4LCJpYXQiOjE3MTQwMzI0OTgsImp0aSI6ImE2NGE3NTQ0ZjM1YTRiMWViM2Q4MDUzOWEyZmU0ZjNkIiwidXNlcl9pZCI6MX0.0HlgvFuEbYOBni7Kmvs9CI5WGzcbdIvb3rJsZsEuG8c
+
+### 创建新的 Bike
+POST {{hostname}}/bikes/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "brand": "Trek",
+  "price": 999.99,
+  "rating": 4.5,
+  "release_date": "2024-01-01",
+  "description": "A high-quality mountain bike."
+}
+
+###
+
+### 获取所有 Bike
+GET {{hostname}}/bikes/
+Authorization: Bearer {{authToken}}
+
+### 获取所有 Bike id
+GET {{hostname}}/bikes/id/
+Authorization: Bearer {{authToken}}
+
+### 获取 Bike
+GET {{hostname}}/bikes/2/
+Authorization: Bearer {{authToken}}
+
+### 删除 Bike
+DELETE {{hostname}}/bikes/2/
+Authorization: Bearer {{authToken}}
+
+###
+
+### 更新 Bike
+PUT {{hostname}}/bikes/2/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "brand": "Trek",
+  "price": 1099.99,
+  "rating": 4.7,
+  "release_date": "2024-01-01",
+  "description": "Updated description: Even better mountain bike."
+}
+
+### 创建 Channel 关联到 Bike
+POST {{hostname}}/bikes/channel/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "bike": 2,
+  "name": "大海车行1",
+  "url": "https://www.trekstore.com",
+  "service_info": "Free shipping available."
+}
+
+###
+
+### 获取所有 Channel
+GET {{hostname}}/bikes/channel/
+Authorization: Bearer {{authToken}}
+
+### 获取所有 Channel
+GET {{hostname}}/bikes/channel/id/
+Authorization: Bearer {{authToken}}
+
+###
+
+### 获取单个 Channel 详情
+GET {{hostname}}/bikes/channel/2/
+Authorization: Bearer {{authToken}}
+
+###
+
+### 更新 Channel
+PUT {{hostname}}/bikes/channel/1/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "bike": 2,
+  "name": "Official Trek Store - Updated",
+  "url": "https://www.updatedtrekstore.com",
+  "service_info": "Updated service info: Free shipping and returns."
+}
+
+###
+
+### 删除 Channel
+DELETE {{hostname}}/bikes/channel/1/
+Authorization: Bearer {{authToken}}
+

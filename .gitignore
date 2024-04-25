@@ -1,0 +1,6 @@
+*.sqlite3
+*.png
+*.jpg
+000*.py
+
+__pycache__/
