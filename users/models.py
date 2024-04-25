@@ -12,6 +12,9 @@ class BikeUser(AbstractUser):
     birthday = models.DateField(null=True, blank=True, verbose_name="生日")
     gender = models.CharField(max_length=1, choices=(('M', '男'), ('F', '女'), ('O', '其他')), blank=True, verbose_name="性别")
 
+    following = models.ManyToManyField('self', related_name='followings', symmetrical=False)
+    follower = models.ManyToManyField('self', related_name='followers', symmetrical=False)
+
     def __str__(self):
         return self.username
 
