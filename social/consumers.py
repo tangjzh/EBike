@@ -20,6 +20,7 @@ class ChatConsumer(WebsocketConsumer):
         self.room_group_name = None
 
     def connect(self):
+        # TODO: 如果token过期，如何处理
         self.user = self.scope['user']
         other_username = self.scope['url_route']['kwargs']['friendname']
         self.room = self.get_or_create_room(self.user, other_username)

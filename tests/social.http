@@ -1,0 +1,114 @@
+@host = http://localhost:8000
+
+### 获取 JWT Tokens
+POST {{host}}/users/login/
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "newpassword123"
+}
+
+###
+@authToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTIxMzI0LCJpYXQiOjE3MTQxMTk1MjQsImp0aSI6IjNiNzUyYjhkNjkxNzQ3MDY5MDg5MzdkZDM1NjliZjJkIiwidXNlcl9pZCI6MX0.XQnjodmUm0stVv-vkw0KCkLtTfK7wML2HrFvGa7ML7M
+
+### Create a new post
+POST {{host}}/social/post/create/
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+    "title": "New Post1",
+    "content": "Here's some new content.",
+    "tags": [],
+    "images": [],
+    "location": "Somewhere"
+}
+
+### Retrieve, update, and delete a post
+# Retrieve a post
+GET {{host}}/social/post/2/
+Authorization: {{authToken}}
+
+### Update a post
+PUT {{host}}/social/post/2/
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+    "title": "Updated Post Title",
+    "content": "Updated content here."
+}
+
+### Delete a post
+DELETE {{host}}/social/post/2/
+Authorization: {{authToken}}
+
+### List user's posts
+GET {{host}}/social/post/
+Authorization: {{authToken}}
+
+### Create a new comment
+POST {{host}}/social/comment/create/
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+    "post": 2,
+    "content": "Great good!"
+}
+
+### Retrieve, update, and delete a comment
+# Retrieve a comment
+GET {{host}}/social/comment/1/
+Authorization: {{authToken}}
+
+### Update a comment
+PUT {{host}}/social/comment/1/
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+    "post": 2,
+    "content": "Updated comment content."
+}
+
+### Delete a comment
+DELETE {{host}}/social/comment/1/
+Authorization: {{authToken}}
+
+### Toggle interaction on a post
+POST {{host}}/social/post/interaction/toggle/
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+    "post": 2,
+    "type": "like"
+}
+
+### Get interaction counts for a post
+POST {{host}}/social/post/interaction/count/
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+    "post": 2
+}
+
+### List user favorites
+GET {{host}}/social/post/favorites/ HTTP/1.1
+Authorization: {{authToken}}
+
+### List user likes
+GET {{host}}/social/post/likes/ HTTP/1.1
+Authorization: {{authToken}}
+
+### Toggle follow between users
+POST {{host}}/social/follow/toggle/ HTTP/1.1
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+    "user_id": 3
+}

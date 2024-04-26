@@ -16,14 +16,15 @@ class PostImageSerializer(serializers.ModelSerializer):
         return PostImage.objects.create(**validated_data)
 
 class PostSerializer(serializers.ModelSerializer):
-    tags = TagSerializer(many=True, read_only=True)
-    images = PostImageSerializer(many=True, read_only=True)
+    tags = TagSerializer(many=True, required=False)
+    images = PostImageSerializer(many=True, required=False)
+    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = Post
-        fields = ['id', 'user', 'title', 'content', 'created_at', 'updated_at', 'tags', 'location', 'likes_count', 'views_count', 'images']
-        extra_kwargs = {'user': {'read_only': True}}
+        fields = ['id', 'user', 'title', 'content', 'created_at', 'updated_at', 'tags', 'location', 'likes_count', 'views_count', 'images', 'comments']
+        extra_kwargs = {'user': {'read_only': True}, 'content': {'required': False}, 'title': {'required': False}}
 
     def create(self, validated_data):
         tags_data = validated_data.pop('tags')
@@ -38,18 +39,22 @@ class PostSerializer(serializers.ModelSerializer):
         return post
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
-    post = serializers.ReadOnlyField(source='post.title')
+    username = serializers.ReadOnlyField(source='user.username')
+    post_title = serializers.ReadOnlyField(source='post.title')
     replies = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Comment
-        fields = ['id', 'post', 'user', 'content', 'created_at', 'likes_count', 'parent', 'replies']
+        fields = ['id', 'post', 'content', 'created_at', 'likes_count', 'parent', 'replies', 'username', 'post_title']
+
+    def create(self, validated_data):
+        return Comment.objects.create(**validated_data)
 
 class InteractionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Interaction
         fields = ['id', 'post', 'type']
+        extra_kwargs = {'type': {'required': False}}
 
     def create(self, validated_data):
         user = self.context['request'].user

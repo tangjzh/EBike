@@ -33,6 +33,7 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 class UserPostsListView(generics.ListAPIView):
     serializer_class = PostSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self):
         user = self.request.user
@@ -80,13 +81,17 @@ class InteractionToggleView(APIView):
 class InteractionCountView(APIView):
     permission_classes = [permissions.AllowAny]
 
-    def get(self, request, post_id, *args, **kwargs):
-        likes_count = Interaction.objects.filter(post_id=post_id, type='like').count()
-        favorites_count = Interaction.objects.filter(post_id=post_id, type='favorite').count()
-        return Response({
-            'likes_count': likes_count,
-            'favorites_count': favorites_count
-        }, status=status.HTTP_200_OK)
+    def post(self, request, *args, **kwargs):
+        serializer = InteractionSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            post_id = serializer.validated_data.get('post')
+            likes_count = Interaction.objects.filter(post_id=post_id, type='like').count()
+            favorites_count = Interaction.objects.filter(post_id=post_id, type='favorite').count()
+            return Response({
+                'likes_count': likes_count,
+                'favorites_count': favorites_count
+            }, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserFavoritesListView(generics.ListAPIView):
     serializer_class = PostSerializer
