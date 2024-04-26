@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Application</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #messages { list-style-type: none; padding: 0; }
+        li { padding: 8px; margin-bottom: 2px; border: 1px solid #ccc; background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <h2>Chat Room</h2>
+    <input type="text" id="authToken" placeholder="Your AuthToken" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTEwNzYwLCJpYXQiOjE3MTQxMDg5NjAsImp0aSI6IjAwNTQ3YWYyZDdkNjQ4MzdiZTRhMWUwOGIyYTBjYzk5IiwidXNlcl9pZCI6MX0.pXGBzgNra_O7CD9qztrIPpQeIo3wBKi9yLeJaJ0d3D0" />
+    <input type="text" id="username" value="newuser" />
+    <input type="text" id="friendUsername" value="newuser1" />
+    <input type="text" id="wsUrl" value="ws://127.0.0.1:63868/ws/chat" />
+    <button onclick="connectWebSocket()">Connect</button>
+    <ul id="messages"></ul>
+    <input type="text" id="messageInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+    <script>
+        var chatSocket;
+
+        function connectWebSocket() {
+            var auth = document.getElementById("authToken").value;
+            var friendUsername = document.getElementById("friendUsername").value;
+            var wsUrl = document.getElementById("wsUrl").value;
+            if (!wsUrl) {
+                alert("Please enter WebSocket URL.");
+                return;
+            }
+            wsUrl += `/${encodeURIComponent(friendUsername)}/`
+            wsUrl += (wsUrl.indexOf('?') > -1 ? '&' : '?') + `token=${encodeURIComponent(auth)}`;
+            chatSocket = new WebSocket(wsUrl);
+
+            chatSocket.onmessage = function(e) {
+                var data = JSON.parse(e.data);
+                var message = data['message'];
+                if (message) {
+                    var element = document.createElement("li");
+                    element.textContent = message.sender + ": " + message.content;
+                    document.getElementById("messages").appendChild(element);
+                } else if (data['error']) {
+                    console.error("Error:", data['error']);
+                }
+            };
+
+            chatSocket.onopen = function(e) {
+                console.log('Chat socket opened');
+            };
+
+            chatSocket.onclose = function(e) {
+                console.error('Chat socket closed unexpectedly');
+            };
+        }
+
+        function sendMessage() {
+            var messageInputDom = document.getElementById("messageInput")
+            var message = messageInputDom.value;
+            if (chatSocket && chatSocket.readyState === WebSocket.OPEN) {
+                chatSocket.send(JSON.stringify({
+                    'command': 'new_message',
+                    'from': document.getElementById("username").value, // Use the entered username
+                    'message': message
+                }));
+                messageInputDom.value = '';
+            } else {
+                console.error('WebSocket is not connected.');
+            }
+        }
+    </script>
+</body>
+</html>

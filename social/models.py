@@ -58,17 +58,34 @@ class Interaction(models.Model):
 class Follow(models.Model):
     user_from = models.ForeignKey(User, related_name='rel_from_set', on_delete=models.CASCADE)
     user_to = models.ForeignKey(User, related_name='rel_to_set', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True, db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
-        ordering = ('-created',)
+        ordering = ('-created_at',)
 
     def __str__(self):
         return '{} follows {}'.format(self.user_from, self.user_to)
 
 class Room(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, null=True, blank=True)
     participants = models.ManyToManyField(User, related_name='chat_rooms')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def get_or_new(cls, user, other_user):
+        if user == other_user:
+            return None  # Cannot chat with oneself, adjust the logic as needed
+        room = cls.objects.filter(participants=user.id).filter(participants=other_user.id)
+        if room.count() == 1:
+            return room.first()  # Room already exists
+        elif room.count() > 1:
+            return room.order_by('id').first()  # This scenario should not happen; it's just a safeguard
+        else:
+            # Create a new room
+            room = cls.objects.create()
+            room.participants.add(user.id, other_user.id)
+            return room
 
 class Message(models.Model):
     room = models.ForeignKey(Room, related_name='messages', on_delete=models.CASCADE)

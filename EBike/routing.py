@@ -4,7 +4,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from social import routing
 
 application = ProtocolTypeRouter({
-    'websocket': AuthMiddlewareStack(
+    'websocket': routing.TokenAuthMiddlewareStack(
         URLRouter(
             routing.websocket_urlpatterns
         )),

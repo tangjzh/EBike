@@ -5,7 +5,7 @@ POST {{hostname}}/users/register/
 Content-Type: application/json
 
 {
-  "username": "newuser",
+  "username": "newuser2",
   "password": "newpassword123",
   "email": "newuser@example.com"
 }
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ###
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MDMyMjIyLCJpYXQiOjE3MTQwMzA0MjIsImp0aSI6IjA5OTE4ZWIzMGFlMTQ3NmZiYWVlN2RhZjUxNGViNTFlIiwidXNlcl9pZCI6MX0.178TVJqhUYJAGRdcyIvFU0Q4oUf5EGeOLeddKcNaeOg
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTAyMDA0LCJpYXQiOjE3MTQxMDAyMDQsImp0aSI6Ijg3MjIyMDI5NjA3ODQ3ZGE5ZDY5ZWY1ZTE1NmNlZDAzIiwidXNlcl9pZCI6MX0.4pg0QtJ6Q2Fjf1DMjqq192oLRrMGbLNpa5642J_W3Z0
 @refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNDExNjgyMiwiaWF0IjoxNzE0MDMwNDIyLCJqdGkiOiI2M2M4ZTMzYjVkZGY0Y2U2YWU4YmMwMTBiNWJkMWNlYiIsInVzZXJfaWQiOjF9.aH-T_bHjkB3CHd6VmKOorXZtY5ICKxOmTQRAxjU-M7o
 
 ###
