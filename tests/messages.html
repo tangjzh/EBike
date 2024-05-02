@@ -36,6 +36,7 @@
             }
             wsUrl += `/${encodeURIComponent(friendUsername)}/`
             wsUrl += (wsUrl.indexOf('?') > -1 ? '&' : '?') + `token=${encodeURIComponent(auth)}`;
+            wsUrl += (wsUrl.indexOf('?') > -1 ? '&' : '?') + `type=${encodeURIComponent('chat')}`;
             chatSocket = new WebSocket(wsUrl);
 
             chatSocket.onmessage = function(e) {

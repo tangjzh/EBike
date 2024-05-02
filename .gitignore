@@ -4,3 +4,5 @@
 000*.py
 
 __pycache__/
+media/
+whoosh_index/

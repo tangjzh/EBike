@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 import uuid
 
+from .constant import ID2NAME
+
 User = get_user_model()
 
 class Tag(models.Model):
@@ -69,21 +71,22 @@ class Follow(models.Model):
 class Room(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, null=True, blank=True)
+    type = models.CharField(max_length=32, null=True, choices=ID2NAME.items())
     participants = models.ManyToManyField(User, related_name='chat_rooms')
     created_at = models.DateTimeField(auto_now_add=True)
 
     @classmethod
-    def get_or_new(cls, user, other_user):
+    def get_or_new(cls, user, other_user, room_name, type):
         if user == other_user:
             return None  # Cannot chat with oneself, adjust the logic as needed
-        room = cls.objects.filter(participants=user.id).filter(participants=other_user.id)
+        room = cls.objects.filter(participants=user.id).filter(participants=other_user.id).filter(name=room_name, type=type)
         if room.count() == 1:
             return room.first()  # Room already exists
         elif room.count() > 1:
             return room.order_by('id').first()  # This scenario should not happen; it's just a safeguard
         else:
             # Create a new room
-            room = cls.objects.create()
+            room = cls.objects.create(name=room_name, type=type)
             room.participants.add(user.id, other_user.id)
             return room
 

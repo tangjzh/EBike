@@ -1,0 +1,66 @@
+@hostname = http://127.0.0.1:8000
+
+### 获取 JWT Tokens
+POST {{hostname}}/users/login/
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "newpassword123"
+}
+
+###
+
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjI5MjAyLCJpYXQiOjE3MTQ2Mjc0MDIsImp0aSI6IjhlZGJiNmI2OGQ4ZjQyMDhhODRiNjIwOTI3Mjg0NzNjIiwidXNlcl9pZCI6MX0.LGUOzehZROD9F1y9jl2wgoaW_G-isaC7mCdUuKMRvPM
+
+### Publish Goods
+POST {{hostname}}/exchange/publish/
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization: Bearer {{authToken}}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="content"
+
+Example content here
+--WebAppBoundary
+Content-Disposition: form-data; name="money"
+
+100
+--WebAppBoundary
+Content-Disposition: form-data; name="origin_money"
+
+150
+--WebAppBoundary
+Content-Disposition: form-data; name="send_money"
+
+10
+--WebAppBoundary
+Content-Disposition: form-data; name="classify"
+
+Electronics
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="example.jpg"
+Content-Type: image/jpeg
+
+< ./resources/example.jpg
+--WebAppBoundary--
+
+### Get Goods List
+GET {{hostname}}/exchange/index/
+Authorization: Bearer {{authToken}}
+
+### My Goods
+GET {{hostname}}/exchange/mine/
+Authorization: Bearer {{authToken}}
+
+### Goods Detail
+GET {{hostname}}/exchange/detail/?goods_id=50b342a4176e42606ad35f145aacf182
+Content-Type: application/x-www-form-urlencoded
+Authorization: Bearer {{authToken}}
+
+### Search Goods
+POST {{hostname}}/exchange/search/
+Content-Type: application/x-www-form-urlencoded
+Authorization: Bearer {{authToken}}
+
+q=here&method=1&page=1

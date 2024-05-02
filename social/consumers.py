@@ -6,8 +6,10 @@ from channels.layers import get_channel_layer
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.utils import timezone
+from urllib.parse import parse_qs
 
 from .models import Message, Room
+from .constant import ID2NAME, DEFAULT_NAME
 
 User = get_user_model()
 
@@ -18,11 +20,13 @@ class ChatConsumer(WebsocketConsumer):
         self.other_user = None
         self.room = None
         self.room_group_name = None
+        self.type = None
 
     def connect(self):
         # TODO: 如果token过期，如何处理
         self.user = self.scope['user']
         other_username = self.scope['url_route']['kwargs']['friendname']
+        self.type = self.scope['type']
         self.room = self.get_or_create_room(self.user, other_username)
         self.room_group_name = f'chat_{self.room.id}'
 
@@ -38,7 +42,7 @@ class ChatConsumer(WebsocketConsumer):
         if not self.other_user:
             return None  # Handle error appropriately if other user doesn't exist
 
-        room = Room.get_or_new(user, self.other_user)
+        room = Room.get_or_new(user, self.other_user, f"{user.username}与{other_username}的{ID2NAME.get(self.type, DEFAULT_NAME)}", self.type)
         return room
 
     def disconnect(self, close_code):

@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 from urllib.parse import parse_qs
 from django.conf import settings
 from jwt import ExpiredSignatureError, DecodeError
+from .constant import ID2NAME
 
 User = get_user_model()
 
@@ -20,6 +21,7 @@ class TokenAuthMiddleware(BaseMiddleware):
         # Decode the query string to extract the token
         query_string = parse_qs(scope['query_string'].decode())
         token = query_string.get('token', [None])[0]
+        type = query_string.get('type', [list(ID2NAME.keys())[0]])[0]
         if token:
             try:
                 # Decode the JWT token
@@ -31,6 +33,8 @@ class TokenAuthMiddleware(BaseMiddleware):
                 scope['user'] = AnonymousUser()
         else:
             scope['user'] = AnonymousUser()
+
+        scope['type'] = type
 
         return await self.inner(scope, receive, send)
     
