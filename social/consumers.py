@@ -57,7 +57,7 @@ class ChatConsumer(WebsocketConsumer):
         command = data.get('command')
 
         if command == 'fetch_messages':
-            self.fetch_messages()
+            self.fetch_messages(data)
         elif command == 'new_message':
             self.new_message(data)
         elif command == 'typing_start':
@@ -65,8 +65,9 @@ class ChatConsumer(WebsocketConsumer):
         elif command == 'typing_stop':
             self.typing_stop(data)
 
-    def fetch_messages(self):
-        messages = self.room.messages.all().order_by('-timestamp')[:50]  # Fetches the latest 50 messages
+    def fetch_messages(self, data):
+        type = data.get('type')
+        messages = self.room.messages.filter(type=type).all().order_by('-timestamp')[:50]  # Fetches the latest 50 messages
         content = {
             'command': 'messages',
             'messages': self.messages_to_json(messages)

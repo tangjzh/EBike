@@ -101,7 +101,8 @@
 
         function fetchMessages() {
             chatSocket.send(JSON.stringify({
-                command: 'fetch_messages'
+                command: 'fetch_messages',
+                type: 'chat'
             }));
         }
     </script>
