@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ###
 
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjI5MjAyLCJpYXQiOjE3MTQ2Mjc0MDIsImp0aSI6IjhlZGJiNmI2OGQ4ZjQyMDhhODRiNjIwOTI3Mjg0NzNjIiwidXNlcl9pZCI6MX0.LGUOzehZROD9F1y9jl2wgoaW_G-isaC7mCdUuKMRvPM
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjUxNTQzLCJpYXQiOjE3MTQ2NDk3NDMsImp0aSI6ImY2ZGZkMjc3NDVkMjQ5Zjg5MjdlNGU4ZTYxMDNjNzJkIiwidXNlcl9pZCI6MX0.68cXHJeDYLPAspE4bI3GYEE74cEeb5y9X4ThFYsliFQ
 
 ### Publish Goods
 POST {{hostname}}/exchange/publish/
@@ -21,7 +21,7 @@ Authorization: Bearer {{authToken}}
 --WebAppBoundary
 Content-Disposition: form-data; name="content"
 
-Example content here
+good job
 --WebAppBoundary
 Content-Disposition: form-data; name="money"
 

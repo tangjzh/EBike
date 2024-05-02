@@ -24,6 +24,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.parsers import MultiPartParser
 from datetime import datetime
+from PIL import Image
 
 def user_goods_path(instance, filename):
     return f'user_{instance.goods.owner.id}/goods/{filename}'
@@ -56,8 +57,18 @@ class PublishView(APIView):
                 send_money=send_money,
                 classify=classify
             )
-            
+
+            valid_images = []
             for file in img_files:
+                try:
+                    # Open the image file
+                    img = Image.open(file)
+                    img.verify()  # Verify that it is, in fact, an image
+                    valid_images.append(file)
+                except (IOError, FileNotFoundError):
+                    return JsonResponse({'error': 'Invalid image file.'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            for file in valid_images:
                 GoodsImage.objects.create(goods=goods, image=file)
             
             return JsonResponse({'message': 'Success'}, status=status.HTTP_201_CREATED)
