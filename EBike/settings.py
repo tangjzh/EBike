@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bike_info',
     'social',
     'exchange',
+    'maintenance',
 
     'rest_framework',
     'django_filters',

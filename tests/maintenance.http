@@ -1,0 +1,81 @@
+@hostname = http://127.0.0.1:8000
+
+### 获取 JWT Tokens
+POST {{hostname}}/users/login/
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "newpassword123"
+}
+
+###
+
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjYyMTQ5LCJpYXQiOjE3MTQ2NjAzNDksImp0aSI6IjdiYzY1MzBkMGJiZDQ2YzU5NDg0MWNlZGJmYTI5NjUwIiwidXNlcl9pZCI6MX0.v4OJlPhjKibXzX2lt_WmVXoleFTOlFkZaJE1i2-9CaI
+
+
+### 创建商家服务店铺 ###
+POST {{hostname}}/maintenance/shops/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "user": 2,
+  "name": "XYZ修车店",
+  "location": "XX省XX市XX区XX路XX号",
+  "service_description": "提供轮胎更换、设备更新等服务",
+  "contact_info": "电话：123456789，邮箱：abc@example.com"
+}
+
+### 获取商家服务店铺列表 ###
+GET {{hostname}}/maintenance/shops/
+Authorization: Bearer {{authToken}}
+
+### 创建服务贴士 ###
+POST {{hostname}}/maintenance/tips/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "轮胎更换注意事项",
+  "content": "轮胎使用一段时间后，需要及时更换，以确保行车安全。",
+  "category": "轮胎保养"
+}
+
+### 获取服务贴士列表 ###
+GET {{hostname}}/maintenance/tips/
+Authorization: Bearer {{authToken}}
+
+### 创建预约 ###
+POST {{hostname}}/maintenance/appointments/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "user": 2,
+  "shop": 1,
+  "service_type": "轮胎更换",
+  "appointment_time": "2024-05-06T10:00:00",
+  "status": "pending"
+}
+
+### 获取预约列表 ###
+GET {{hostname}}/maintenance/appointments/
+Authorization: Bearer {{authToken}}
+
+### 获取特定预约的详细信息 ###
+GET {{hostname}}/maintenance/appointments/1/
+Authorization: Bearer {{authToken}}
+
+### 更新预约状态 ###
+POST {{hostname}}/maintenance/appointments/1/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "status": "in_progress"
+}
+
+### 删除预约 ###
+DELETE {{hostname}}/maintenance/appointments/1/
+Authorization: Bearer {{authToken}}

@@ -101,8 +101,8 @@ class EditView(APIView):
         content = request.POST.get('content')
         price = request.POST.get('price')
 
-        if not all([goods_hash, content, price]):
-            return JsonResponse({'error': 'Missing required fields.'}, status=status.HTTP_400_BAD_REQUEST)
+        # if not all([goods_hash, content, price]):
+        #     return JsonResponse({'error': 'Missing required fields.'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             goods = Goods.objects.get(hash=goods_hash)

@@ -16,6 +16,8 @@ class BikeUser(AbstractUser):
     birthday = models.DateField(null=True, blank=True, verbose_name="生日")
     gender = models.CharField(max_length=1, choices=(('M', '男'), ('F', '女'), ('O', '其他')), blank=True, verbose_name="性别")
     location = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True, verbose_name='电子邮箱')
+    telephone = models.CharField(max_length=11, null=True, blank=True, verbose_name='电话号码')
 
     following = models.ManyToManyField('self', related_name='followings', symmetrical=False, blank=True)
     follower = models.ManyToManyField('self', related_name='followers', symmetrical=False, blank=True)
