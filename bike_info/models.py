@@ -1,4 +1,8 @@
 from django.db import models
+import os
+
+def user_post_path(instance, filename):
+    return os.path.join('bike', instance.bike.brand, instance.bike.model, filename)
 
 # Create your models here.
 class Bike(models.Model):
@@ -14,7 +18,7 @@ class Bike(models.Model):
     
 class BikeImage(models.Model):
     bike = models.ForeignKey(Bike, related_name='images', on_delete=models.CASCADE, verbose_name="电动车")
-    image = models.ImageField(upload_to='bike_images/', verbose_name="图片")
+    image = models.ImageField(upload_to=user_post_path, verbose_name="图片")
 
     def __str__(self):
         return f"{self.bike.brand} - Image"

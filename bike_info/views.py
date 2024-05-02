@@ -10,6 +10,7 @@ from .filters import BikeFilter
 from .serializers import BikeIDSerializer, ChannelIDSerializer
 from .models import BikeImage
 from .serializers import BikeImageSerializer
+from rest_framework.parsers import MultiPartParser, JSONParser
 
 class BikeIDListView(generics.ListAPIView):
     queryset = Bike.objects.all()
@@ -23,6 +24,7 @@ class BikeListView(generics.ListCreateAPIView):
     queryset = Bike.objects.all()
     serializer_class = BikeSerializer
     filter_backends = (DjangoFilterBackend, OrderingFilter,)
+    parser_classes = [MultiPartParser, JSONParser]
     filterset_class = BikeFilter
     ordering_fields = ['price', 'rating', 'release_date']
 
@@ -41,6 +43,7 @@ class ChannelDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 class BikeImageCreateView(generics.CreateAPIView):
     queryset = BikeImage.objects.all()
     serializer_class = BikeImageSerializer
+    parser_classes = [MultiPartParser, JSONParser]
 
 class BikeImageDeleteView(generics.DestroyAPIView):
     queryset = BikeImage.objects.all()

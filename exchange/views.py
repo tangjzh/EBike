@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.paginator import InvalidPage, Paginator
 from django.http import Http404
 from django.http import JsonResponse
+from EBike.utils import md5hash
 
 from haystack.forms import ModelSearchForm
 from haystack.query import EmptySearchQuerySet, SearchQuerySet
@@ -22,31 +23,35 @@ from haystack.views import SearchView
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.parsers import MultiPartParser
+from rest_framework.parsers import MultiPartParser, JSONParser
 from datetime import datetime
 from PIL import Image
+from io import BytesIO
+import base64
+from django.core.files.base import ContentFile
 
 def user_goods_path(instance, filename):
     return f'user_{instance.goods.owner.id}/goods/{filename}'
 
 class PublishView(APIView):
     permission_classes = [IsAuthenticated]
-    parser_classes = [MultiPartParser]
+    parser_classes = [MultiPartParser, JSONParser]  # Now handles JSON too
 
     def post(self, request, *args, **kwargs):
-        img_files = request.FILES.getlist('image')
-        content = request.POST.get('content')
-        money = request.POST.get('money')
-        origin_money = request.POST.get('origin_money')
-        send_money = request.POST.get('send_money')
-        classify = request.POST.get('classify')
+        # Handle JSON data (assuming JSON payload also contains other form data as JSON)
+        content = request.data.get('content')
+        money = request.data.get('money')
+        origin_money = request.data.get('origin_money')
+        send_money = request.data.get('send_money')
+        classify = request.data.get('classify')
+        base64_images = request.data.get('base64_images', [])  # List of Base64 encoded images
 
         if not all([content, money, origin_money, send_money, classify]):
             return JsonResponse({'error': 'Missing required fields.'}, status=status.HTTP_400_BAD_REQUEST)
-        
+
         try:
             user = request.user
-            hash_key = hashlib.md5(f"{user.username}{content}{settings.SECRET_KEY}{datetime.now().strftime('%Y%m%d%H%M%S')}".encode()).hexdigest()
+            hash_key = md5hash(user.username, content)
             
             goods = Goods.objects.create(
                 owner=user, 
@@ -58,8 +63,9 @@ class PublishView(APIView):
                 classify=classify
             )
 
+            # Handle file uploads
             valid_images = []
-            for file in img_files:
+            for file in request.FILES.getlist('image'):
                 try:
                     # Open the image file
                     img = Image.open(file)
@@ -67,6 +73,18 @@ class PublishView(APIView):
                     valid_images.append(file)
                 except (IOError, FileNotFoundError):
                     return JsonResponse({'error': 'Invalid image file.'}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Handle Base64 encoded images
+            for image_data in base64_images:
+                format, imgstr = image_data.split(';base64,')
+                ext = format.split('/')[-1]
+                data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+                try:
+                    img = Image.open(data)
+                    img.verify()
+                    valid_images.append(data)
+                except (IOError, FileNotFoundError):
+                    return JsonResponse({'error': 'Invalid base64 image.'}, status=status.HTTP_400_BAD_REQUEST)
             
             for file in valid_images:
                 GoodsImage.objects.create(goods=goods, image=file)
@@ -92,7 +110,7 @@ class EditView(APIView):
             return JsonResponse({'error': 'Goods not found.'}, status=status.HTTP_404_NOT_FOUND)
 
         if request.user == goods.owner:
-            new_hash = hashlib.md5((request.user.username + content + settings.SECRET_KEY + datetime.now().strftime('%Y%m%d%H%M%S')).encode()).hexdigest()
+            new_hash = md5hash(request.user.username, content)
             Goods.objects.filter(hash=goods_hash).update(
                 content=content,
                 money=price,
@@ -121,7 +139,7 @@ class EditView(APIView):
         
         if content:
             update_fields['content'] = content
-            new_hash = hashlib.md5((request.user.username + content + settings.SECRET_KEY + datetime.now().strftime('%Y%m%d%H%M%S')).encode()).hexdigest()
+            new_hash = md5hash(request.user.username, content)
             update_fields['hash'] = new_hash
 
         if price:

@@ -3,11 +3,15 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+import os
+
+def user_head_path(instance, filename):
+    return os.path.join(instance.username, 'avatar', filename)
 
 class BikeUser(AbstractUser):
     nickname = models.CharField(max_length=50, blank=True)
     signature = models.TextField(blank=True)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    avatar = models.ImageField(upload_to=user_head_path, null=True, blank=True)
 
     birthday = models.DateField(null=True, blank=True, verbose_name="生日")
     gender = models.CharField(max_length=1, choices=(('M', '男'), ('F', '女'), ('O', '其他')), blank=True, verbose_name="性别")

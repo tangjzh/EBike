@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from .models import Post, Comment, Tag, PostImage, User, Interaction
 from .models import Room, Message
+from django.core.files.base import ContentFile
+import base64
+import uuid
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,6 +14,21 @@ class PostImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostImage
         fields = ['image']
+
+    def to_internal_value(self, data):
+        # Check if the incoming data for the image is a string (base64)
+        image = data.get('image', None)
+        if isinstance(image, str) and image.startswith('data:image'):
+            # Base64 encoded image
+            format, imgstr = image.split(';base64,')  # format ~= data:image/X,
+            ext = format.split('/')[-1]  # guess file extension
+            id = uuid.uuid4()
+            data = ContentFile(base64.b64decode(imgstr), name=f"{id}.{ext}")  # create a Django ContentFile
+            data = super().to_internal_value({'image': data})
+            return data
+        else:
+            # Default file upload
+            return super().to_internal_value(data)
 
     def create(self, validated_data):
         return PostImage.objects.create(**validated_data)

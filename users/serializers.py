@@ -6,6 +6,9 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from django.utils import timezone
+from django.core.files.base import ContentFile
+import base64
+import uuid
 
 User = get_user_model()
 
@@ -28,6 +31,22 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'password', 'email', 'nickname', 'signature', 'avatar', 'birthday', 'gender', 'vehicle_permit', 'following', 'follower']
         extra_kwargs = {'password': {'write_only': True}}
+
+    def to_internal_value(self, data):
+        # Check if the incoming data for the image is a string (base64)
+        image = data.get('avatar', None)
+        if isinstance(image, str) and image.startswith('data:image'):
+            # Base64 encoded image
+            format, imgstr = image.split(';base64,')  # format ~= data:image/X,
+            ext = format.split('/')[-1]  # guess file extension
+            id = uuid.uuid4()
+            data = ContentFile(base64.b64decode(imgstr), name=f"{id}.{ext}")  # create a Django ContentFile
+            data_dict = super().to_internal_value(data)
+            data_dict['avatar'] = data
+            return data_dict
+        else:
+            # Default file upload
+            return super().to_internal_value(data)
 
     def validate_avatar(self, value):
         if value and not isinstance(value, InMemoryUploadedFile):

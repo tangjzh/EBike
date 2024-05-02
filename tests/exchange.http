@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ###
 
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjUxNTQzLCJpYXQiOjE3MTQ2NDk3NDMsImp0aSI6ImY2ZGZkMjc3NDVkMjQ5Zjg5MjdlNGU4ZTYxMDNjNzJkIiwidXNlcl9pZCI6MX0.68cXHJeDYLPAspE4bI3GYEE74cEeb5y9X4ThFYsliFQ
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjUzNDUxLCJpYXQiOjE3MTQ2NTE2NTEsImp0aSI6Ijk3Y2IyOTk1MmI1MzQwYjY4NTI0OTI1ZmNiZjQwNmFmIiwidXNlcl9pZCI6MX0.qZiNrBxWofnc8BzUiLXCdcclf5rA445P7ZZbWuR-hLk
 
 ### Publish Goods
 POST {{hostname}}/exchange/publish/

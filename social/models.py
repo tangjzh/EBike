@@ -2,10 +2,14 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 import uuid
+import os
 
 from .constant import ID2NAME
 
 User = get_user_model()
+
+def user_post_path(instance, filename):
+    return os.path.join('user', instance.post.user.username, 'post', instance.post.id, filename)
 
 class Tag(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -20,6 +24,7 @@ class Tag(models.Model):
         return self.name
 
 class Post(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     title = models.CharField(max_length=255, null=True)
     content = models.TextField()
@@ -35,7 +40,7 @@ class Post(models.Model):
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='post_images/')
+    image = models.ImageField(upload_to=user_post_path)
 
     def __str__(self):
         return f"Image for {self.post.title} [{self.id}]"

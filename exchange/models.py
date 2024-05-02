@@ -6,14 +6,8 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-def user_head_path(instance, filename):
-    # 文件上传到MEDIA_ROOT/<account>/head/<filename>目录中
-    return os.path.join(instance.username, 'head', filename)
-
-
 def user_goods_path(instance, filename):
-    # 文件上传到MEDIA_ROOT/<account>/<hash>/<filename>目录中
-    return os.path.join(instance.goods.owner.username, instance.goods.hash, filename)
+    return os.path.join('user', instance.goods.owner.username, 'goods', instance.goods.hash, filename)
 
 class Goods(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
