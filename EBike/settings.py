@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'social',
     'exchange',
     'maintenance',
+    'safety',
 
     'rest_framework',
     'django_filters',

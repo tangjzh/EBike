@@ -14,4 +14,5 @@ urlpatterns = [
     path('post/favorites/', UserFavoritesListView.as_view(), name='user-favorites'),
     path('post/likes/', UserLikeListView.as_view(), name='user-likes'),
     path('follow/toggle/', ToggleFollowView.as_view(), name='toggle-follow'),
+    path('post/search/', MySearchView(), name='haystack_search'),
 ]
