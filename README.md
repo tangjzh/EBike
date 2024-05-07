@@ -59,3 +59,5 @@ Starting ASGI/Channels version 3.0.4 development server at http://127.0.0.1:8000
 ## 其它
 
 注意，后端配置了 JWT 认证，这意味着所有请求都需要附带一个 authToken。
+
+要使用 VSCode 运行 .http 文件进行测试，请先安装 REST Client 插件。
