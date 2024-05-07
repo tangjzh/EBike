@@ -5,16 +5,16 @@ POST {{hostname}}/users/login/
 Content-Type: application/json
 
 {
-  "username": "newuser",
+  "username": "newuser2",
   "password": "newpassword123"
 }
 
 ###
 
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjUzNDUxLCJpYXQiOjE3MTQ2NTE2NTEsImp0aSI6Ijk3Y2IyOTk1MmI1MzQwYjY4NTI0OTI1ZmNiZjQwNmFmIiwidXNlcl9pZCI6MX0.qZiNrBxWofnc8BzUiLXCdcclf5rA445P7ZZbWuR-hLk
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MDg1ODU3LCJpYXQiOjE3MTUwODQwNTcsImp0aSI6ImYwYTVkNmVmODNkODRiMzU4M2EwN2E0NzIzN2NkNWQ2IiwidXNlcl9pZCI6Mn0.QOA8bS4fnn8OCOozoVSgty6QJNsV5Liup5e_c9MkVos
 
 ### Publish Goods
-POST {{hostname}}/exchange/publish/
+POST {{hostname}}/exchange/goods/
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 Authorization: Bearer {{authToken}}
 
@@ -46,15 +46,15 @@ Content-Type: image/jpeg
 --WebAppBoundary--
 
 ### Get Goods List
-GET {{hostname}}/exchange/index/
+GET {{hostname}}/exchange/goods/list
 Authorization: Bearer {{authToken}}
 
 ### My Goods
-GET {{hostname}}/exchange/mine/
+GET {{hostname}}/exchange/goods/mine/
 Authorization: Bearer {{authToken}}
 
 ### Goods Detail
-GET {{hostname}}/exchange/detail/?goods_id=50b342a4176e42606ad35f145aacf182
+GET {{hostname}}/exchange/goods/0e299c2029752f6eec4cd3111ff5dd33/
 Content-Type: application/x-www-form-urlencoded
 Authorization: Bearer {{authToken}}
 

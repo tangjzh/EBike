@@ -16,7 +16,15 @@ class ServiceShopList(generics.ListCreateAPIView):
     queryset = ServiceShop.objects.all()
     serializer_class = ServiceShopSerializer
 
+class ServiceShopDetailList(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ServiceShop.objects.all()
+    serializer_class = ServiceShopSerializer
+
 class ServiceTipList(generics.ListCreateAPIView):
+    queryset = ServiceTip.objects.all()
+    serializer_class = ServiceTipSerializer
+
+class ServiceTipDetailList(generics.RetrieveUpdateDestroyAPIView):
     queryset = ServiceTip.objects.all()
     serializer_class = ServiceTipSerializer
 
@@ -37,27 +45,27 @@ class AppointmentDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AppointmentSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
-    def post(self, request, *args, **kwargs):
-        id = kwargs.get('pk')
-        service_type = request.data.get('servive_type')
-        ap_status = request.data.get('status')
-        ap_time = request.data.get('appointment_time')
+    # def post(self, request, *args, **kwargs):
+    #     id = kwargs.get('pk')
+    #     service_type = request.data.get('servive_type')
+    #     ap_status = request.data.get('status')
+    #     ap_time = request.data.get('appointment_time')
 
-        if all(value is None for value in [service_type, ap_status, ap_time]):
-            return JsonResponse({"message": "Nothing changed."}, status=status.HTTP_200_OK)
+    #     if all(value is None for value in [service_type, ap_status, ap_time]):
+    #         return JsonResponse({"message": "Nothing changed."}, status=status.HTTP_200_OK)
 
-        try:
-            appointment = Appointment.objects.filter(id=id).first()
-        except Appointment.DoesNotExist:
-            return JsonResponse({"error": "No such appointment."}, status=status.HTTP_404_NOT_FOUND)
+    #     try:
+    #         appointment = Appointment.objects.filter(id=id).first()
+    #     except Appointment.DoesNotExist:
+    #         return JsonResponse({"error": "No such appointment."}, status=status.HTTP_404_NOT_FOUND)
 
-        try:
-            for key, value in zip(['servive_type', 'status', 'appointment_time'], [service_type, ap_status, ap_time]):
-                if value is not None:
-                    setattr(appointment, key, value)
+    #     try:
+    #         for key, value in zip(['servive_type', 'status', 'appointment_time'], [service_type, ap_status, ap_time]):
+    #             if value is not None:
+    #                 setattr(appointment, key, value)
 
-            appointment.save()
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    #         appointment.save()
+    #     except Exception as e:
+    #         return JsonResponse({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        return JsonResponse({"status": "Success"}, status=status.HTTP_200_OK)
+    #     return JsonResponse({"status": "Success"}, status=status.HTTP_200_OK)

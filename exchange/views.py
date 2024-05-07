@@ -11,6 +11,7 @@ from haystack.forms import ModelSearchForm
 from haystack.query import EmptySearchQuerySet, SearchQuerySet
 from django.http import HttpResponse, JsonResponse
 from .models import *
+from .serializers import *
 from django.contrib.auth.decorators import *
 import hashlib
 import datetime
@@ -20,7 +21,7 @@ import time
 import requests
 from haystack.views import SearchView
 
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.parsers import MultiPartParser, JSONParser
@@ -177,11 +178,11 @@ class GetGoodsView(APIView):
         
         return JsonResponse(ret, safe=False)
     
-class GoodsDetailView(APIView):
-    permission_classes = [AllowAny]  # 允许任何用户访问此视图
+class GoodsDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = GoodsSerializer
 
     def get(self, request, *args, **kwargs):
-        goods_id = request.GET.get('goods_id')
+        goods_id = kwargs.get('pk')
         if not goods_id:
             return HttpResponse('No goods ID provided', status=400)
 

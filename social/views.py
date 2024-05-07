@@ -17,7 +17,7 @@ from django.http import JsonResponse
 from django.core.paginator import InvalidPage, Paginator
 
 
-class PostCreateView(generics.CreateAPIView):
+class PostCreateView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
@@ -49,7 +49,7 @@ class UserPostsListView(generics.ListAPIView):
         user = self.request.user
         return Post.objects.filter(user=user)
     
-class CommentCreateView(generics.CreateAPIView):
+class CommentView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
@@ -104,7 +104,7 @@ class InteractionCountView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserFavoritesListView(generics.ListAPIView):
-    serializer_class = PostSerializer
+    serializer_class = InteractionSerializer
 
     def get_queryset(self):
         user = self.request.user
