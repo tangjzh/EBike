@@ -7,6 +7,8 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from PIL import Image
 from io import BytesIO
+from django.http import JsonResponse
+from rest_framework import status
 
 
 def md5hash(*args):
@@ -71,3 +73,9 @@ def is_base64_image(base64_str):
         return False
 
     return True
+
+def response(success, data=None, error=None, status=None):
+    if success:
+        return JsonResponse({"message": "Success", "results": data}, status=status or status.HTTP_200_OK)
+    else:
+        return JsonResponse({"message": "Fail", "error": error}, status=status or status.HTTP_400_BAD_REQUEST)

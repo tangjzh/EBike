@@ -11,10 +11,13 @@ from .models import VehiclePermit
 from .serializers import VehiclePermitSerializer, MyTokenObtainPairSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 User = get_user_model()
 
-class UserCreateAPIView(APIView):
+class UserCreateAPIView(generics.CreateAPIView):
+    serializer_class = UserSerializer
     authentication_classes = []
     permission_classes = [AllowAny]
 
@@ -50,8 +53,12 @@ class RetrieveUserProfileView(generics.RetrieveAPIView):
     def get_object(self):
         return self.request.user
 
-class BindPermitView(views.APIView):
+class BindPermitView(generics.CreateAPIView):
+    serializer_class = VehiclePermitSerializer
 
+    @swagger_auto_schema(
+        operation_description="绑定用户车辆通行证信息",
+    )
     def post(self, request):
         serializer = VehiclePermitSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
@@ -59,7 +66,10 @@ class BindPermitView(views.APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class UnbindPermitView(views.APIView):    
+class UnbindPermitView(views.APIView):
+    @swagger_auto_schema(
+        operation_description="解绑用户车辆通行证信息",
+    )
     def delete(self, request):
         user = request.user
         try:

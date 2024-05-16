@@ -10,15 +10,19 @@ Content-Type: application/json
 }
 
 ###
-@authToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTIxMzI0LCJpYXQiOjE3MTQxMTk1MjQsImp0aSI6IjNiNzUyYjhkNjkxNzQ3MDY5MDg5MzdkZDM1NjliZjJkIiwidXNlcl9pZCI6MX0.XQnjodmUm0stVv-vkw0KCkLtTfK7wML2HrFvGa7ML7M
+@authToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1NzU5OTE1LCJpYXQiOjE3MTU3NTgxMTUsImp0aSI6ImJhNjBkZTJlNjNjODRmNTliZmE3NjQ3ZTYyMjllMjM1IiwidXNlcl9pZCI6MX0.7eLXpwxcsmGlRFbMK1JcIgijKqkjiXKfJqwVGW6vQGQ
+
+###
+GET {{host}}/social/homepage/
+Authorization: {{authToken}}
 
 ### Create a new post
-POST {{host}}/social/post/create/
+POST {{host}}/social/post/
 Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-    "title": "New Post1",
+    "title": "New Post3",
     "content": "Here's some new content.",
     "tags": [],
     "images": [],

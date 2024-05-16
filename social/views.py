@@ -15,12 +15,37 @@ from haystack.forms import ModelSearchForm
 from django.http import Http404
 from django.http import JsonResponse
 from django.core.paginator import InvalidPage, Paginator
+from drf_yasg.utils import swagger_auto_schema
+from EBike.utils import response
+from rest_framework.pagination import PageNumberPagination
 
+class HomePagePagination(PageNumberPagination):
+    page_size = 10  # 每页的项目数
+    page_size_query_param = 'page_size'
+    max_page_size = 100  # 每页的最大项目数
 
 class PostCreateView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+    @swagger_auto_schema(
+        operation_description="创建车小圈帖子",
+    )
+    def post(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.create(request, *args, **kwargs))
+        except Exception as e:
+            return response(False, error=str(e))
+    
+    @swagger_auto_schema(
+        operation_description="获取所有车小圈帖子",
+    )
+    def get(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.list(request, *args, **kwargs))
+        except Exception as e:
+            return response(False, error=str(e))
+    
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
@@ -30,10 +55,68 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
         return obj.user == request.user or request.user.is_staff
 
+class HomePageListView(generics.ListAPIView):
+    pagination_class = HomePagePagination
+
+    @swagger_auto_schema(
+        operation_description="获取首页的车小圈帖子，支持指定页码",
+    )
+    def get(self, request, *args, **kwargs):
+        gtype = request.GET.get('order_by', '-views_count')
+
+        try:
+            queryset = Post.objects.order_by(gtype).all()
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = PostSerializer(page, many=True)
+                return self.get_paginated_response(serializer.data)  # 使用分页响应
+
+            serializer = PostSerializer(queryset, many=True)
+            return response(True, data=serializer.data)
+        except Exception as e:
+            return response(False, error=str(e))
+
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
+
+    @swagger_auto_schema(
+        operation_description="获取指定的车小圈帖子",
+    )
+    def get(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.retrieve(request, *args, **kwargs).data)
+        except Exception as e:
+            return response(False, error=str(e))
+
+    @swagger_auto_schema(
+        operation_description="更新指定的车小圈帖子",
+    )
+    def put(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.update(request, *args, **kwargs).data)
+        except Exception as e:
+            return response(False, error=str(e))
+
+    @swagger_auto_schema(
+        operation_description="部分更新指定的车小圈帖子",
+    )
+    def patch(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.partial_update(request, *args, **kwargs).data)
+        except Exception as e:
+            return response(False, error=str(e))
+
+    @swagger_auto_schema(
+        operation_description="删除指定的车小圈帖子",
+    )
+    def delete(self, request, *args, **kwargs):
+        try:
+            self.destroy(request, *args, **kwargs)
+            return response(True)
+        except Exception as e:
+            return response(False, error=str(e))
 
     def perform_update(self, serializer):
         serializer.save()
@@ -45,6 +128,15 @@ class UserPostsListView(generics.ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
+    @swagger_auto_schema(
+        operation_description="获取用户发布过的帖子",
+    )
+    def get(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.list(request, *args, **kwargs))
+        except Exception as e:
+            return response(False, error=str(e))
+
     def get_queryset(self):
         user = self.request.user
         return Post.objects.filter(user=user)
@@ -53,6 +145,24 @@ class CommentView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
+    @swagger_auto_schema(
+        operation_description="获取所有评论",
+    )
+    def get(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.list(request, *args, **kwargs))
+        except Exception as e:
+            return response(False, error=str(e))
+        
+    @swagger_auto_schema(
+        operation_description="为帖子创建新评论",
+    )
+    def post(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.create(request, *args, **kwargs))
+        except Exception as e:
+            return response(False, error=str(e))
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
@@ -60,6 +170,43 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [IsOwnerOrReadOnly]
+
+    @swagger_auto_schema(
+        operation_description="获取指定的车小圈帖子评论",
+    )
+    def get(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.retrieve(request, *args, **kwargs).data)
+        except Exception as e:
+            return response(False, error=str(e))
+
+    @swagger_auto_schema(
+        operation_description="更新指定的车小圈帖子评论",
+    )
+    def put(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.update(request, *args, **kwargs).data)
+        except Exception as e:
+            return response(False, error=str(e))
+
+    @swagger_auto_schema(
+        operation_description="部分更新指定的车小圈帖子评论",
+    )
+    def patch(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.partial_update(request, *args, **kwargs).data)
+        except Exception as e:
+            return response(False, error=str(e))
+
+    @swagger_auto_schema(
+        operation_description="删除指定的车小圈帖子评论",
+    )
+    def delete(self, request, *args, **kwargs):
+        try:
+            self.destroy(request, *args, **kwargs)
+            return response(True)
+        except Exception as e:
+            return response(False, error=str(e))
 
     def perform_update(self, serializer):
         # if self.request.user != serializer.instance.user:
@@ -72,6 +219,9 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         instance.delete()
 
 class InteractionToggleView(APIView):
+    @swagger_auto_schema(
+        operation_description="修改当前用户对特定帖子点赞/收藏状态",
+    )
     def post(self, request, *args, **kwargs):
         serializer = InteractionSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
@@ -84,27 +234,39 @@ class InteractionToggleView(APIView):
             if not created:
                 # If the interaction exists, we toggle it by deleting
                 interaction.delete()
-                return Response({'status': 'interaction removed'}, status=status.HTTP_204_NO_CONTENT)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return response(False, error='interaction removed', status=status.HTTP_204_NO_CONTENT)
+            return response(True, data=serializer.data, status=status.HTTP_201_CREATED)
+        return response(False, error=serializer.errors)
 
 class InteractionCountView(APIView):
     permission_classes = [permissions.AllowAny]
 
+    @swagger_auto_schema(
+        operation_description="获取特定帖子的点赞/收藏数量",
+    )
     def post(self, request, *args, **kwargs):
         serializer = InteractionSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             post_id = serializer.validated_data.get('post')
             likes_count = Interaction.objects.filter(post_id=post_id, type='like').count()
             favorites_count = Interaction.objects.filter(post_id=post_id, type='favorite').count()
-            return Response({
+            return response(True, data={
                 'likes_count': likes_count,
                 'favorites_count': favorites_count
-            }, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            })
+        return response(False, error=serializer.errors)
 
 class UserFavoritesListView(generics.ListAPIView):
     serializer_class = InteractionSerializer
+
+    @swagger_auto_schema(
+        operation_description="获取当前用户的所有收藏过的帖子",
+    )
+    def get(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.list(request, *args, **kwargs))
+        except Exception as e:
+            return response(False, error=str(e))
 
     def get_queryset(self):
         user = self.request.user
@@ -114,14 +276,26 @@ class UserFavoritesListView(generics.ListAPIView):
 class UserLikeListView(generics.ListAPIView):
     serializer_class = PostSerializer
 
+    @swagger_auto_schema(
+        operation_description="获取当前用户的所有点赞过的帖子",
+    )
+    def get(self, request, *args, **kwargs):
+        try:
+            return response(True, data=self.list(request, *args, **kwargs))
+        except Exception as e:
+            return response(False, error=str(e))
+
     def get_queryset(self):
         user = self.request.user
         favorited_posts_ids = Interaction.objects.filter(user=user, type='like').values_list('post', flat=True)
         return Post.objects.filter(id__in=favorited_posts_ids)
     
-class ToggleFollowView(APIView):
+class ToggleFollowView(generics.CreateAPIView):
     serializer_class = ToggleFollowSerializer
 
+    @swagger_auto_schema(
+        operation_description="修改当前用户对另一用户的关注状态",
+    )
     def post(self, request, *args, **kwargs):
         serializer = ToggleFollowSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
@@ -315,6 +489,6 @@ class MySearchView(SearchView):
             ret = ret[(int(self.request.POST['page']) - 1) * RESULTS_PER_PAGE:
                     int(self.request.POST['page']) * RESULTS_PER_PAGE]
             ret.append({"max_page": context['paginator'].num_pages, })
-            return JsonResponse(ret, safe=False)
+            return response(True, data=ret)
         except Exception as e:
-            return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return response(False, error=str(e))
