@@ -40,7 +40,18 @@ class UserDeleteAPIView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        
+
+class UserProfileListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
+
+class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+   
 class UpdateUserProfileView(generics.UpdateAPIView):
     serializer_class = UserSerializer
 
