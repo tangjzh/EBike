@@ -29,7 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
     vehicle_permit = VehiclePermitSerializer(read_only=True)
     class Meta:
         model = User
-        fields = ['username', 'password', 'email', 'nickname', 'signature', 'avatar', 'birthday', 'gender', 'vehicle_permit', 'following', 'follower']
+        fields = ['username', 'password', 'email', 'telephone', 'nickname', 'signature', 'avatar', 'birthday', 'gender', 'vehicle_permit', 'following', 'follower']
         extra_kwargs = {'password': {'write_only': True}}
 
     def to_internal_value(self, data):

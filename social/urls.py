@@ -5,7 +5,7 @@ app_name = "social"
 
 urlpatterns = [
     path('post/', PostCreateView.as_view(), name="post-create"),
-    path('post/<int:pk>/', PostRetrieveUpdateDestroyView.as_view(), name='post-edit'),
+    path('post/<str:pk>/', PostRetrieveUpdateDestroyView.as_view(), name='post-edit'),
     path('post/mine/', UserPostsListView.as_view(), name='user-posts'),
     path('comment/', CommentView.as_view(), name='comment-create'),
     path('comment/<int:pk>/', CommentRetrieveUpdateDestroyView.as_view(), name='comment-edit'),

@@ -12,7 +12,7 @@ from io import BytesIO
 from PIL import Image
 from django.core.files.base import ContentFile
 
-class ReportAPIView(APIView, mixins.ListModelMixin):
+class ReportAPIView(generics.ListAPIView):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
 

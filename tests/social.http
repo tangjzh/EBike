@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ###
-@authToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1NzU5OTE1LCJpYXQiOjE3MTU3NTgxMTUsImp0aSI6ImJhNjBkZTJlNjNjODRmNTliZmE3NjQ3ZTYyMjllMjM1IiwidXNlcl9pZCI6MX0.7eLXpwxcsmGlRFbMK1JcIgijKqkjiXKfJqwVGW6vQGQ
+@authToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODc4MDc0LCJpYXQiOjE3MTU4NzYyNzQsImp0aSI6Ijc3MDZmZGJkMjdkNDQ3NGZiYzA3OTgwMDdiYWJlMmM1IiwidXNlcl9pZCI6MX0.WmvlHMAAJvr6VVuVTfdUR8RCgbmQ-rt1RsiMN0clspg
 
 ###
 GET {{host}}/social/homepage/
