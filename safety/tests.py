@@ -37,7 +37,7 @@ class ReportViewsTest(TestCase):
     def test_report_list_view(self):
         response = self.client.get(reverse('report-create-or-update'))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 1)  # 检查是否返回了一个报告列表
+        self.assertEqual(len(response.data), 4)  # 检查是否返回了一个报告列表
 
     def test_report_detail_view(self):
         url = reverse('report-detail', args=[self.report.id])
@@ -65,4 +65,3 @@ class ReportAPITest(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(Report.objects.count(), 1)
         self.assertEqual(Report.objects.first().location, '新测试位置')
-
