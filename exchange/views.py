@@ -180,6 +180,7 @@ class GetGoodsView(APIView):
     
 class GoodsDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GoodsSerializer
+    queryset = Goods.objects.all()
 
     def get(self, request, *args, **kwargs):
         goods_id = kwargs.get('pk')

@@ -1,0 +1,2141 @@
+swagger: '2.0'
+info:
+  title: API Documentation
+  description: API documentation using drf-yasg
+  contact:
+    email: tangjzh23@mail2.sysu.edu.cn
+  version: v1
+basePath: /
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+- Basic: []
+paths:
+  /bikes/:
+    get:
+      operationId: bikes_list
+      description: ''
+      parameters:
+      - name: brand
+        in: query
+        description: brand
+        required: false
+        type: string
+      - name: rating
+        in: query
+        description: rating
+        required: false
+        type: string
+      - name: release_date
+        in: query
+        description: release_date
+        required: false
+        type: string
+      - name: min_price
+        in: query
+        description: min_price
+        required: false
+        type: string
+      - name: max_price
+        in: query
+        description: max_price
+        required: false
+        type: string
+      - name: ordering
+        in: query
+        description: Which field to use when ordering the results.
+        required: false
+        type: string
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Bike'
+      tags:
+      - bikes
+    post:
+      operationId: bikes_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Bike'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Bike'
+      tags:
+      - bikes
+    parameters: []
+  /bikes/channel/:
+    get:
+      operationId: bikes_channel_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Channel'
+      tags:
+      - bikes
+    post:
+      operationId: bikes_channel_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Channel'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Channel'
+      tags:
+      - bikes
+    parameters: []
+  /bikes/channel/id/:
+    get:
+      operationId: bikes_channel_id_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/ChannelID'
+      tags:
+      - bikes
+    parameters: []
+  /bikes/channel/{id}/:
+    get:
+      operationId: bikes_channel_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Channel'
+      tags:
+      - bikes
+    put:
+      operationId: bikes_channel_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Channel'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Channel'
+      tags:
+      - bikes
+    patch:
+      operationId: bikes_channel_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Channel'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Channel'
+      tags:
+      - bikes
+    delete:
+      operationId: bikes_channel_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - bikes
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this channel.
+      required: true
+      type: integer
+  /bikes/id/:
+    get:
+      operationId: bikes_id_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/BikeID'
+      tags:
+      - bikes
+    parameters: []
+  /bikes/images/:
+    post:
+      operationId: bikes_images_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/BikeImage'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/BikeImage'
+      tags:
+      - bikes
+    parameters: []
+  /bikes/images/{id}/:
+    delete:
+      operationId: bikes_images_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - bikes
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this bike image.
+      required: true
+      type: integer
+  /bikes/{id}/:
+    get:
+      operationId: bikes_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Bike'
+      tags:
+      - bikes
+    put:
+      operationId: bikes_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Bike'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Bike'
+      tags:
+      - bikes
+    patch:
+      operationId: bikes_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Bike'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Bike'
+      tags:
+      - bikes
+    delete:
+      operationId: bikes_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - bikes
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this bike.
+      required: true
+      type: integer
+  /exchange/goods/:
+    post:
+      operationId: exchange_goods_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - exchange
+    parameters: []
+  /exchange/goods/mine/:
+    get:
+      operationId: exchange_goods_mine_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - exchange
+    parameters: []
+  /exchange/goods/{hash}/:
+    get:
+      operationId: exchange_goods_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Goods'
+      tags:
+      - exchange
+    put:
+      operationId: exchange_goods_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Goods'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Goods'
+      tags:
+      - exchange
+    patch:
+      operationId: exchange_goods_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Goods'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Goods'
+      tags:
+      - exchange
+    delete:
+      operationId: exchange_goods_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - exchange
+    parameters:
+    - name: hash
+      in: path
+      description: A unique value identifying this goods.
+      required: true
+      type: string
+  /maintenance/appointments/:
+    get:
+      operationId: maintenance_appointments_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Appointment'
+      tags:
+      - maintenance
+    post:
+      operationId: maintenance_appointments_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Appointment'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Appointment'
+      tags:
+      - maintenance
+    parameters: []
+  /maintenance/appointments/{id}/:
+    get:
+      operationId: maintenance_appointments_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Appointment'
+      tags:
+      - maintenance
+    put:
+      operationId: maintenance_appointments_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Appointment'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Appointment'
+      tags:
+      - maintenance
+    patch:
+      operationId: maintenance_appointments_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Appointment'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Appointment'
+      tags:
+      - maintenance
+    delete:
+      operationId: maintenance_appointments_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - maintenance
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this appointment.
+      required: true
+      type: integer
+  /maintenance/shops/:
+    get:
+      operationId: maintenance_shops_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/ServiceShop'
+      tags:
+      - maintenance
+    post:
+      operationId: maintenance_shops_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ServiceShop'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/ServiceShop'
+      tags:
+      - maintenance
+    parameters: []
+  /maintenance/shops/{id}/:
+    get:
+      operationId: maintenance_shops_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ServiceShop'
+      tags:
+      - maintenance
+    put:
+      operationId: maintenance_shops_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ServiceShop'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ServiceShop'
+      tags:
+      - maintenance
+    patch:
+      operationId: maintenance_shops_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ServiceShop'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ServiceShop'
+      tags:
+      - maintenance
+    delete:
+      operationId: maintenance_shops_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - maintenance
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this service shop.
+      required: true
+      type: integer
+  /maintenance/tips/:
+    get:
+      operationId: maintenance_tips_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/ServiceTip'
+      tags:
+      - maintenance
+    post:
+      operationId: maintenance_tips_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ServiceTip'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/ServiceTip'
+      tags:
+      - maintenance
+    parameters: []
+  /maintenance/tips/{id}/:
+    get:
+      operationId: maintenance_tips_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ServiceTip'
+      tags:
+      - maintenance
+    put:
+      operationId: maintenance_tips_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ServiceTip'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ServiceTip'
+      tags:
+      - maintenance
+    patch:
+      operationId: maintenance_tips_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ServiceTip'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ServiceTip'
+      tags:
+      - maintenance
+    delete:
+      operationId: maintenance_tips_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - maintenance
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this service tip.
+      required: true
+      type: integer
+  /safety/reports/:
+    get:
+      operationId: safety_reports_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Report'
+      tags:
+      - safety
+    post:
+      operationId: safety_reports_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Report'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Report'
+      tags:
+      - safety
+    parameters: []
+  /safety/reports/{id}/:
+    get:
+      operationId: safety_reports_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Report'
+      tags:
+      - safety
+    put:
+      operationId: safety_reports_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Report'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Report'
+      tags:
+      - safety
+    patch:
+      operationId: safety_reports_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Report'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Report'
+      tags:
+      - safety
+    delete:
+      operationId: safety_reports_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - safety
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this 举报.
+      required: true
+      type: string
+      format: uuid
+  /social/comment/:
+    get:
+      operationId: social_comment_list
+      description: 获取所有评论
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Comment'
+      tags:
+      - social
+    post:
+      operationId: social_comment_create
+      description: 为帖子创建新评论
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Comment'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Comment'
+      tags:
+      - social
+    parameters: []
+  /social/comment/{id}/:
+    get:
+      operationId: social_comment_read
+      description: 获取指定的车小圈帖子评论
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Comment'
+      tags:
+      - social
+    put:
+      operationId: social_comment_update
+      description: 更新指定的车小圈帖子评论
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Comment'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Comment'
+      tags:
+      - social
+    patch:
+      operationId: social_comment_partial_update
+      description: 部分更新指定的车小圈帖子评论
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Comment'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Comment'
+      tags:
+      - social
+    delete:
+      operationId: social_comment_delete
+      description: 删除指定的车小圈帖子评论
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - social
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this comment.
+      required: true
+      type: integer
+  /social/follow/toggle/:
+    post:
+      operationId: social_follow_toggle_create
+      description: 修改当前用户对另一用户的关注状态
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ToggleFollow'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/ToggleFollow'
+      tags:
+      - social
+    parameters: []
+  /social/homepage/:
+    get:
+      operationId: social_homepage_list
+      description: 获取首页的车小圈帖子，支持指定页码
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      - name: page_size
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Post'
+      tags:
+      - social
+    parameters: []
+  /social/post/:
+    get:
+      operationId: social_post_list
+      description: 获取所有车小圈帖子
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Post'
+      tags:
+      - social
+    post:
+      operationId: social_post_create
+      description: 创建车小圈帖子
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - social
+    parameters: []
+  /social/post/favorites/:
+    get:
+      operationId: social_post_favorites_list
+      description: 获取当前用户的所有收藏过的帖子
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Interaction'
+      tags:
+      - social
+    parameters: []
+  /social/post/interaction/count/:
+    post:
+      operationId: social_post_interaction_count_create
+      description: 获取特定帖子的点赞/收藏数量
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - social
+    parameters: []
+  /social/post/interaction/toggle/:
+    post:
+      operationId: social_post_interaction_toggle_create
+      description: 修改当前用户对特定帖子点赞/收藏状态
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - social
+    parameters: []
+  /social/post/likes/:
+    get:
+      operationId: social_post_likes_list
+      description: 获取当前用户的所有点赞过的帖子
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Post'
+      tags:
+      - social
+    parameters: []
+  /social/post/mine/:
+    get:
+      operationId: social_post_mine_list
+      description: 获取用户发布过的帖子
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Post'
+      tags:
+      - social
+    parameters: []
+  /social/post/{id}/:
+    get:
+      operationId: social_post_read
+      description: 获取指定的车小圈帖子
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - social
+    put:
+      operationId: social_post_update
+      description: 更新指定的车小圈帖子
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - social
+    patch:
+      operationId: social_post_partial_update
+      description: 部分更新指定的车小圈帖子
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+      - social
+    delete:
+      operationId: social_post_delete
+      description: 删除指定的车小圈帖子
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - social
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this post.
+      required: true
+      type: string
+      format: uuid
+  /users/bind-permit/:
+    post:
+      operationId: users_bind-permit_create
+      description: 绑定用户车辆通行证信息
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          required:
+          - permit_number
+          - valid_from
+          - valid_to
+          type: object
+          properties:
+            permit_number:
+              description: 通行证编号
+              type: string
+            valid_from:
+              description: 有效起始日期
+              type: string
+              format: date
+            valid_to:
+              description: 有效结束日期
+              type: string
+              format: date
+          example:
+            permit_number: '12345'
+            valid_from: '2024-01-01'
+            valid_to: '2024-12-31'
+      responses:
+        '201':
+          description: 绑定成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: 1
+                permit_number: '12345'
+                valid_from: '2024-01-01'
+                valid_to: '2024-12-31'
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error:
+                permit_number:
+                - This field is required.
+      tags:
+      - users
+    parameters: []
+  /users/delete/{id}/:
+    delete:
+      operationId: users_delete_delete
+      description: 删除用户
+      parameters: []
+      responses:
+        '204':
+          description: 用户删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 用户未找到
+          examples:
+            application/json:
+              success: false
+              error: User not found
+      tags:
+      - users
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /users/login/:
+    post:
+      operationId: users_login_create
+      description: 用户登录获取JWT
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          required:
+          - username
+          - password
+          type: object
+          properties:
+            username:
+              description: 用户名
+              type: string
+            password:
+              description: 密码
+              type: string
+          example:
+            username: existing_user
+            password: correct_password
+      responses:
+        '200':
+          description: 登录成功
+          examples:
+            application/json:
+              success: true
+              data:
+                refresh: string
+                access: string
+        '401':
+          description: 认证失败
+          examples:
+            application/json:
+              success: false
+              error: No active account found with the given credentials
+      tags:
+      - users
+    parameters: []
+  /users/profile/:
+    get:
+      operationId: users_profile_list
+      description: 获取所有用户的列表
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                username: user1
+                email: user1@example.com
+              - id: 2
+                username: user2
+                email: user2@example.com
+      tags:
+      - users
+    parameters: []
+  /users/profile/{id}/:
+    get:
+      operationId: users_profile_read
+      description: 获取指定用户的详细信息
+      parameters: []
+      responses:
+        '200':
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                username: user1
+                email: user1@example.com
+        '404':
+          description: 用户未找到
+          examples:
+            application/json:
+              success: false
+              error: User not found
+      tags:
+      - users
+    put:
+      operationId: users_profile_update
+      description: 更新指定用户的详细信息
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            username:
+              description: 用户名
+              type: string
+            email:
+              description: 电子邮箱
+              type: string
+          example:
+            username: updated_user
+            email: updated_user@example.com
+      responses:
+        '200':
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                username: updated_user
+                email: updated_user@example.com
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error:
+                username:
+                - This field is required.
+      tags:
+      - users
+    patch:
+      operationId: users_profile_partial_update
+      description: 部分更新指定用户的详细信息
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            username:
+              description: 用户名
+              type: string
+            email:
+              description: 电子邮箱
+              type: string
+          example:
+            username: updated_user
+            email: updated_user@example.com
+      responses:
+        '200':
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                username: updated_user
+                email: updated_user@example.com
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error:
+                username:
+                - This field is required.
+      tags:
+      - users
+    delete:
+      operationId: users_profile_delete
+      description: 删除指定用户
+      parameters: []
+      responses:
+        '204':
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 用户未找到
+          examples:
+            application/json:
+              success: false
+              error: User not found
+      tags:
+      - users
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this user.
+      required: true
+      type: integer
+  /users/refresh/:
+    post:
+      operationId: users_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/TokenRefresh'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenRefresh'
+      tags:
+      - users
+    parameters: []
+  /users/register/:
+    post:
+      operationId: users_register_create
+      description: 创建新用户
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          required:
+          - username
+          - password
+          - email
+          type: object
+          properties:
+            username:
+              description: 用户名
+              type: string
+            password:
+              description: 密码
+              type: string
+            email:
+              description: 电子邮箱
+              type: string
+          example:
+            username: new_user
+            password: strong_password
+            email: new_user@example.com
+      responses:
+        '201':
+          description: 用户创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                username: new_user
+                email: new_user@example.com
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error:
+                username:
+                - This field is required.
+      tags:
+      - users
+    parameters: []
+  /users/unbind-permit/:
+    delete:
+      operationId: users_unbind-permit_delete
+      description: 解绑用户车辆通行证信息
+      parameters: []
+      responses:
+        '204':
+          description: 解绑成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 通行证未找到
+          examples:
+            application/json:
+              success: false
+              error: No permit found to unbind
+      tags:
+      - users
+    parameters: []
+definitions:
+  Channel:
+    required:
+    - bike
+    - name
+    - url
+    - service_info
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      bike:
+        title: Bike
+        type: integer
+      name:
+        title: 渠道名称
+        type: string
+        maxLength: 100
+        minLength: 1
+      url:
+        title: 购买链接
+        type: string
+        format: uri
+        maxLength: 200
+        minLength: 1
+      service_info:
+        title: 服务信息
+        type: string
+        minLength: 1
+  BikeImage:
+    required:
+    - bike
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      bike:
+        title: 电动车
+        type: integer
+      image:
+        title: 图片
+        type: string
+        readOnly: true
+        format: uri
+  Bike:
+    required:
+    - bike_images
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      brand:
+        title: 品牌
+        type: string
+        maxLength: 100
+      model:
+        title: 型号
+        type: string
+        maxLength: 100
+      price:
+        title: 价格
+        type: string
+        format: decimal
+      rating:
+        title: 评价
+        type: number
+      release_date:
+        title: 上市日期
+        type: string
+        format: date
+      description:
+        title: 描述
+        type: string
+      channels:
+        type: array
+        items:
+          $ref: '#/definitions/Channel'
+        readOnly: true
+      bike_images:
+        type: array
+        items:
+          $ref: '#/definitions/BikeImage'
+  ChannelID:
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+  BikeID:
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+  Goods:
+    required:
+    - owner
+    - hash
+    - content
+    - money
+    - origin_money
+    - send_money
+    - classify
+    type: object
+    properties:
+      owner:
+        title: Owner
+        type: integer
+      hash:
+        title: Hash
+        type: string
+        maxLength: 32
+        minLength: 1
+      content:
+        title: Content
+        type: string
+        maxLength: 300
+        minLength: 1
+      money:
+        title: Money
+        type: string
+        maxLength: 10
+        minLength: 1
+      origin_money:
+        title: Origin money
+        type: string
+        maxLength: 10
+        minLength: 1
+      send_money:
+        title: Send money
+        type: string
+        maxLength: 10
+        minLength: 1
+      classify:
+        title: Classify
+        type: string
+        maxLength: 200
+        minLength: 1
+      edit_date:
+        title: Edit date
+        type: string
+        format: date-time
+        readOnly: true
+  Appointment:
+    required:
+    - service_type
+    - appointment_time
+    - user
+    - shop
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      service_type:
+        title: 服务类型
+        type: string
+        maxLength: 255
+        minLength: 1
+      appointment_time:
+        title: 预约时间
+        type: string
+        format: date-time
+      status:
+        title: 状态
+        type: string
+        enum:
+        - pending
+        - check_in
+        - in_progress
+        - completed
+        default: pending
+      created_at:
+        title: 创建时间
+        type: string
+        format: date-time
+        readOnly: true
+      updated_at:
+        title: 更新时间
+        type: string
+        format: date-time
+        readOnly: true
+      status_changed:
+        title: Status changed
+        type: string
+        format: date-time
+      user:
+        title: 用户
+        type: integer
+      shop:
+        title: 服务商家
+        type: integer
+  ServiceShop:
+    required:
+    - name
+    - contact_info
+    - user
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: 商家名称
+        type: string
+        maxLength: 255
+        minLength: 1
+      location:
+        title: 位置
+        type: string
+        maxLength: 255
+        x-nullable: true
+      service_description:
+        title: 服务描述
+        type: string
+        x-nullable: true
+      contact_info:
+        title: 联系信息
+        type: string
+        maxLength: 255
+        minLength: 1
+      user:
+        title: 商家用户
+        type: integer
+  ServiceTip:
+    required:
+    - title
+    - content
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      title:
+        title: 标题
+        type: string
+        maxLength: 255
+        minLength: 1
+      content:
+        title: 内容
+        type: string
+        minLength: 1
+      category:
+        title: 类别
+        type: string
+        maxLength: 100
+        x-nullable: true
+  Report:
+    required:
+    - location
+    - description
+    - user
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      location:
+        title: 位置
+        type: string
+        maxLength: 255
+        minLength: 1
+      description:
+        title: 违规详情
+        type: string
+        minLength: 1
+      timestamp:
+        title: 提交时间
+        type: string
+        format: date-time
+      status:
+        title: 状态
+        type: string
+        enum:
+        - pending
+        - in_progress
+        - resolved
+        default: pending
+      image:
+        title: 现场图片
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
+      user:
+        title: User
+        type: integer
+  Comment:
+    required:
+    - post
+    - content
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      post:
+        title: Post
+        type: string
+        format: uuid
+      content:
+        title: Content
+        type: string
+        minLength: 1
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+      likes_count:
+        title: Likes count
+        type: integer
+        default: 0
+      parent:
+        title: Parent
+        type: integer
+        x-nullable: true
+      replies:
+        type: array
+        items:
+          type: integer
+        readOnly: true
+        uniqueItems: true
+      username:
+        title: Username
+        type: string
+        readOnly: true
+      post_title:
+        title: Post title
+        type: string
+        readOnly: true
+  ToggleFollow:
+    required:
+    - user_id
+    type: object
+    properties:
+      user_id:
+        title: User id
+        type: integer
+  Tag:
+    required:
+    - name
+    type: object
+    properties:
+      name:
+        title: Name
+        type: string
+        maxLength: 100
+        minLength: 1
+      slug:
+        title: Slug
+        type: string
+        format: slug
+        pattern: ^[-a-zA-Z0-9_]+$
+        maxLength: 100
+  PostImage:
+    type: object
+    properties:
+      image:
+        title: Image
+        type: string
+        readOnly: true
+        format: uri
+  Post:
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      user:
+        title: User
+        type: string
+        readOnly: true
+      title:
+        title: Title
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      content:
+        title: Content
+        type: string
+        minLength: 1
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+      updated_at:
+        title: Updated at
+        type: string
+        format: date-time
+        readOnly: true
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+      location:
+        title: Location
+        type: string
+        maxLength: 255
+        x-nullable: true
+      likes_count:
+        title: Likes count
+        type: integer
+        default: 0
+      views_count:
+        title: Views count
+        type: integer
+        default: 0
+      images:
+        type: array
+        items:
+          $ref: '#/definitions/PostImage'
+      comments:
+        type: array
+        items:
+          type: integer
+        readOnly: true
+        uniqueItems: true
+  Interaction:
+    required:
+    - post
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      post:
+        title: Post
+        type: string
+        format: uuid
+      type:
+        title: Type
+        type: string
+        enum:
+        - like
+        - favorite
+  TokenRefresh:
+    required:
+    - refresh
+    type: object
+    properties:
+      refresh:
+        title: Refresh
+        type: string
+        minLength: 1
+      access:
+        title: Access
+        type: string
+        readOnly: true
+        minLength: 1

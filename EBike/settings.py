@@ -118,6 +118,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
+SWAGGER_SETTINGS = {
+	'DEFAULT_INFO': 'EBike.urls.openapi_info' # 这个是url配置文件中的openapi对象，就是下面这个
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

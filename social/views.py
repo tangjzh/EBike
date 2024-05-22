@@ -57,6 +57,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
 class HomePageListView(generics.ListAPIView):
     pagination_class = HomePagePagination
+    serializer_class = PostSerializer
 
     @swagger_auto_schema(
         operation_description="获取首页的车小圈帖子，支持指定页码",

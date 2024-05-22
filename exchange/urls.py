@@ -11,5 +11,5 @@ urlpatterns = [
     path('goods/mine/', MyGoodsView.as_view(), name='my_goods'),
     path('goods/<str:pk>/', GoodsDetailView.as_view(), name='goods_detail'),
     path('goods/search/', MySearchView(), name='haystack_search'),
-    re_path(r'image/(?P<path>.*)', serve, {'document_root': settings.MEDIA_ROOT}),
+    path('image/<path>', serve, {'document_root': settings.MEDIA_ROOT}),
 ]

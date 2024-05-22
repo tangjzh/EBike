@@ -20,12 +20,15 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
 
+openapi_info = openapi.Info(
+    title="API Documentation",
+    default_version='v1',
+    description="API documentation using drf-yasg",
+    contact=openapi.Contact(email="tangjzh23@mail2.sysu.edu.cn"),
+)
+
 schema_view = get_schema_view(
-    openapi.Info(
-        title="API Documentation",
-        default_version='v1',
-        description="API documentation using drf-yasg",
-    ),
+    openapi_info,
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
