@@ -912,27 +912,23 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Comment'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                post: 1
+                user: 1
+                content: 评论内容
+                created_at: '2024-05-01T00:00:00Z'
+                likes_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     post:
@@ -946,9 +942,23 @@ paths:
           $ref: '#/definitions/Comment'
       responses:
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/Comment'
+          description: 评论创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                post: 1
+                user: 1
+                content: 新评论内容
+                created_at: '2024-05-01T00:00:00Z'
+                likes_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     parameters: []
@@ -959,9 +969,23 @@ paths:
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Comment'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                post: 1
+                user: 1
+                content: 评论内容
+                created_at: '2024-05-01T00:00:00Z'
+                likes_count: 0
+        '404':
+          description: 评论未找到
+          examples:
+            application/json:
+              success: false
+              error: 评论未找到
       tags:
       - social
     put:
@@ -975,9 +999,29 @@ paths:
           $ref: '#/definitions/Comment'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Comment'
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                post: 1
+                user: 1
+                content: 更新后的评论内容
+                created_at: '2024-05-01T00:00:00Z'
+                likes_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 评论未找到
+          examples:
+            application/json:
+              success: false
+              error: 评论未找到
       tags:
       - social
     patch:
@@ -991,9 +1035,29 @@ paths:
           $ref: '#/definitions/Comment'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Comment'
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                post: 1
+                user: 1
+                content: 部分更新后的评论内容
+                created_at: '2024-05-01T00:00:00Z'
+                likes_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 评论未找到
+          examples:
+            application/json:
+              success: false
+              error: 评论未找到
       tags:
       - social
     delete:
@@ -1002,7 +1066,16 @@ paths:
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 评论未找到
+          examples:
+            application/json:
+              success: false
+              error: 评论未找到
       tags:
       - social
     parameters:
@@ -1022,10 +1095,17 @@ paths:
         schema:
           $ref: '#/definitions/ToggleFollow'
       responses:
-        '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/ToggleFollow'
+        '200':
+          description: 操作成功
+          examples:
+            application/json:
+              status: followed
+              user: other_user
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              error: 错误信息
       tags:
       - social
     parameters: []
@@ -1046,27 +1126,27 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Post'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                user: 1
+                title: 帖子标题
+                content: 帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     parameters: []
@@ -1082,27 +1162,27 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Post'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                user: 1
+                title: 帖子标题
+                content: 帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     post:
@@ -1116,9 +1196,29 @@ paths:
           $ref: '#/definitions/Post'
       responses:
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/Post'
+          description: 帖子创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: 1
+                title: 新帖子标题
+                content: 帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error:
+                title:
+                - This field is required.
       tags:
       - social
     parameters: []
@@ -1134,27 +1234,27 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Interaction'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                user: 1
+                title: 收藏的帖子标题
+                content: 收藏的帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     parameters: []
@@ -1164,8 +1264,20 @@ paths:
       description: 获取特定帖子的点赞/收藏数量
       parameters: []
       responses:
-        '201':
-          description: ''
+        '200':
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                likes_count: 10
+                favorites_count: 5
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     parameters: []
@@ -1176,7 +1288,26 @@ paths:
       parameters: []
       responses:
         '201':
-          description: ''
+          description: 操作成功
+          examples:
+            application/json:
+              success: true
+              data:
+                user: 1
+                post: 1
+                type: like
+        '204':
+          description: 操作取消
+          examples:
+            application/json:
+              success: false
+              error: interaction removed
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     parameters: []
@@ -1192,27 +1323,27 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Post'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                user: 1
+                title: 点赞的帖子标题
+                content: 点赞的帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     parameters: []
@@ -1228,27 +1359,27 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Post'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                user: 1
+                title: 用户的帖子标题
+                content: 用户的帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - social
     parameters: []
@@ -1259,9 +1390,27 @@ paths:
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Post'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: 1
+                title: 帖子标题
+                content: 帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '404':
+          description: 帖子未找到
+          examples:
+            application/json:
+              success: false
+              error: 帖子未找到
       tags:
       - social
     put:
@@ -1275,9 +1424,33 @@ paths:
           $ref: '#/definitions/Post'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Post'
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: 1
+                title: 更新后的帖子标题
+                content: 更新后的帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 帖子未找到
+          examples:
+            application/json:
+              success: false
+              error: 帖子未找到
       tags:
       - social
     patch:
@@ -1291,9 +1464,33 @@ paths:
           $ref: '#/definitions/Post'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Post'
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: 1
+                title: 部分更新后的帖子标题
+                content: 部分更新后的帖子内容
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+                tags: []
+                location: ''
+                likes_count: 0
+                views_count: 0
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 帖子未找到
+          examples:
+            application/json:
+              success: false
+              error: 帖子未找到
       tags:
       - social
     delete:
@@ -1302,7 +1499,16 @@ paths:
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 帖子未找到
+          examples:
+            application/json:
+              success: false
+              error: 帖子未找到
       tags:
       - social
     parameters:
@@ -1321,27 +1527,7 @@ paths:
         in: body
         required: true
         schema:
-          required:
-          - permit_number
-          - valid_from
-          - valid_to
-          type: object
-          properties:
-            permit_number:
-              description: 通行证编号
-              type: string
-            valid_from:
-              description: 有效起始日期
-              type: string
-              format: date
-            valid_to:
-              description: 有效结束日期
-              type: string
-              format: date
-          example:
-            permit_number: '12345'
-            valid_from: '2024-01-01'
-            valid_to: '2024-12-31'
+          $ref: '#/definitions/VehiclePermit'
       responses:
         '201':
           description: 绑定成功
@@ -1398,20 +1584,7 @@ paths:
         in: body
         required: true
         schema:
-          required:
-          - username
-          - password
-          type: object
-          properties:
-            username:
-              description: 用户名
-              type: string
-            password:
-              description: 密码
-              type: string
-          example:
-            username: existing_user
-            password: correct_password
+          $ref: '#/definitions/MyTokenObtainPair'
       responses:
         '200':
           description: 登录成功
@@ -1487,17 +1660,7 @@ paths:
         in: body
         required: true
         schema:
-          type: object
-          properties:
-            username:
-              description: 用户名
-              type: string
-            email:
-              description: 电子邮箱
-              type: string
-          example:
-            username: updated_user
-            email: updated_user@example.com
+          $ref: '#/definitions/User'
       responses:
         '200':
           description: 更新成功
@@ -1526,17 +1689,7 @@ paths:
         in: body
         required: true
         schema:
-          type: object
-          properties:
-            username:
-              description: 用户名
-              type: string
-            email:
-              description: 电子邮箱
-              type: string
-          example:
-            username: updated_user
-            email: updated_user@example.com
+          $ref: '#/definitions/User'
       responses:
         '200':
           description: 部分更新成功
@@ -1610,25 +1763,7 @@ paths:
         in: body
         required: true
         schema:
-          required:
-          - username
-          - password
-          - email
-          type: object
-          properties:
-            username:
-              description: 用户名
-              type: string
-            password:
-              description: 密码
-              type: string
-            email:
-              description: 电子邮箱
-              type: string
-          example:
-            username: new_user
-            password: strong_password
-            email: new_user@example.com
+          $ref: '#/definitions/User'
       responses:
         '201':
           description: 用户创建成功
@@ -2106,25 +2241,112 @@ definitions:
           type: integer
         readOnly: true
         uniqueItems: true
-  Interaction:
+  VehiclePermit:
     required:
-    - post
+    - permit_number
     type: object
     properties:
-      id:
-        title: ID
-        type: integer
-        readOnly: true
-      post:
-        title: Post
+      permit_number:
+        title: 通行证号
         type: string
-        format: uuid
-      type:
-        title: Type
+        maxLength: 100
+        minLength: 1
+      issued_date:
+        title: 发行日期
+        type: string
+        format: date
+        x-nullable: true
+      expiry_date:
+        title: 过期日期
+        type: string
+        format: date
+        x-nullable: true
+      owner_name:
+        title: 持有者姓名
+        type: string
+        maxLength: 150
+        x-nullable: true
+  MyTokenObtainPair:
+    required:
+    - username
+    - password
+    type: object
+    properties:
+      username:
+        title: Username
+        type: string
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  User:
+    required:
+    - username
+    - password
+    type: object
+    properties:
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        maxLength: 128
+        minLength: 1
+      email:
+        title: 电子邮箱
+        type: string
+        format: email
+        maxLength: 254
+        x-nullable: true
+      telephone:
+        title: 电话号码
+        type: string
+        maxLength: 11
+        x-nullable: true
+      nickname:
+        title: Nickname
+        type: string
+        maxLength: 50
+      signature:
+        title: Signature
+        type: string
+      avatar:
+        title: Avatar
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
+      birthday:
+        title: 生日
+        type: string
+        format: date
+        x-nullable: true
+      gender:
+        title: 性别
         type: string
         enum:
-        - like
-        - favorite
+        - M
+        - F
+        - O
+      vehicle_permit:
+        $ref: '#/definitions/VehiclePermit'
+      following:
+        type: array
+        items:
+          type: integer
+        uniqueItems: true
+      follower:
+        type: array
+        items:
+          type: integer
+        uniqueItems: true
   TokenRefresh:
     required:
     - refresh

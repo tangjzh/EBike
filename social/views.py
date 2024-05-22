@@ -18,6 +18,7 @@ from django.core.paginator import InvalidPage, Paginator
 from drf_yasg.utils import swagger_auto_schema
 from EBike.utils import response
 from rest_framework.pagination import PageNumberPagination
+from drf_yasg import openapi
 
 class HomePagePagination(PageNumberPagination):
     page_size = 10  # 每页的项目数
@@ -30,6 +31,37 @@ class PostCreateView(generics.ListCreateAPIView):
 
     @swagger_auto_schema(
         operation_description="创建车小圈帖子",
+        responses={
+            201: openapi.Response(
+                description="帖子创建成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": 1,
+                            "user": 1,
+                            "title": "新帖子标题",
+                            "content": "帖子内容",
+                            "created_at": "2024-05-01T00:00:00Z",
+                            "updated_at": "2024-05-01T00:00:00Z",
+                            "tags": [],
+                            "location": "",
+                            "likes_count": 0,
+                            "views_count": 0
+                        }
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": {"title": ["This field is required."]}
+                    }
+                }
+            )
+        }
     )
     def post(self, request, *args, **kwargs):
         try:
@@ -39,6 +71,39 @@ class PostCreateView(generics.ListCreateAPIView):
     
     @swagger_auto_schema(
         operation_description="获取所有车小圈帖子",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": [
+                            {
+                                "id": 1,
+                                "user": 1,
+                                "title": "帖子标题",
+                                "content": "帖子内容",
+                                "created_at": "2024-05-01T00:00:00Z",
+                                "updated_at": "2024-05-01T00:00:00Z",
+                                "tags": [],
+                                "location": "",
+                                "likes_count": 0,
+                                "views_count": 0
+                            }
+                        ]
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def get(self, request, *args, **kwargs):
         try:
@@ -61,6 +126,39 @@ class HomePageListView(generics.ListAPIView):
 
     @swagger_auto_schema(
         operation_description="获取首页的车小圈帖子，支持指定页码",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": [
+                            {
+                                "id": 1,
+                                "user": 1,
+                                "title": "帖子标题",
+                                "content": "帖子内容",
+                                "created_at": "2024-05-01T00:00:00Z",
+                                "updated_at": "2024-05-01T00:00:00Z",
+                                "tags": [],
+                                "location": "",
+                                "likes_count": 0,
+                                "views_count": 0
+                            }
+                        ]
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def get(self, request, *args, **kwargs):
         gtype = request.GET.get('order_by', '-views_count')
@@ -84,6 +182,37 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     @swagger_auto_schema(
         operation_description="获取指定的车小圈帖子",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": 1,
+                            "user": 1,
+                            "title": "帖子标题",
+                            "content": "帖子内容",
+                            "created_at": "2024-05-01T00:00:00Z",
+                            "updated_at": "2024-05-01T00:00:00Z",
+                            "tags": [],
+                            "location": "",
+                            "likes_count": 0,
+                            "views_count": 0
+                        }
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="帖子未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "帖子未找到"
+                    }
+                }
+            )
+        }
     )
     def get(self, request, *args, **kwargs):
         try:
@@ -93,6 +222,46 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     @swagger_auto_schema(
         operation_description="更新指定的车小圈帖子",
+        responses={
+            200: openapi.Response(
+                description="更新成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": 1,
+                            "user": 1,
+                            "title": "更新后的帖子标题",
+                            "content": "更新后的帖子内容",
+                            "created_at": "2024-05-01T00:00:00Z",
+                            "updated_at": "2024-05-01T00:00:00Z",
+                            "tags": [],
+                            "location": "",
+                            "likes_count": 0,
+                            "views_count": 0
+                        }
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="帖子未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "帖子未找到"
+                    }
+                }
+            )
+        }
     )
     def put(self, request, *args, **kwargs):
         try:
@@ -102,6 +271,46 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     @swagger_auto_schema(
         operation_description="部分更新指定的车小圈帖子",
+        responses={
+            200: openapi.Response(
+                description="部分更新成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": 1,
+                            "user": 1,
+                            "title": "部分更新后的帖子标题",
+                            "content": "部分更新后的帖子内容",
+                            "created_at": "2024-05-01T00:00:00Z",
+                            "updated_at": "2024-05-01T00:00:00Z",
+                            "tags": [],
+                            "location": "",
+                            "likes_count": 0,
+                            "views_count": 0
+                        }
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="帖子未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "帖子未找到"
+                    }
+                }
+            )
+        }
     )
     def patch(self, request, *args, **kwargs):
         try:
@@ -111,6 +320,25 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     @swagger_auto_schema(
         operation_description="删除指定的车小圈帖子",
+        responses={
+            204: openapi.Response(
+                description="删除成功",
+                examples={
+                    "application/json": {
+                        "success": True
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="帖子未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "帖子未找到"
+                    }
+                }
+            )
+        }
     )
     def delete(self, request, *args, **kwargs):
         try:
@@ -131,6 +359,39 @@ class UserPostsListView(generics.ListAPIView):
 
     @swagger_auto_schema(
         operation_description="获取用户发布过的帖子",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": [
+                            {
+                                "id": 1,
+                                "user": 1,
+                                "title": "用户的帖子标题",
+                                "content": "用户的帖子内容",
+                                "created_at": "2024-05-01T00:00:00Z",
+                                "updated_at": "2024-05-01T00:00:00Z",
+                                "tags": [],
+                                "location": "",
+                                "likes_count": 0,
+                                "views_count": 0
+                            }
+                        ]
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def get(self, request, *args, **kwargs):
         try:
@@ -141,13 +402,42 @@ class UserPostsListView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Post.objects.filter(user=user)
-    
+
 class CommentView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
     @swagger_auto_schema(
         operation_description="获取所有评论",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": [
+                            {
+                                "id": 1,
+                                "post": 1,
+                                "user": 1,
+                                "content": "评论内容",
+                                "created_at": "2024-05-01T00:00:00Z",
+                                "likes_count": 0
+                            }
+                        ]
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def get(self, request, *args, **kwargs):
         try:
@@ -157,6 +447,33 @@ class CommentView(generics.ListCreateAPIView):
         
     @swagger_auto_schema(
         operation_description="为帖子创建新评论",
+        responses={
+            201: openapi.Response(
+                description="评论创建成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": 1,
+                            "post": 1,
+                            "user": 1,
+                            "content": "新评论内容",
+                            "created_at": "2024-05-01T00:00:00Z",
+                            "likes_count": 0
+                        }
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def post(self, request, *args, **kwargs):
         try:
@@ -174,6 +491,33 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     @swagger_auto_schema(
         operation_description="获取指定的车小圈帖子评论",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": 1,
+                            "post": 1,
+                            "user": 1,
+                            "content": "评论内容",
+                            "created_at": "2024-05-01T00:00:00Z",
+                            "likes_count": 0
+                        }
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="评论未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "评论未找到"
+                    }
+                }
+            )
+        }
     )
     def get(self, request, *args, **kwargs):
         try:
@@ -183,6 +527,42 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     @swagger_auto_schema(
         operation_description="更新指定的车小圈帖子评论",
+        responses={
+            200: openapi.Response(
+                description="更新成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": 1,
+                            "post": 1,
+                            "user": 1,
+                            "content": "更新后的评论内容",
+                            "created_at": "2024-05-01T00:00:00Z",
+                            "likes_count": 0
+                        }
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="评论未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "评论未找到"
+                    }
+                }
+            )
+        }
     )
     def put(self, request, *args, **kwargs):
         try:
@@ -192,6 +572,42 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     @swagger_auto_schema(
         operation_description="部分更新指定的车小圈帖子评论",
+        responses={
+            200: openapi.Response(
+                description="部分更新成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": 1,
+                            "post": 1,
+                            "user": 1,
+                            "content": "部分更新后的评论内容",
+                            "created_at": "2024-05-01T00:00:00Z",
+                            "likes_count": 0
+                        }
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="评论未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "评论未找到"
+                    }
+                }
+            )
+        }
     )
     def patch(self, request, *args, **kwargs):
         try:
@@ -201,6 +617,25 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     @swagger_auto_schema(
         operation_description="删除指定的车小圈帖子评论",
+        responses={
+            204: openapi.Response(
+                description="删除成功",
+                examples={
+                    "application/json": {
+                        "success": True
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="评论未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "评论未找到"
+                    }
+                }
+            )
+        }
     )
     def delete(self, request, *args, **kwargs):
         try:
@@ -210,18 +645,47 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
             return response(False, error=str(e))
 
     def perform_update(self, serializer):
-        # if self.request.user != serializer.instance.user:
-        #     raise permissions.PermissionDenied("You cannot edit comments made by other users.")
         serializer.save()
 
     def perform_destroy(self, instance):
-        # if self.request.user != instance.user:
-        #     raise permissions.PermissionDenied("You cannot delete comments made by other users.")
         instance.delete()
 
 class InteractionToggleView(APIView):
     @swagger_auto_schema(
         operation_description="修改当前用户对特定帖子点赞/收藏状态",
+        responses={
+            201: openapi.Response(
+                description="操作成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "user": 1,
+                            "post": 1,
+                            "type": "like"
+                        }
+                    }
+                }
+            ),
+            204: openapi.Response(
+                description="操作取消",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "interaction removed"
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def post(self, request, *args, **kwargs):
         serializer = InteractionSerializer(data=request.data, context={'request': request})
@@ -244,6 +708,29 @@ class InteractionCountView(APIView):
 
     @swagger_auto_schema(
         operation_description="获取特定帖子的点赞/收藏数量",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "likes_count": 10,
+                            "favorites_count": 5
+                        }
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def post(self, request, *args, **kwargs):
         serializer = InteractionSerializer(data=request.data, context={'request': request})
@@ -262,6 +749,39 @@ class UserFavoritesListView(generics.ListAPIView):
 
     @swagger_auto_schema(
         operation_description="获取当前用户的所有收藏过的帖子",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": [
+                            {
+                                "id": 1,
+                                "user": 1,
+                                "title": "收藏的帖子标题",
+                                "content": "收藏的帖子内容",
+                                "created_at": "2024-05-01T00:00:00Z",
+                                "updated_at": "2024-05-01T00:00:00Z",
+                                "tags": [],
+                                "location": "",
+                                "likes_count": 0,
+                                "views_count": 0
+                            }
+                        ]
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def get(self, request, *args, **kwargs):
         try:
@@ -273,12 +793,45 @@ class UserFavoritesListView(generics.ListAPIView):
         user = self.request.user
         favorited_posts_ids = Interaction.objects.filter(user=user, type='favorite').values_list('post', flat=True)
         return Post.objects.filter(id__in=favorited_posts_ids)
-    
+
 class UserLikeListView(generics.ListAPIView):
     serializer_class = PostSerializer
 
     @swagger_auto_schema(
         operation_description="获取当前用户的所有点赞过的帖子",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": [
+                            {
+                                "id": 1,
+                                "user": 1,
+                                "title": "点赞的帖子标题",
+                                "content": "点赞的帖子内容",
+                                "created_at": "2024-05-01T00:00:00Z",
+                                "updated_at": "2024-05-01T00:00:00Z",
+                                "tags": [],
+                                "location": "",
+                                "likes_count": 0,
+                                "views_count": 0
+                            }
+                        ]
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def get(self, request, *args, **kwargs):
         try:
@@ -290,12 +843,31 @@ class UserLikeListView(generics.ListAPIView):
         user = self.request.user
         favorited_posts_ids = Interaction.objects.filter(user=user, type='like').values_list('post', flat=True)
         return Post.objects.filter(id__in=favorited_posts_ids)
-    
+
 class ToggleFollowView(generics.CreateAPIView):
     serializer_class = ToggleFollowSerializer
 
     @swagger_auto_schema(
         operation_description="修改当前用户对另一用户的关注状态",
+        responses={
+            200: openapi.Response(
+                description="操作成功",
+                examples={
+                    "application/json": {
+                        "status": "followed",
+                        "user": "other_user"
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
     )
     def post(self, request, *args, **kwargs):
         serializer = ToggleFollowSerializer(data=request.data, context={'request': request})
@@ -303,11 +875,36 @@ class ToggleFollowView(generics.CreateAPIView):
             user, action = serializer.save()
             return Response({'status': action, 'user': user.username}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
 class RoomListView(generics.ListAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="获取当前用户所在的聊天室列表",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": [
+                            {
+                                "id": "room_id",
+                                "name": "聊天室名称",
+                                "type": "聊天室类型",
+                                "participants": ["user1", "user2"],
+                                "created_at": "2024-05-01T00:00:00Z"
+                            }
+                        ]
+                    }
+                }
+            )
+        }
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
         return self.request.user.chat_rooms.all()
@@ -317,16 +914,79 @@ class RoomDetailView(generics.RetrieveAPIView):
     serializer_class = RoomSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    @swagger_auto_schema(
+        operation_description="获取指定聊天室的详细信息",
+        responses={
+            200: openapi.Response(
+                description="获取成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": "room_id",
+                            "name": "聊天室名称",
+                            "type": "聊天室类型",
+                            "participants": ["user1", "user2"],
+                            "created_at": "2024-05-01T00:00:00Z"
+                        }
+                    }
+                }
+            ),
+            404: openapi.Response(
+                description="聊天室未找到",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "聊天室未找到"
+                    }
+                }
+            )
+        }
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 class CreateMessageView(generics.CreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    @swagger_auto_schema(
+        operation_description="在指定聊天室中发送消息",
+        responses={
+            201: openapi.Response(
+                description="消息发送成功",
+                examples={
+                    "application/json": {
+                        "success": True,
+                        "data": {
+                            "id": "message_id",
+                            "room": "room_id",
+                            "sender": "user1",
+                            "content": "消息内容",
+                            "timestamp": "2024-05-01T00:00:00Z"
+                        }
+                    }
+                }
+            ),
+            400: openapi.Response(
+                description="请求无效",
+                examples={
+                    "application/json": {
+                        "success": False,
+                        "error": "错误信息"
+                    }
+                }
+            )
+        }
+    )
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
     def perform_create(self, serializer):
         serializer.save(sender=self.request.user)
 
 RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
-
 
 class MySearchView(SearchView):
     extra_context = {}
