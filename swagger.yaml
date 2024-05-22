@@ -5,7 +5,7 @@ info:
   contact:
     email: tangjzh23@mail2.sysu.edu.cn
   version: v1
-basePath: /
+basePath: /www.ebike.com/api/v1
 consumes:
 - application/json
 produces:
@@ -19,7 +19,7 @@ paths:
   /bikes/:
     get:
       operationId: bikes_list
-      description: ''
+      description: 获取所有电动车的列表
       parameters:
       - name: brand
         in: query
@@ -58,32 +58,23 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Bike'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                brand: 品牌
+                model: 型号
+                price: 价格
+                rating: 评价
+                release_date: 上市日期
+                description: 描述
       tags:
       - bikes
     post:
       operationId: bikes_create
-      description: ''
+      description: 创建新的电动车
       parameters:
       - name: data
         in: body
@@ -92,16 +83,31 @@ paths:
           $ref: '#/definitions/Bike'
       responses:
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/Bike'
+          description: 创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                brand: 品牌
+                model: 型号
+                price: 价格
+                rating: 评价
+                release_date: 上市日期
+                description: 描述
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - bikes
     parameters: []
   /bikes/channel/:
     get:
       operationId: bikes_channel_list
-      description: ''
+      description: 获取所有渠道的列表
       parameters:
       - name: page
         in: query
@@ -110,32 +116,20 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Channel'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                name: 渠道名称
+                url: 购买链接
+                service_info: 服务信息
       tags:
       - bikes
     post:
       operationId: bikes_channel_create
-      description: ''
+      description: 创建新的渠道
       parameters:
       - name: data
         in: body
@@ -144,16 +138,28 @@ paths:
           $ref: '#/definitions/Channel'
       responses:
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/Channel'
+          description: 创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                name: 渠道名称
+                url: 购买链接
+                service_info: 服务信息
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - bikes
     parameters: []
   /bikes/channel/id/:
     get:
       operationId: bikes_channel_id_list
-      description: ''
+      description: 获取所有渠道ID列表
       parameters:
       - name: page
         in: query
@@ -162,45 +168,43 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/ChannelID'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+              - id: 2
       tags:
       - bikes
     parameters: []
   /bikes/channel/{id}/:
     get:
       operationId: bikes_channel_read
-      description: ''
+      description: 获取指定渠道的详细信息
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Channel'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                name: 渠道名称
+                url: 购买链接
+                service_info: 服务信息
+        '404':
+          description: 渠道未找到
+          examples:
+            application/json:
+              success: false
+              error: Channel not found.
       tags:
       - bikes
     put:
       operationId: bikes_channel_update
-      description: ''
+      description: 更新指定渠道的信息
       parameters:
       - name: data
         in: body
@@ -209,14 +213,32 @@ paths:
           $ref: '#/definitions/Channel'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Channel'
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                name: 更新后的渠道名称
+                url: 更新后的购买链接
+                service_info: 更新后的服务信息
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 渠道未找到
+          examples:
+            application/json:
+              success: false
+              error: Channel not found.
       tags:
       - bikes
     patch:
       operationId: bikes_channel_partial_update
-      description: ''
+      description: 部分更新指定渠道的信息
       parameters:
       - name: data
         in: body
@@ -225,18 +247,45 @@ paths:
           $ref: '#/definitions/Channel'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Channel'
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                name: 部分更新后的渠道名称
+                url: 部分更新后的购买链接
+                service_info: 部分更新后的服务信息
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 渠道未找到
+          examples:
+            application/json:
+              success: false
+              error: Channel not found.
       tags:
       - bikes
     delete:
       operationId: bikes_channel_delete
-      description: ''
+      description: 删除指定渠道
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 渠道未找到
+          examples:
+            application/json:
+              success: false
+              error: Channel not found.
       tags:
       - bikes
     parameters:
@@ -248,7 +297,7 @@ paths:
   /bikes/id/:
     get:
       operationId: bikes_id_list
-      description: ''
+      description: 获取所有电动车ID列表
       parameters:
       - name: page
         in: query
@@ -257,34 +306,26 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/BikeID'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+              - id: 2
+        '400':
+          description: 获取失败
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - bikes
     parameters: []
   /bikes/images/:
     post:
       operationId: bikes_images_create
-      description: ''
+      description: 创建电动车图片
       parameters:
       - name: data
         in: body
@@ -293,20 +334,40 @@ paths:
           $ref: '#/definitions/BikeImage'
       responses:
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/BikeImage'
+          description: 创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                bike: 1
+                image: image_url
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - bikes
     parameters: []
   /bikes/images/{id}/:
     delete:
       operationId: bikes_images_delete
-      description: ''
+      description: 删除电动车图片
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 图片未找到
+          examples:
+            application/json:
+              success: false
+              error: Bike image not found.
       tags:
       - bikes
     parameters:
@@ -318,18 +379,33 @@ paths:
   /bikes/{id}/:
     get:
       operationId: bikes_read
-      description: ''
+      description: 获取指定电动车的详细信息
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Bike'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                brand: 品牌
+                model: 型号
+                price: 价格
+                rating: 评价
+                release_date: 上市日期
+                description: 描述
+        '400':
+          description: 获取失败
+          examples:
+            application/json:
+              success: false
+              error: Bike not found.
       tags:
       - bikes
     put:
       operationId: bikes_update
-      description: ''
+      description: 更新指定电动车的信息
       parameters:
       - name: data
         in: body
@@ -338,14 +414,35 @@ paths:
           $ref: '#/definitions/Bike'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Bike'
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                brand: 更新后的品牌
+                model: 更新后的型号
+                price: 更新后的价格
+                rating: 更新后的评价
+                release_date: 更新后的上市日期
+                description: 更新后的描述
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 电动车未找到
+          examples:
+            application/json:
+              success: false
+              error: Bike not found.
       tags:
       - bikes
     patch:
       operationId: bikes_partial_update
-      description: ''
+      description: 部分更新指定电动车的信息
       parameters:
       - name: data
         in: body
@@ -354,18 +451,48 @@ paths:
           $ref: '#/definitions/Bike'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Bike'
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                brand: 部分更新后的品牌
+                model: 部分更新后的型号
+                price: 部分更新后的价格
+                rating: 部分更新后的评价
+                release_date: 部分更新后的上市日期
+                description: 部分更新后的描述
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 电动车未找到
+          examples:
+            application/json:
+              success: false
+              error: Bike not found.
       tags:
       - bikes
     delete:
       operationId: bikes_delete
-      description: ''
+      description: 删除指定电动车
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 电动车未找到
+          examples:
+            application/json:
+              success: false
+              error: Bike not found.
       tags:
       - bikes
     parameters:
@@ -377,35 +504,82 @@ paths:
   /exchange/goods/:
     post:
       operationId: exchange_goods_create
-      description: ''
+      description: 发布新的商品
       parameters: []
       responses:
         '201':
-          description: ''
+          description: 发布成功
+          examples:
+            application/json:
+              success: true
+              message: Success
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: Missing required fields.
+        '500':
+          description: 服务器内部错误
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - exchange
     parameters: []
   /exchange/goods/mine/:
     get:
       operationId: exchange_goods_mine_list
-      description: ''
+      description: 获取当前用户发布的所有商品
       parameters: []
       responses:
         '200':
-          description: ''
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - goods_id: goods_hash
+                image: image_url
+                content: 商品内容
+                money: 商品价格
       tags:
       - exchange
     parameters: []
   /exchange/goods/{hash}/:
     get:
       operationId: exchange_goods_read
-      description: ''
+      description: 获取指定商品的详细信息
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Goods'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                user_id: 1
+                username: 用户名
+                money: 商品价格
+                content: 商品内容
+                origin_money: 原价
+                send_money: 运费
+                images:
+                - image: image_url
+                time: '2024-05-01 00:00:00'
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: No goods ID provided
+        '404':
+          description: 商品未找到
+          examples:
+            application/json:
+              success: false
+              error: Goods not found
       tags:
       - exchange
     put:
@@ -458,7 +632,7 @@ paths:
   /maintenance/appointments/:
     get:
       operationId: maintenance_appointments_list
-      description: ''
+      description: 获取用户的所有预约
       parameters:
       - name: page
         in: query
@@ -467,32 +641,30 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Appointment'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                user: user_id
+                shop: shop_id
+                service_type: 服务类型
+                appointment_time: '2024-05-01T10:00:00Z'
+                status: pending
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - maintenance
     post:
       operationId: maintenance_appointments_create
-      description: ''
+      description: 创建新的预约
       parameters:
       - name: data
         in: body
@@ -501,27 +673,59 @@ paths:
           $ref: '#/definitions/Appointment'
       responses:
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/Appointment'
+          description: 创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: user_id
+                shop: shop_id
+                service_type: 服务类型
+                appointment_time: '2024-05-01T10:00:00Z'
+                status: pending
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - maintenance
     parameters: []
   /maintenance/appointments/{id}/:
     get:
       operationId: maintenance_appointments_read
-      description: ''
+      description: 获取指定的预约详情
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Appointment'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: user_id
+                shop: shop_id
+                service_type: 服务类型
+                appointment_time: '2024-05-01T10:00:00Z'
+                status: pending
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+        '404':
+          description: 预约未找到
+          examples:
+            application/json:
+              success: false
+              error: 预约未找到
       tags:
       - maintenance
     put:
       operationId: maintenance_appointments_update
-      description: ''
+      description: 更新指定的预约信息
       parameters:
       - name: data
         in: body
@@ -530,14 +734,36 @@ paths:
           $ref: '#/definitions/Appointment'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Appointment'
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: user_id
+                shop: shop_id
+                service_type: 更新后的服务类型
+                appointment_time: '2024-05-01T10:00:00Z'
+                status: pending
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 预约未找到
+          examples:
+            application/json:
+              success: false
+              error: 预约未找到
       tags:
       - maintenance
     patch:
       operationId: maintenance_appointments_partial_update
-      description: ''
+      description: 部分更新指定的预约信息
       parameters:
       - name: data
         in: body
@@ -546,18 +772,49 @@ paths:
           $ref: '#/definitions/Appointment'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Appointment'
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: user_id
+                shop: shop_id
+                service_type: 部分更新后的服务类型
+                appointment_time: '2024-05-01T10:00:00Z'
+                status: pending
+                created_at: '2024-05-01T00:00:00Z'
+                updated_at: '2024-05-01T00:00:00Z'
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 预约未找到
+          examples:
+            application/json:
+              success: false
+              error: 预约未找到
       tags:
       - maintenance
     delete:
       operationId: maintenance_appointments_delete
-      description: ''
+      description: 删除指定的预约
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 预约未找到
+          examples:
+            application/json:
+              success: false
+              error: 预约未找到
       tags:
       - maintenance
     parameters:
@@ -569,7 +826,7 @@ paths:
   /maintenance/shops/:
     get:
       operationId: maintenance_shops_list
-      description: ''
+      description: 获取所有服务商家
       parameters:
       - name: page
         in: query
@@ -578,32 +835,28 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/ServiceShop'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                user: user_id
+                name: 商家名称
+                location: 商家位置
+                service_description: 服务描述
+                contact_info: 联系信息
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - maintenance
     post:
       operationId: maintenance_shops_create
-      description: ''
+      description: 创建新的服务商家
       parameters:
       - name: data
         in: body
@@ -612,27 +865,55 @@ paths:
           $ref: '#/definitions/ServiceShop'
       responses:
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/ServiceShop'
+          description: 创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: user_id
+                name: 商家名称
+                location: 商家位置
+                service_description: 服务描述
+                contact_info: 联系信息
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - maintenance
     parameters: []
   /maintenance/shops/{id}/:
     get:
       operationId: maintenance_shops_read
-      description: ''
+      description: 获取指定的服务商家详情
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/ServiceShop'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: user_id
+                name: 商家名称
+                location: 商家位置
+                service_description: 服务描述
+                contact_info: 联系信息
+        '404':
+          description: 商家未找到
+          examples:
+            application/json:
+              success: false
+              error: 商家未找到
       tags:
       - maintenance
     put:
       operationId: maintenance_shops_update
-      description: ''
+      description: 更新指定的服务商家信息
       parameters:
       - name: data
         in: body
@@ -641,14 +922,34 @@ paths:
           $ref: '#/definitions/ServiceShop'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/ServiceShop'
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: user_id
+                name: 更新后的商家名称
+                location: 更新后的商家位置
+                service_description: 更新后的服务描述
+                contact_info: 更新后的联系信息
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 商家未找到
+          examples:
+            application/json:
+              success: false
+              error: 商家未找到
       tags:
       - maintenance
     patch:
       operationId: maintenance_shops_partial_update
-      description: ''
+      description: 部分更新指定的服务商家信息
       parameters:
       - name: data
         in: body
@@ -657,18 +958,47 @@ paths:
           $ref: '#/definitions/ServiceShop'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/ServiceShop'
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                user: user_id
+                name: 部分更新后的商家名称
+                location: 部分更新后的商家位置
+                service_description: 部分更新后的服务描述
+                contact_info: 部分更新后的联系信息
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 商家未找到
+          examples:
+            application/json:
+              success: false
+              error: 商家未找到
       tags:
       - maintenance
     delete:
       operationId: maintenance_shops_delete
-      description: ''
+      description: 删除指定的服务商家
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 商家未找到
+          examples:
+            application/json:
+              success: false
+              error: 商家未找到
       tags:
       - maintenance
     parameters:
@@ -680,7 +1010,7 @@ paths:
   /maintenance/tips/:
     get:
       operationId: maintenance_tips_list
-      description: ''
+      description: 获取所有服务提示
       parameters:
       - name: page
         in: query
@@ -689,32 +1019,26 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/ServiceTip'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: 1
+                title: 提示标题
+                content: 提示内容
+                category: 提示类别
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - maintenance
     post:
       operationId: maintenance_tips_create
-      description: ''
+      description: 创建新的服务提示
       parameters:
       - name: data
         in: body
@@ -723,27 +1047,51 @@ paths:
           $ref: '#/definitions/ServiceTip'
       responses:
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/ServiceTip'
+          description: 创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                title: 提示标题
+                content: 提示内容
+                category: 提示类别
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - maintenance
     parameters: []
   /maintenance/tips/{id}/:
     get:
       operationId: maintenance_tips_read
-      description: ''
+      description: 获取指定的服务提示详情
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/ServiceTip'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                title: 提示标题
+                content: 提示内容
+                category: 提示类别
+        '404':
+          description: 提示未找到
+          examples:
+            application/json:
+              success: false
+              error: 提示未找到
       tags:
       - maintenance
     put:
       operationId: maintenance_tips_update
-      description: ''
+      description: 更新指定的服务提示信息
       parameters:
       - name: data
         in: body
@@ -752,14 +1100,32 @@ paths:
           $ref: '#/definitions/ServiceTip'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/ServiceTip'
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                title: 更新后的提示标题
+                content: 更新后的提示内容
+                category: 更新后的提示类别
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 提示未找到
+          examples:
+            application/json:
+              success: false
+              error: 提示未找到
       tags:
       - maintenance
     patch:
       operationId: maintenance_tips_partial_update
-      description: ''
+      description: 部分更新指定的服务提示信息
       parameters:
       - name: data
         in: body
@@ -768,18 +1134,45 @@ paths:
           $ref: '#/definitions/ServiceTip'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/ServiceTip'
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: 1
+                title: 部分更新后的提示标题
+                content: 部分更新后的提示内容
+                category: 部分更新后的提示类别
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 提示未找到
+          examples:
+            application/json:
+              success: false
+              error: 提示未找到
       tags:
       - maintenance
     delete:
       operationId: maintenance_tips_delete
-      description: ''
+      description: 删除指定的服务提示
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 提示未找到
+          examples:
+            application/json:
+              success: false
+              error: 提示未找到
       tags:
       - maintenance
     parameters:
@@ -791,7 +1184,7 @@ paths:
   /safety/reports/:
     get:
       operationId: safety_reports_list
-      description: ''
+      description: 获取所有举报报告
       parameters:
       - name: page
         in: query
@@ -800,32 +1193,29 @@ paths:
         type: integer
       responses:
         '200':
-          description: ''
-          schema:
-            required:
-            - count
-            - results
-            type: object
-            properties:
-              count:
-                type: integer
-              next:
-                type: string
-                format: uri
-                x-nullable: true
-              previous:
-                type: string
-                format: uri
-                x-nullable: true
-              results:
-                type: array
-                items:
-                  $ref: '#/definitions/Report'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+              - id: report_id
+                user: user_id
+                location: 报告位置
+                description: 报告详情
+                timestamp: '2024-05-01T00:00:00Z'
+                status: pending
+                image: null
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - safety
     post:
       operationId: safety_reports_create
-      description: ''
+      description: 创建或更新举报报告
       parameters:
       - name: data
         in: body
@@ -833,28 +1223,71 @@ paths:
         schema:
           $ref: '#/definitions/Report'
       responses:
+        '200':
+          description: 报告更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: report_id
+                user: user_id
+                location: 报告位置
+                description: 报告详情
+                timestamp: '2024-05-01T00:00:00Z'
+                status: pending
+                image: null
         '201':
-          description: ''
-          schema:
-            $ref: '#/definitions/Report'
+          description: 报告创建成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: report_id
+                user: user_id
+                location: 报告位置
+                description: 报告详情
+                timestamp: '2024-05-01T00:00:00Z'
+                status: pending
+                image: null
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
       tags:
       - safety
     parameters: []
   /safety/reports/{id}/:
     get:
       operationId: safety_reports_read
-      description: ''
+      description: 获取指定举报报告的详细信息
       parameters: []
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Report'
+          description: 获取成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: report_id
+                user: user_id
+                location: 报告位置
+                description: 报告详情
+                timestamp: '2024-05-01T00:00:00Z'
+                status: pending
+                image: null
+        '404':
+          description: 报告未找到
+          examples:
+            application/json:
+              success: false
+              error: 报告未找到
       tags:
       - safety
     put:
       operationId: safety_reports_update
-      description: ''
+      description: 更新指定举报报告的信息
       parameters:
       - name: data
         in: body
@@ -863,14 +1296,35 @@ paths:
           $ref: '#/definitions/Report'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Report'
+          description: 更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: report_id
+                user: user_id
+                location: 更新后的报告位置
+                description: 更新后的报告详情
+                timestamp: '2024-05-01T00:00:00Z'
+                status: pending
+                image: null
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 报告未找到
+          examples:
+            application/json:
+              success: false
+              error: 报告未找到
       tags:
       - safety
     patch:
       operationId: safety_reports_partial_update
-      description: ''
+      description: 部分更新指定举报报告的信息
       parameters:
       - name: data
         in: body
@@ -879,18 +1333,48 @@ paths:
           $ref: '#/definitions/Report'
       responses:
         '200':
-          description: ''
-          schema:
-            $ref: '#/definitions/Report'
+          description: 部分更新成功
+          examples:
+            application/json:
+              success: true
+              data:
+                id: report_id
+                user: user_id
+                location: 部分更新后的报告位置
+                description: 部分更新后的报告详情
+                timestamp: '2024-05-01T00:00:00Z'
+                status: pending
+                image: null
+        '400':
+          description: 请求无效
+          examples:
+            application/json:
+              success: false
+              error: 错误信息
+        '404':
+          description: 报告未找到
+          examples:
+            application/json:
+              success: false
+              error: 报告未找到
       tags:
       - safety
     delete:
       operationId: safety_reports_delete
-      description: ''
+      description: 删除指定举报报告
       parameters: []
       responses:
         '204':
-          description: ''
+          description: 删除成功
+          examples:
+            application/json:
+              success: true
+        '404':
+          description: 报告未找到
+          examples:
+            application/json:
+              success: false
+              error: 报告未找到
       tags:
       - safety
     parameters:
@@ -1893,20 +2377,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/BikeImage'
-  ChannelID:
-    type: object
-    properties:
-      id:
-        title: ID
-        type: integer
-        readOnly: true
-  BikeID:
-    type: object
-    properties:
-      id:
-        title: ID
-        type: integer
-        readOnly: true
   Goods:
     required:
     - owner
