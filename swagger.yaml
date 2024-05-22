@@ -5,7 +5,7 @@ info:
   contact:
     email: tangjzh23@mail2.sysu.edu.cn
   version: v1
-basePath: /
+basePath: www.ebike.com/api/v1
 consumes:
 - application/json
 produces:
@@ -2026,6 +2026,8 @@ paths:
                 valid_to: '2024-12-31'
         '400':
           description: 请求无效
+          schema:
+            $ref: '#/definitions/VehiclePermit'
           examples:
             application/json:
               success: false
@@ -2177,6 +2179,8 @@ paths:
       responses:
         '200':
           description: 部分更新成功
+          schema:
+            $ref: '#/definitions/User'
           examples:
             application/json:
               success: true
@@ -2186,6 +2190,8 @@ paths:
                 email: updated_user@example.com
         '400':
           description: 请求无效
+          schema:
+            $ref: '#/definitions/User'
           examples:
             application/json:
               success: false
@@ -2201,11 +2207,15 @@ paths:
       responses:
         '204':
           description: 删除成功
+          schema:
+            $ref: '#/definitions/User'
           examples:
             application/json:
               success: true
         '404':
           description: 用户未找到
+          schema:
+            $ref: '#/definitions/User'
           examples:
             application/json:
               success: false
@@ -2277,11 +2287,15 @@ paths:
       responses:
         '204':
           description: 解绑成功
+          schema:
+            $ref: '#/definitions/VehiclePermit'
           examples:
             application/json:
               success: true
         '404':
           description: 通行证未找到
+          schema:
+            $ref: '#/definitions/VehiclePermit'
           examples:
             application/json:
               success: false

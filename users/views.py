@@ -233,6 +233,7 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
         responses={
             200: openapi.Response(
                 description="部分更新成功",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": True,
@@ -247,6 +248,7 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
             ),
             400: openapi.Response(
                 description="请求无效",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": False,
@@ -267,6 +269,7 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
         responses={
             204: openapi.Response(
                 description="删除成功",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": True
@@ -275,6 +278,7 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
             ),
             404: openapi.Response(
                 description="用户未找到",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": False,
@@ -302,6 +306,7 @@ class UpdateUserProfileView(generics.UpdateAPIView):
         responses={
             200: openapi.Response(
                 description="更新成功",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": True,
@@ -316,6 +321,7 @@ class UpdateUserProfileView(generics.UpdateAPIView):
             ),
             400: openapi.Response(
                 description="请求无效",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": False,
@@ -336,6 +342,7 @@ class UpdateUserProfileView(generics.UpdateAPIView):
         responses={
             200: openapi.Response(
                 description="部分更新成功",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": True,
@@ -350,6 +357,7 @@ class UpdateUserProfileView(generics.UpdateAPIView):
             ),
             400: openapi.Response(
                 description="请求无效",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": False,
@@ -376,6 +384,7 @@ class RetrieveUserProfileView(generics.RetrieveAPIView):
         responses={
             200: openapi.Response(
                 description="获取成功",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": True,
@@ -401,6 +410,7 @@ class BindPermitView(generics.CreateAPIView):
 
     @swagger_auto_schema(
         operation_description="绑定用户车辆通行证信息",
+        schema=VehiclePermitSerializer,
         responses={
             201: openapi.Response(
                 description="绑定成功",
@@ -419,6 +429,7 @@ class BindPermitView(generics.CreateAPIView):
             ),
             400: openapi.Response(
                 description="请求无效",
+                schema=VehiclePermitSerializer,
                 examples={
                     "application/json": {
                         "success": False,
@@ -441,6 +452,7 @@ class UnbindPermitView(views.APIView):
         responses={
             204: openapi.Response(
                 description="解绑成功",
+                schema=VehiclePermitSerializer,
                 examples={
                     "application/json": {
                         "success": True
@@ -449,6 +461,7 @@ class UnbindPermitView(views.APIView):
             ),
             404: openapi.Response(
                 description="通行证未找到",
+                schema=VehiclePermitSerializer,
                 examples={
                     "application/json": {
                         "success": False,
