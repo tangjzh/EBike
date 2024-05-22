@@ -5,7 +5,7 @@ info:
   contact:
     email: tangjzh23@mail2.sysu.edu.cn
   version: v1
-basePath: /www.ebike.com/api/v1
+basePath: www.ebike.com/api/v1
 consumes:
 - application/json
 produces:
