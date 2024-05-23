@@ -3,10 +3,9 @@ from rest_framework import status, views
 from rest_framework import permissions, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import UserSerializer
+from .serializers import UserSerializer, VehiclePermitSerializer, MyTokenObtainPairSerializer
 from django.contrib.auth import get_user_model
 from .models import VehiclePermit
-from .serializers import VehiclePermitSerializer, MyTokenObtainPairSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 from drf_yasg.utils import swagger_auto_schema
@@ -25,20 +24,32 @@ class UserCreateAPIView(generics.CreateAPIView):
         responses={
             201: openapi.Response(
                 description="用户创建成功",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "id": 1,
                             "username": "new_user",
                             "email": "new_user@example.com",
-                            # 其他用户字段
                         }
                     }
                 }
             ),
             400: openapi.Response(
                 description="请求无效",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(
+                            type=openapi.TYPE_OBJECT,
+                            properties={
+                                'username': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Items(type=openapi.TYPE_STRING))
+                            }
+                        )
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -63,10 +74,23 @@ class UserLoginAPIView(TokenObtainPairView):
         responses={
             200: openapi.Response(
                 description="登录成功",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'results': openapi.Schema(
+                            type=openapi.TYPE_OBJECT,
+                            properties={
+                                'refresh': openapi.Schema(type=openapi.TYPE_STRING),
+                                'access': openapi.Schema(type=openapi.TYPE_STRING),
+                            }
+                        )
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "refresh": "string",
                             "access": "string"
                         }
@@ -75,6 +99,13 @@ class UserLoginAPIView(TokenObtainPairView):
             ),
             401: openapi.Response(
                 description="认证失败",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(type=openapi.TYPE_STRING)
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -94,6 +125,12 @@ class UserDeleteAPIView(APIView):
         responses={
             204: openapi.Response(
                 description="用户删除成功",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": True
@@ -102,6 +139,13 @@ class UserDeleteAPIView(APIView):
             ),
             404: openapi.Response(
                 description="用户未找到",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(type=openapi.TYPE_STRING)
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -128,21 +172,28 @@ class UserProfileListView(generics.ListAPIView):
         responses={
             200: openapi.Response(
                 description="获取成功",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'results': openapi.Schema(
+                            type=openapi.TYPE_OBJECT,
+                        )
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": [
+                        "results": [
                             {
                                 "id": 1,
                                 "username": "user1",
                                 "email": "user1@example.com",
-                                # 其他用户字段
                             },
                             {
                                 "id": 2,
                                 "username": "user2",
                                 "email": "user2@example.com",
-                                # 其他用户字段
                             },
                         ]
                     }
@@ -156,7 +207,7 @@ class UserProfileListView(generics.ListAPIView):
         except Exception as e:
             return response(False, error=str(e))
 
-class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
+class UserProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -165,20 +216,27 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
         responses={
             200: openapi.Response(
                 description="获取成功",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "id": 1,
                             "username": "user1",
                             "email": "user1@example.com",
-                            # 其他用户字段
                         }
                     }
                 }
             ),
             404: openapi.Response(
                 description="用户未找到",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(type=openapi.TYPE_STRING)
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -199,20 +257,32 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
         responses={
             200: openapi.Response(
                 description="更新成功",
+                schema=UserSerializer,
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "id": 1,
                             "username": "updated_user",
                             "email": "updated_user@example.com",
-                            # 其他用户字段
                         }
                     }
                 }
             ),
             400: openapi.Response(
                 description="请求无效",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(
+                            type=openapi.TYPE_OBJECT,
+                            properties={
+                                'username': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Items(type=openapi.TYPE_STRING))
+                            }
+                        )
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -237,18 +307,28 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "id": 1,
                             "username": "updated_user",
                             "email": "updated_user@example.com",
-                            # 其他用户字段
                         }
                     }
                 }
             ),
             400: openapi.Response(
                 description="请求无效",
-                schema=UserSerializer,
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(
+                            type=openapi.TYPE_OBJECT,
+                            properties={
+                                'username': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Items(type=openapi.TYPE_STRING))
+                            }
+                        )
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -269,7 +349,12 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
         responses={
             204: openapi.Response(
                 description="删除成功",
-                schema=UserSerializer,
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": True
@@ -278,7 +363,13 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
             ),
             404: openapi.Response(
                 description="用户未找到",
-                schema=UserSerializer,
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(type=openapi.TYPE_STRING)
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -291,7 +382,7 @@ class UserPofileDetailView(generics.RetrieveUpdateDestroyAPIView):
     def delete(self, request, *args, **kwargs):
         try:
             self.destroy(request, *args, **kwargs)
-            return response(True)
+            return response(True, status=status.HTTP_204_NO_CONTENT)
         except Exception as e:
             return response(False, error=str(e))
 
@@ -310,18 +401,28 @@ class UpdateUserProfileView(generics.UpdateAPIView):
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "id": 1,
                             "username": "updated_user",
                             "email": "updated_user@example.com",
-                            # 其他用户字段
                         }
                     }
                 }
             ),
             400: openapi.Response(
                 description="请求无效",
-                schema=UserSerializer,
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(
+                            type=openapi.TYPE_OBJECT,
+                            properties={
+                                'username': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Items(type=openapi.TYPE_STRING))
+                            }
+                        )
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -346,18 +447,28 @@ class UpdateUserProfileView(generics.UpdateAPIView):
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "id": 1,
                             "username": "updated_user",
                             "email": "updated_user@example.com",
-                            # 其他用户字段
                         }
                     }
                 }
             ),
             400: openapi.Response(
                 description="请求无效",
-                schema=UserSerializer,
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(
+                            type=openapi.TYPE_OBJECT,
+                            properties={
+                                'username': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Items(type=openapi.TYPE_STRING))
+                            }
+                        )
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -388,11 +499,10 @@ class RetrieveUserProfileView(generics.RetrieveAPIView):
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "id": 1,
                             "username": "user1",
                             "email": "user1@example.com",
-                            # 其他用户字段
                         }
                     }
                 }
@@ -410,14 +520,14 @@ class BindPermitView(generics.CreateAPIView):
 
     @swagger_auto_schema(
         operation_description="绑定用户车辆通行证信息",
-        schema=VehiclePermitSerializer,
         responses={
             201: openapi.Response(
                 description="绑定成功",
+                schema=VehiclePermitSerializer,
                 examples={
                     "application/json": {
                         "success": True,
-                        "data": {
+                        "results": {
                             "id": 1,
                             "user": 1,
                             "permit_number": "12345",
@@ -429,7 +539,18 @@ class BindPermitView(generics.CreateAPIView):
             ),
             400: openapi.Response(
                 description="请求无效",
-                schema=VehiclePermitSerializer,
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(
+                            type=openapi.TYPE_OBJECT,
+                            properties={
+                                'permit_number': openapi.Schema(type=openapi.TYPE_ARRAY, items=openapi.Items(type=openapi.TYPE_STRING))
+                            }
+                        )
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,
@@ -452,7 +573,12 @@ class UnbindPermitView(views.APIView):
         responses={
             204: openapi.Response(
                 description="解绑成功",
-                schema=VehiclePermitSerializer,
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": True
@@ -461,7 +587,13 @@ class UnbindPermitView(views.APIView):
             ),
             404: openapi.Response(
                 description="通行证未找到",
-                schema=VehiclePermitSerializer,
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'success': openapi.Schema(type=openapi.TYPE_BOOLEAN),
+                        'error': openapi.Schema(type=openapi.TYPE_STRING)
+                    }
+                ),
                 examples={
                     "application/json": {
                         "success": False,

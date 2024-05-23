@@ -2015,10 +2015,12 @@ paths:
       responses:
         '201':
           description: 绑定成功
+          schema:
+            $ref: '#/definitions/VehiclePermit'
           examples:
             application/json:
               success: true
-              data:
+              results:
                 id: 1
                 user: 1
                 permit_number: '12345'
@@ -2027,7 +2029,17 @@ paths:
         '400':
           description: 请求无效
           schema:
-            $ref: '#/definitions/VehiclePermit'
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: object
+                properties:
+                  permit_number:
+                    type: array
+                    items:
+                      type: string
           examples:
             application/json:
               success: false
@@ -2045,11 +2057,23 @@ paths:
       responses:
         '204':
           description: 用户删除成功
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
           examples:
             application/json:
               success: true
         '404':
           description: 用户未找到
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: string
           examples:
             application/json:
               success: false
@@ -2074,14 +2098,33 @@ paths:
       responses:
         '200':
           description: 登录成功
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              results:
+                type: object
+                properties:
+                  refresh:
+                    type: string
+                  access:
+                    type: string
           examples:
             application/json:
               success: true
-              data:
+              results:
                 refresh: string
                 access: string
         '401':
           description: 认证失败
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: string
           examples:
             application/json:
               success: false
@@ -2102,10 +2145,17 @@ paths:
       responses:
         '200':
           description: 获取成功
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              results:
+                type: object
           examples:
             application/json:
               success: true
-              data:
+              results:
               - id: 1
                 username: user1
                 email: user1@example.com
@@ -2123,15 +2173,24 @@ paths:
       responses:
         '200':
           description: 获取成功
+          schema:
+            $ref: '#/definitions/User'
           examples:
             application/json:
               success: true
-              data:
+              results:
                 id: 1
                 username: user1
                 email: user1@example.com
         '404':
           description: 用户未找到
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: string
           examples:
             application/json:
               success: false
@@ -2150,15 +2209,29 @@ paths:
       responses:
         '200':
           description: 更新成功
+          schema:
+            $ref: '#/definitions/User'
           examples:
             application/json:
               success: true
-              data:
+              results:
                 id: 1
                 username: updated_user
                 email: updated_user@example.com
         '400':
           description: 请求无效
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: object
+                properties:
+                  username:
+                    type: array
+                    items:
+                      type: string
           examples:
             application/json:
               success: false
@@ -2184,14 +2257,24 @@ paths:
           examples:
             application/json:
               success: true
-              data:
+              results:
                 id: 1
                 username: updated_user
                 email: updated_user@example.com
         '400':
           description: 请求无效
           schema:
-            $ref: '#/definitions/User'
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: object
+                properties:
+                  username:
+                    type: array
+                    items:
+                      type: string
           examples:
             application/json:
               success: false
@@ -2208,14 +2291,22 @@ paths:
         '204':
           description: 删除成功
           schema:
-            $ref: '#/definitions/User'
+            type: object
+            properties:
+              success:
+                type: boolean
           examples:
             application/json:
               success: true
         '404':
           description: 用户未找到
           schema:
-            $ref: '#/definitions/User'
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: string
           examples:
             application/json:
               success: false
@@ -2261,15 +2352,29 @@ paths:
       responses:
         '201':
           description: 用户创建成功
+          schema:
+            $ref: '#/definitions/User'
           examples:
             application/json:
               success: true
-              data:
+              results:
                 id: 1
                 username: new_user
                 email: new_user@example.com
         '400':
           description: 请求无效
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: object
+                properties:
+                  username:
+                    type: array
+                    items:
+                      type: string
           examples:
             application/json:
               success: false
@@ -2288,14 +2393,22 @@ paths:
         '204':
           description: 解绑成功
           schema:
-            $ref: '#/definitions/VehiclePermit'
+            type: object
+            properties:
+              success:
+                type: boolean
           examples:
             application/json:
               success: true
         '404':
           description: 通行证未找到
           schema:
-            $ref: '#/definitions/VehiclePermit'
+            type: object
+            properties:
+              success:
+                type: boolean
+              error:
+                type: string
           examples:
             application/json:
               success: false
