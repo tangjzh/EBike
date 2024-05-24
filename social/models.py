@@ -9,7 +9,7 @@ from .constant import ID2NAME
 User = get_user_model()
 
 def user_post_path(instance, filename):
-    return os.path.join('user', instance.post.user.username, 'post', instance.post.id, filename)
+    return os.path.join('social', instance.post.user.username, 'post', str(instance.post.id), filename)
 
 class Tag(models.Model):
     name = models.CharField(max_length=100, unique=True)

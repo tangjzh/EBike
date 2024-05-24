@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import BikeUser
+from .models import *
 
-admin.site.register(BikeUser, UserAdmin)
+admin.site.register(BikeUser)
+admin.site.register(VehiclePermit)

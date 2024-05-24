@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 def report_path(instance, filename):
-    return os.path.join('report', instance.id, filename)
+    return os.path.join('report', str(instance.id), filename)
 
 class Report(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -28,6 +28,6 @@ class Report(models.Model):
     def __str__(self):
         return f"{self.location} - {self.status}"
 
-    class Meta:
-        verbose_name = "举报"
-        verbose_name_plural = "举报"
+    # class Meta:
+    #     verbose_name = "举报"
+    #     verbose_name_plural = "举报"

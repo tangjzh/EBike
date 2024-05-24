@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.conf import settings
 
 from django.utils import timezone
 from django.core.files.base import ContentFile
@@ -52,11 +53,6 @@ class UserSerializer(serializers.ModelSerializer):
         if value and not isinstance(value, InMemoryUploadedFile):
             raise serializers.ValidationError("Invalid type of file uploaded.")
         return value
-    
-    def get_avatar_url(self, obj):
-        if obj.avatar:
-            return obj.avatar.url
-        return None
 
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])

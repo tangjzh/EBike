@@ -40,6 +40,6 @@ class VehiclePermit(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.permit_number}"
 
-    class Meta:
-        verbose_name = "电动车通行证"
-        verbose_name_plural = "电动车通行证"
+    # class Meta:
+    #     verbose_name = "电动车通行证"
+    #     verbose_name_plural = "电动车通行证"

@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 def user_goods_path(instance, filename):
-    return os.path.join('user', instance.goods.owner.username, 'goods', instance.goods.hash, filename)
+    return os.path.join('user', instance.goods.owner.username, 'goods', str(instance.goods.hash), filename)
 
 class Goods(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)

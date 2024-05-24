@@ -19,6 +19,7 @@ from drf_yasg.utils import swagger_auto_schema
 from EBike.utils import response
 from rest_framework.pagination import PageNumberPagination
 from drf_yasg import openapi
+from rest_framework.decorators import permission_classes as permission_dec
 
 class HomePagePagination(PageNumberPagination):
     page_size = 10  # 每页的项目数
@@ -105,6 +106,7 @@ class PostCreateView(generics.ListCreateAPIView):
             )
         }
     )
+    @permission_dec(permissions.AllowAny)
     def get(self, request, *args, **kwargs):
         try:
             return response(True, data=self.list(request, *args, **kwargs))
@@ -123,6 +125,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 class HomePageListView(generics.ListAPIView):
     pagination_class = HomePagePagination
     serializer_class = PostSerializer
+    permission_classes = [permissions.AllowAny]
 
     @swagger_auto_schema(
         operation_description="获取首页的车小圈帖子，支持指定页码",
@@ -160,6 +163,7 @@ class HomePageListView(generics.ListAPIView):
             )
         }
     )
+    @permission_dec(permissions.AllowAny)
     def get(self, request, *args, **kwargs):
         gtype = request.GET.get('order_by', '-views_count')
 
@@ -214,6 +218,7 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
             )
         }
     )
+    @permission_dec(permissions.AllowAny)
     def get(self, request, *args, **kwargs):
         try:
             return response(True, data=self.retrieve(request, *args, **kwargs).data)
@@ -439,6 +444,7 @@ class CommentView(generics.ListCreateAPIView):
             )
         }
     )
+    @permission_dec(permissions.AllowAny)
     def get(self, request, *args, **kwargs):
         try:
             return response(True, data=self.list(request, *args, **kwargs))
@@ -519,6 +525,7 @@ class CommentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
             )
         }
     )
+    @permission_dec(permissions.AllowAny)
     def get(self, request, *args, **kwargs):
         try:
             return response(True, data=self.retrieve(request, *args, **kwargs).data)

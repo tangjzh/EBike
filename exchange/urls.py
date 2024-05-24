@@ -1,7 +1,5 @@
 from django.urls import path, re_path
 from .views import *
-from django.views.static import serve
-from django.conf import settings
 
 app_name = 'shop'
 
@@ -11,5 +9,4 @@ urlpatterns = [
     path('goods/mine/', MyGoodsView.as_view(), name='my_goods'),
     path('goods/<str:pk>/', GoodsDetailView.as_view(), name='goods_detail'),
     path('goods/search/', MySearchView(), name='haystack_search'),
-    path('image/<path>', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
