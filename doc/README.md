@@ -23,7 +23,9 @@ layout:
 
 易拜 E-bike是ebike-team开发的一站式电动车服务的Online to offline平台，包括销售信息、点评、交易、社交和充电服务。
 
-项目地址为[https://github.com/tangjzh/EBike](https://github.com/tangjzh/EBike)
+项目地址为
+
+{% @github-files/github-code-block url="https://github.com/tangjzh/EBike" %}
 
 ## 2 交付文档
 
