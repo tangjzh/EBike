@@ -19,6 +19,8 @@ layout:
 
 # 🏡 Home
 
+{% embed url="https://www.youtube.com/watch?v=eSfLcwl7lmA" %}
+
 ## 1 易拜 E-bike
 
 易拜 E-bike是SevenAutoman开发的一站式电动车服务的Online to offline平台，包括销售信息、点评、交易、社交和充电服务。
