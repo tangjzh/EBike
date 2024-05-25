@@ -519,7 +519,7 @@ EBike-vue
 
 在“易拜”小程序的设计中，我们还通过时序图描述用户与系统之间交互过程。时序图展示了用户在不同情景下与系统进行交互的时序顺序，包括前端和后端的数据传输和处理过程。以下我们将展示“易拜”小程序中用户动态发布时序图：
 
-<figure><img src=".gitbook/assets/时序图-用户发布动态.png" alt=""><figcaption><p>用户动态发布时序图</p></figcaption></figure>
+<figure><img src=".gitbook/assets/时序图-用户发布动态.png" alt="" width="563"><figcaption><p>用户动态发布时序图</p></figcaption></figure>
 
 #### 2.4.6 性能优化
 
@@ -539,9 +539,10 @@ EBike-vue
 2. **懒加载：**对于一些页面或组件，特别是在初始加载时不必要显示的内容，我们采用了Vue Router提供的路由懒加载功能。通过将组件定义为函数返回，实现组件的延迟加载，例如以下代码所示。
 3. **缓存策略：**优化静态资源的缓存策略，通过设置合适的Cache-Control和Expires头，使浏览器能够缓存静态资源，减少重复加载。同时，对于动态内容，如用户个人信息和动态列表，我们采用了Vuex进行状态管理，避免重复请求和渲染相同数据。
 
-<pre class="language-javascript"><code class="lang-javascript"><strong>const Home = () => import('./views/Home.vue')
-</strong>const Service = () => import('./views/Service.vue')
-</code></pre>
+```javascript
+const Home = () => import('./views/Home.vue')
+const Service = () => import('./views/Service.vue')
+```
 
 通过以上性能优化措施，我们在保证应用功能完整性的同时，尽可能地提高了应用的加载速度和响应性，为用户提供了更流畅的使用体验。
 
