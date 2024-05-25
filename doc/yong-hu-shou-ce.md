@@ -84,6 +84,14 @@
 
 ## 5 我的
 
+【我的】页面如下：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/b470eb5b956e7cd00087baca0063357.png" alt="" width="261"><figcaption><p>【我的】页面</p></figcaption></figure>
+
+</div>
+
 ### 5.1 个人主页
 
 <mark style="color:red;">这里点击头像或者昵称进入自己或他人的个人主页吧，修改昵称和头像放在设置中</mark>
@@ -108,11 +116,23 @@
 
 #### 5.2.4 设置
 
-点击设置图标即可进行用户设置，<mark style="color:blue;">如图（展示设置界面）：</mark>
+点击【我的】-【设置】图标即可进行用户设置，如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/52c83d8f986ba2c517789fbb47d6f34 (1).png" alt="" width="261"><figcaption><p>【我的】-【设置】界面</p></figcaption></figure>
+
+</div>
 
 #### 5.2.5 用户协议
 
-<mark style="color:orange;">waiting for</mark>
+软件用户协议是一份法律文件，用于明确软件开发者和用户之间的权利和义务。它规定了用户在使用软件时必须遵守的条款和条件，包括许可使用范围、用户行为规范、隐私保护、知识产权以及责任限制等内容。用户协议的目的是保护双方的利益，确保软件的合法和规范使用，同时为可能的争议提供解决依据。用户可以在【我的】-【用户协议】中查看，如图：
+
+<div align="left" data-full-width="false">
+
+<figure><img src=".gitbook/assets/95087c7da935563c1e8b30a8707c89c (1).png" alt="sfhsfh" width="261"><figcaption><p>用户协议界面</p></figcaption></figure>
+
+</div>
 
 #### 5.2.6 隐私政策
 
