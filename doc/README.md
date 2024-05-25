@@ -21,7 +21,7 @@ layout:
 
 ## 1 易拜 E-bike
 
-易拜 E-bike是ebike-team开发的一站式电动车服务的Online to offline平台，包括销售信息、点评、交易、社交和充电服务。
+易拜 E-bike是SevenAutoman开发的一站式电动车服务的Online to offline平台，包括销售信息、点评、交易、社交和充电服务。
 
 项目地址为
 
@@ -65,3 +65,8 @@ layout:
 
 ## 4 联系我们
 
+Please call 15066883213 during business hours on weekdays.
+
+## 5 Lisence
+
+Copyright © 2024 SevenAutoman. All rights reserved.
