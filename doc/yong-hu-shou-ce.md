@@ -186,7 +186,13 @@
 
 #### 5.2.6 隐私政策
 
-<mark style="color:orange;">waiting for</mark>
+用户可以点击【我的】-【隐私政策】查看小程序的隐私政策：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/229c6a52137aa61579109927b0756e2.png" alt="" width="261"><figcaption><p>“隐私政策”界面</p></figcaption></figure>
+
+</div>
 
 #### 5.2.7 使用手册
 
@@ -195,6 +201,16 @@
 #### 5.2.8 客服&#x20;
 
 用户可以点击客服图标与客服沟通，<mark style="color:blue;">如图（展示点击客服图标与客服详情页）：</mark>
+
+#### 5.2.9 关于我们
+
+关于我们的团队介绍如下：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/ee1d882a9a0f3063a04b912bad7ccec.png" alt="" width="261"><figcaption><p>“关于我们”界面</p></figcaption></figure>
+
+</div>
 
 ## 6 互动
 
