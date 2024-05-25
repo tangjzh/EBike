@@ -69,4 +69,4 @@ Please call 15066883213 during business hours on weekdays.
 
 ## 5 Lisence
 
-Copyright © 2024 SevenAutoman. All rights reserved.
+Copyright © 2024 SevenAutomen. All rights reserved.
