@@ -102,7 +102,7 @@
 
 #### 2.2.10 软件分层结构
 
-<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption><p>系统分层架构图</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>系统分层架构图</p></figcaption></figure>
 
 本软件的分层架构如下：
 
@@ -2517,7 +2517,7 @@ const Service = () => import('./views/Service.vue')
 
 该方法是具有长期和短期用户表示 （LSTUR） 的神经新闻推荐方法。由新闻编码器、用户编码器、注意力机制和组合用户表示构成。可以根据用户过去的阅读习惯来为每一个新的post计算score，并得到每个新的post的rank，从而按照顺序推荐给用户。
 
-<figure><img src=".gitbook/assets/image (1) (1) (1).png" alt="" width="367"><figcaption><p>The framework of recommendation system.</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt="" width="367"><figcaption><p>The framework of recommendation system.</p></figcaption></figure>
 
 上述算法监听是否有新的post发布，当监听到有新的post发布，就为每位user计算和新的post的score，并更新每位用户的recommendation table，在用户请求的时候将需要推荐给用户。
 
