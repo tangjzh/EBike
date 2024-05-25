@@ -293,6 +293,220 @@ Django 对各种数据库提供了很好的支持，包括：PostgreSQL、MySQL�
 
 ### 2.4 前端架构设计
 
+#### 2.4.1 前端架构概述
+
+**1) 技术栈**
+
+“易拜”小程序的前端技术栈选用Vue.js框架进行开发。Vue.js是一款用于构建用户界面的渐进式JavaScript框架，具有轻量、灵活、组件化的特点，适合构建复杂的单页应用程序（SPA）
+
+* **框架：**Vue.js
+* **工具：**Webpack用于模块打包，Babel用于代码转译
+* **语言：**JavaScript（主要）、TypeScript（部分模块使用）
+
+此外，项目使用了以下辅助工具和库：
+
+* **Vue Router：**用于管理应用的路由，确保不同页面之间的平滑导航。
+* **Vuex：**用于全局状态管理，帮助管理和维护应用中的共享状态。
+* **Axios：**用于进行HTTP请求，方便与后端进行数据交互。
+* **Element UI：**用于提供丰富的UI组件库，简化UI开发。
+
+**2) 项目结构**
+
+“易拜”项目的前端代码目录结构如下：
+
+```
+EBike-vue
+├─ .env
+├─ .gitignore
+├─ babel.config.js
+├─ img
+├─ jsconfig.json
+├─ package-lock.json
+├─ package.json
+├─ public
+│  ├─ favicon.ico
+│  ├─ icon.ico
+│  ├─ img
+│  └─ index.html
+├─ README.md
+├─ src
+│  ├─ apis
+│  │  ├─ api.js
+│  │  ├─ store.js
+│  │  └─ v1
+│  │     ├─ bike.js
+│  │     ├─ exchange.js
+│  │     ├─ maintenance.js
+│  │     ├─ safety.js
+│  │     ├─ social.js
+│  │     └─ user.js
+│  ├─ App.vue
+│  ├─ assets
+│  │  └─ logo.png
+│  ├─ components
+│  │  ├─ Announcement_log.vue
+│  │  ├─ HelloWorld.vue
+│  │  ├─ Hitem.vue
+│  │  ├─ Hotlist.vue
+│  │  ├─ Mapcomponent.vue
+│  │  ├─ Mitem.vue
+│  │  ├─ Mlog.vue
+│  │  ├─ Publish_active.vue
+│  │  ├─ Publish_trade.vue
+│  │  ├─ sitem.vue
+│  │  ├─ Square.vue
+│  │  └─ Titem.vue
+│  ├─ main.js
+│  ├─ router
+│  │  └─ index.js
+│  ├─ store
+│  │  └─ index.js
+│  └─ views
+│     ├─ AboutView.vue
+│     ├─ Agreement.vue
+│     ├─ Announcement.vue
+│     ├─ Article.vue
+│     ├─ Charge.vue
+│     ├─ Feedback.vue
+│     ├─ Function.vue
+│     ├─ Home.vue
+│     ├─ HomeView.vue
+│     ├─ LikeView.vue
+│     ├─ Login.vue
+│     ├─ Maintence.vue
+│     ├─ Message.vue
+│     ├─ Mine.vue
+│     ├─ Publish.vue
+│     ├─ Setting.vue
+│     ├─ test.js
+│     ├─ Trade.vue
+│     └─ User_page.vue
+└─ vue.config.js
+
+```
+
+项目前端的主要架构说明：
+
+* **env：**环境变量配置文件，用于配置开发、测试和生产环境的不同变量。
+* **.gitignore：**Git忽略文件配置文件，用于排除不必要提交到版本控制系统中的文件。
+* **babel.config.js：**Babel配置文件，用于配置JavaScript代码的转译规则。
+* **img/：**存放项目中的图片资源。
+* **jsconfig.json：**JavaScript项目配置文件，用于配置项目的全局设置。
+* **package-lock.json和package.json：**Node.js项目的依赖管理文件，定义和锁定项目的依赖包版本。
+* **public/：**公共资源目录，存放不需要编译的静态文件，如favicon.ico、index.html等。
+* **README.md：**项目的自述文件，通常用于记录项目简介、安装使用方法等信息。
+* **src/：**项目的源代码目录，包含以下子目录和文件：
+  * **apis/：**API接口目录，存放与后端交互的接口文件。包括api.js（通用API接口配置）， store.js（与全局状态管理相关的API），v1/（存放不同功能模块的API接口文件）
+* **App.vue：**应用的根组件。
+* **assets/：**静态资源目录，存放项目的静态资源文件，如图片、图标等。
+* **components/：**组件目录，存放项目中使用的各个组件文件代码。
+* **main.js：**应用的入口文件，配置并初始化Vue实例。
+* **router/：**路由目录，存放应用的路由配置文件。
+* **index.js：**路由配置文件，定义应用的路由规则。
+* **store/：**状态管理目录，存放应用的Vuex状态管理配置文件。
+* **index.js：**Vuex状态管理配置文件。
+* **views/：**视图目录，存放项目的各个页面视图文件代码。
+
+#### 2.4.2 用户体验及UX设计
+
+下图是“易拜”小程序主要页面的UX逻辑关系：
+
+<figure><img src=".gitbook/assets/UX界面逻辑图.png" alt=""><figcaption><p>UX页面逻辑图</p></figcaption></figure>
+
+**1) 主要页面的逻辑关系**
+
+* **首页：**首页是用户进入“易拜”小程序后的第一个页面，包含用户头像、搜索栏、广告位和滑动工具栏。用户头像用于显示用户的个人信息，搜索栏方便用户快速查找内容，广告位用于展示推广信息。滑动工具栏分为“广场”和“热榜”两个部分，用户可以通过滑动工具栏在不同的内容模块之间切换。在“广场”界面，用户可以在这里浏览实时更新的动态，了解其他用户的最新活动和分享的内容。而“热榜”则展示当前热门的电动车品牌和车型排名，其数据来源于用户的评分和评价，通过算法进行排序，确保排行榜的公正性和准确性。
+* **充电：**充电页面展示了校园内充电柜的充电信息和位置信息，帮助用户找到最近的充电设施并了解充电状态。用户可以查看校内充电柜的分布情况，点击充电柜标识符查看详细的充电信息，包括充电状态、空闲插座数量等。该页面还提供环境查看功能，用户可以通过小程序快速查看充电柜周围车辆信息，了解当前充电柜周边环境情况，提升充电体验的便捷性。
+* **服务：**服务页面分为“易维修”，“易转让”，“易安行”和“易反馈”四个部分。用户可以在“易维修”中找到校园周边的维修点信息，预约维修服务；在“易转让”中发布或浏览电动自行车的转让信息；在“易安行”中查看电动车使用安全指南和校园出行提示；在“易反馈”中提交使用过程中遇到的问题和建议，帮助平台改进服务。
+* **我的：**个人主页页面用户可以查看和管理个人信息、收藏、关注和粉丝等内容。用户可以编辑个人资料，修改头像和联系方式，查看自己的动态发布记录和转让信息。用户还可以通过个人主页查看自己收藏的内容和关注的用户，管理粉丝和私信互动。
+
+**2) 组件划分**
+
+为了实现上述页面的功能，我们在“易拜”小程序中对主要功能模块进行了组件化设计，以便更好地实现代码复用和维护。以下是主要组件及其职责：
+
+<table><thead><tr><th width="252" align="center">主要组件</th><th>职责</th></tr></thead><tbody><tr><td align="center"><p><strong>导航栏组件</strong></p><p><strong>（NavBar.vue）</strong></p></td><td>提供全局导航功能，包括主页、充电、服务、我的等页面的链接。</td></tr><tr><td align="center"><p><strong>动态列表组件</strong></p><p><strong>（DynamicList.vue）</strong></p></td><td>用于显示广场上的动态内容，包括用户头像、动态图片、标题和简要内容。</td></tr><tr><td align="center"><p><strong>动态项组件</strong></p><p><strong>（DynamicItem.vue）</strong></p></td><td>显示单个动态的详细信息，包括图片、文字描述和互动按钮（点赞、评论等）。</td></tr><tr><td align="center"><p><strong>发布动态组件</strong></p><p><strong>（PublishDynamic.vue）</strong></p></td><td>用于发布新动态，用户可以上传图片、输入标题和内容，并选择标签。</td></tr><tr><td align="center"><p><strong>发布转让组件</strong></p><p><strong>（PublishTrade.vue）</strong></p></td><td>用于发布电动自行车转让信息，用户可以上传车辆图片、输入描述和预期价格。</td></tr><tr><td align="center"><p><strong>用户信息组件</strong></p><p><strong>（UserInfo.vue）</strong></p></td><td>显示和编辑用户个人信息，包括头像、昵称、联系方式等。</td></tr><tr><td align="center"><p><strong>私信组件</strong></p><p><strong>（Message.vue）</strong></p></td><td>实现用户之间的私信功能，用户可以与其他用户进行一对一聊天。</td></tr></tbody></table>
+
+**3) 组件交互**
+
+在“易拜”小程序中，各组件之间的交互主要通过以下方式实现：
+
+* **事件触发：**用户与组件交互时，会触发相应的事件。例如，用户点击导航栏中的某个链接时，会触发导航栏组件中的点击事件。
+* **数据传递：**组件之间通过Props和Events来传递数据。例如，动态列表组件向动态项组件传递动态数据，用户点击动态项时，会触发事件将对应的动态信息传递给父组件。
+* **全局状态管理：**通过Vuex实现全局状态管理，各个组件可以通过Vuex的状态管理器来读取和修改全局状态。例如，用户在发布动态组件中发布了新动态，会触发相应的Vuex Action来更新动态模块的状态，并更新动态列表组件的内容。
+
+**4) 状态管理**
+
+为了实现全局状态管理，我们采用了Vuex库。Vuex提供了集中式的存储库，用于管理应用的所有组件状态。在“易拜”小程序中，我们将应用的状态分为用户模块、动态模块和通知模块，分别负责管理用户信息、动态内容和系统通知。通过Vuex，各个组件可以方便地读取和修改全局状态，确保应用的数据流畅和一致：
+
+* **用户模块（user）：**管理用户登录、注册、信息更新等操作，确保用户信息的一致性。
+* **动态模块（dynamic）：**管理广场动态的获取、发布、点赞和评论等操作。
+* **通知模块（notification）：**管理系统通知和私信，用户可以及时收到新的消息提醒。
+
+#### 2.4.3 活动流程图
+
+在“易拜”小程序中，各项功能的顺利实现离不开清晰的活动流程设计。以下是用户在小程序中常见的几个活动流程图，包括用户注册登录、用户交互、用户私信和发布动态转让等功能的操作流程。通过这些流程图，可以清晰地了解用户在使用小程序时的交互过程和功能实现路径。
+
+<div>
+
+<figure><img src=".gitbook/assets/活动流程图-用户注册登录.png" alt=""><figcaption><p>用户注册登录活动流程图</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/活动流程图-用户私信.png" alt="" width="557"><figcaption><p>用户私信活动流程图</p></figcaption></figure>
+
+</div>
+
+<div>
+
+<figure><img src=".gitbook/assets/活动流程图-发布动态转让.png" alt=""><figcaption><p>发布动态转让活动流程图</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/活动流程图-用户交互.png" alt=""><figcaption><p>用户交互活动流程图</p></figcaption></figure>
+
+</div>
+
+#### 2.4.4 通讯图
+
+在“易拜”小程序的设计中，通讯图扮演着至关重要的角色，它描述了前端与后端之间的数据流动情况，以及系统内部的处理流程。通过清晰的数据流图和接口设计，我们可以确保用户能够顺畅地与后端进行交互，并实现各项功能的顺利运行。以下是“易拜”小程序主要功能的通讯图和接口设计：
+
+**1) 用户注册登录**
+
+* **功能：** 用户注册和登录功能的实现。
+* **接口：**
+  * **注册：**POST /api/user/register（ 参数：用户名、密码、手机号等用户信息。返回值：成功注册的用户信息。）
+  * **登录：**POST /api/user/login（ 参数：用户名或手机号、密码。返回值：成功登录的用户信息及权限。）
+
+<figure><img src=".gitbook/assets/通讯图-用户注册登录.png" alt="" width="375"><figcaption><p>用户注册登录通讯图</p></figcaption></figure>
+
+**2) 用户交互**
+
+* **功能：**用户在动态页面进行点赞、评论、关注等交互操作。
+* **接口：**
+  * **点赞：**POST /api/dynamic/like（ 参数：动态ID、用户ID。返回值：点赞结果。）
+  * **评论：**POST /api/dynamic/ comment（ 参数：动态ID、用户ID、评论内容。返回值：评论结果。）
+  * **关注：**POST /api/dynamic/follow（ 参数：动态ID、用户ID。返回值：关注结果。）
+
+<figure><img src=".gitbook/assets/通讯图-用户交互.png" alt="" width="375"><figcaption><p>用户交互通讯图</p></figcaption></figure>
+
+
+
+
+
+<figure><img src=".gitbook/assets/通讯图-用户私信.png" alt="" width="375"><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 3 详细设计
 
 ### 3.1 用户服务模块
@@ -2229,7 +2443,7 @@ Django 对各种数据库提供了很好的支持，包括：PostgreSQL、MySQL�
 
 该方法是具有长期和短期用户表示 （LSTUR） 的神经新闻推荐方法。由新闻编码器、用户编码器、注意力机制和组合用户表示构成。可以根据用户过去的阅读习惯来为每一个新的post计算score，并得到每个新的post的rank，从而按照顺序推荐给用户。
 
-<figure><img src=".gitbook/assets/image (1).png" alt="" width="367"><figcaption><p>The framework of recommendation system.</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt="" width="367"><figcaption><p>The framework of recommendation system.</p></figcaption></figure>
 
 上述算法监听是否有新的post发布，当监听到有新的post发布，就为每位user计算和新的post的score，并更新每位用户的recommendation table，在用户请求的时候将需要推荐给用户。
 
