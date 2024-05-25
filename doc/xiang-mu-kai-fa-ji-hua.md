@@ -108,10 +108,20 @@
 
 * Github 代码托管平台
   * 地址：[https://github.com/tangjzh/EBike](https://github.com/tangjzh/EBike)
+
+{% @github-files/github-code-block url="https://github.com/tangjzh/EBike" %}
+
 * Gitbook 项目文档管理平台
   * 地址：[https://liu-shu-ruisorganization.gitbook.io/ebike](https://liu-shu-ruisorganization.gitbook.io/ebike)
+
+{% embed url="https://liu-shu-ruisorganization.gitbook.io/ebike" %}
+Ebike文档
+{% endembed %}
+
 * Notion 团队协作平台
   * 地址：[https://www.notion.so/](https://www.notion.so/)
+
+{% embed url="https://www.notion.so/" %}
 
 #### 3.2.2 **开发语言和**工具
 
@@ -145,7 +155,53 @@
 
 ### 3.3 项目估算
 
-[刘书睿](https://app.gitbook.com/u/PcGO1DW7MZVbMxHRPMyWROKZzwn1 "mention")
+本项目估算主要对软件规模进行估算，从而预估开发工期。在规模上主要基于功能点对功能规模进行估算。
+
+本估算采用ISO14143 IFPUG标准进行估算，得到经过调整后的功能点数。
+
+{% embed url="https://ifpug.org/ifpug-standards/sfp" %}
+ISO14143 IFPUG
+{% endembed %}
+
+#### 3.3.1 ILF功能点数
+
+<table data-full-width="true"><thead><tr><th>ILF</th><th>RET</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>电动车信息</td><td>品牌、类型、价钱、评分、商品介绍、发布日期，共6个</td><td>12</td><td>平均</td><td>10</td></tr><tr><td>社交帖子评论信息</td><td>文本、点赞量，共2个</td><td>4</td><td>简单</td><td>6</td></tr><tr><td>社交帖子信息</td><td>标题、文本、创建时间、提交时间、浏览量、点赞量，共6个</td><td>8</td><td>平均</td><td>7</td></tr><tr><td>用户信息</td><td>密码、最近登录时间、昵称、实名姓名、加入日期、性别、生日、邮箱、电话，共9个</td><td>20</td><td>复杂</td><td>12</td></tr></tbody></table>
+
+合计 = 7+10+10+15 = 42。
+
+#### 3.3.2 ELF功能点数
+
+<table data-full-width="true"><thead><tr><th>EIF</th><th>RET</th><th>DET</th><th>复杂度</th><th>未调整的FP个数</th></tr></thead><tbody><tr><td>Follower表</td><td>用户信息、用户<br>信息，共2个</td><td>8</td><td>简单</td><td>7</td></tr><tr><td>Following表</td><td>用户信息、用户信息，共2个</td><td>10</td><td>简单</td><td>9</td></tr><tr><td>Comment表</td><td>社交帖子信息、<br>社交帖子评论信息，共2个</td><td>12</td><td>简单</td><td>7</td></tr><tr><td>exchange表</td><td>电动车信息、<br>用户信息，共2个</td><td>8</td><td>简单</td><td>5</td></tr><tr><td>post_user表</td><td>用户信息、社交帖子信息，共2个</td><td>10</td><td>简单</td><td>7</td></tr><tr><td>bike_user表</td><td>用户信息、电动车信息，共2个</td><td>10</td><td>简单</td><td>5</td></tr></tbody></table>
+
+合计 = 5+5+5+5+5+5 = 30。
+
+#### 3.3.3 EI功能点数
+
+<table data-full-width="true"><thead><tr><th>EI</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>添加用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>6</td></tr><tr><td>修改用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>6</td></tr><tr><td>删除用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>4</td></tr><tr><td>添加社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>4</td></tr><tr><td>修改社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>3</td></tr><tr><td>删除社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>3</td></tr><tr><td>添加社交帖子信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>3</td></tr><tr><td>修改社交帖子信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>3</td></tr><tr><td>删除社交帖子<br>信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>4</td></tr><tr><td>添加电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>4</td></tr><tr><td>修改电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>6</td></tr><tr><td>删除电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>3</td></tr></tbody></table>
+
+合计 = 6+6+6+6+6+6+6+6+6+6+6+6 = 72。
+
+#### 3.3.4 EQ功能点数
+
+<table data-full-width="true"><thead><tr><th>EQ</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>查询用户信息</td><td>用户信息</td><td>2</td><td>简单</td><td>3</td></tr><tr><td>查询follower信息</td><td>用户信息、following表</td><td>20</td><td>复杂</td><td>4</td></tr><tr><td>查询follower信息</td><td>用户信息、follower表</td><td>20</td><td>复杂</td><td>4</td></tr><tr><td>查询帖子信息</td><td>社交帖子信息</td><td>2</td><td>简单</td><td>3</td></tr><tr><td>查询电动车信息</td><td>电动车信息、bike_user表</td><td>18</td><td>复杂</td><td>3</td></tr></tbody></table>
+
+合计 = 3+3+6+6+6 = 24。
+
+#### 3.3.5 EO功能点数
+
+<table data-full-width="true"><thead><tr><th>EO</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>统计商家入驻情况</td><td>用户信息</td><td>2个</td><td>简单</td><td>4</td></tr></tbody></table>
+
+合计 = 4。
+
+#### 3.3.6 计算调整因子
+
+合集19，调整因子=19\*0.01+0.65 = 0.84
+
+最终调整后的功能点数 = 0.84\*(4+24+72+30+42) = 144.48。
+
+#### 3.3.7 评估
+
+最终调整后的功能点数为144.18，在业务逻辑上属于中小型软件，应提前预留充足工期，约1个月的开发时间。
 
 ### 3.4 里程碑计划
 
@@ -429,4 +485,3 @@
 #### 3.9.6 组间协作计划
 
 <table><thead><tr><th width="117" align="center">协作内容</th><th align="center">提供方</th><th align="center">接收方</th><th>接收标准</th></tr></thead><tbody><tr><td align="center">UI设计</td><td align="center">设计部门</td><td align="center">开发部门-前端</td><td>设计稿完整，满足功能需求，已审批通过</td></tr><tr><td align="center">前端设计</td><td align="center">开发部门-前端</td><td align="center">开发部门-后端</td><td>功能页面完整实现</td></tr><tr><td align="center">API文档</td><td align="center">开发部门-后端</td><td align="center">开发部门-前端</td><td>文档清晰完整，包括所有必要的细节和示例</td></tr><tr><td align="center">接口实现</td><td align="center">开发部门-后端</td><td align="center">开发部门-前端</td><td>接口符合文档描述，无错误，响应时间快</td></tr><tr><td align="center">集成代码</td><td align="center">开发部门</td><td align="center">测试部门</td><td>代码运行稳定，符合开发规范，准备好进行测试</td></tr><tr><td align="center">功能测试报告</td><td align="center">测试部门</td><td align="center">开发部门</td><td>测试报告详细，包含测试结果和发现的问题</td></tr><tr><td align="center">性能测试和安全测试结果</td><td align="center">测试部门</td><td align="center">开发部门 </td><td>测试覆盖全面，问题清晰记录，提出优化建议</td></tr><tr><td align="center">最终部署的软件版本</td><td align="center">开发部门</td><td align="center">测试部门</td><td>软件无严重错误，性能符合预期</td></tr></tbody></table>
-
