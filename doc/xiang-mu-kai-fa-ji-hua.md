@@ -160,7 +160,7 @@ Ebike文档
 本估算采用ISO14143 IFPUG标准进行估算，得到经过调整后的功能点数。
 
 {% embed url="https://ifpug.org/ifpug-standards/sfp" %}
-ISO14143 IFPUG
+ISO14143 IFPUG.
 {% endembed %}
 
 #### 3.3.1 ILF功能点数
