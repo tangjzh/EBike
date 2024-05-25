@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 import os
+from django.utils.translation import gettext_lazy as _
 
 def user_head_path(instance, filename):
     return os.path.join(instance.username, 'avatar', filename)
@@ -24,6 +25,11 @@ class BikeUser(AbstractUser):
 
     def __str__(self):
         return self.username
+    
+    def save(self, *args, **kwargs):
+        if not self.nickname:
+            self.nickname = f'用户{self.username}'
+        super().save(*args, **kwargs)
 
 class VehiclePermit(models.Model):
     user = models.OneToOneField(

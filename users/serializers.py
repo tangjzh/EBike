@@ -62,6 +62,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
         data['username'] = self.user.username
+        data['id'] = self.user.id
         data['is_staff'] = self.user.is_staff
 
         self.user.last_login = timezone.now()

@@ -33,16 +33,16 @@ class PostImageSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return PostImage.objects.create(**validated_data)
     
-class UserSerializer(serializers.ModelSerializer):
+class UserAvatarSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'avatar']
+        fields = ['username', 'avatar', 'nickname', 'id']
 
 class PostSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, required=False)
     images = PostImageSerializer(many=True, required=False)
     comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    user = UserSerializer(read_only=True)
+    user = UserAvatarSerializer(read_only=True)
 
     class Meta:
         model = Post
