@@ -79,9 +79,9 @@
 
 ### 2.1 项目组织结构图
 
-本项目开发在tier0分设项目总工程师和项目总经理，项目总工程师负责整体推进项目，项目总经理负责确保各部门按照计划如期完成任务。
+本项目开发在Tier0分设项目总工程师和项目总经理，项目总工程师负责整体推进项目，项目总经理负责确保各部门按照计划如期完成任务。
 
-<figure><img src=".gitbook/assets/安全组织架构图.bmp" alt="" width="375"><figcaption><p>项目组织架构图</p></figcaption></figure>
+<figure><img src=".gitbook/assets/安全组织架构图(1).bmp" alt="" width="375"><figcaption><p>项目组织架构图</p></figcaption></figure>
 
 ### 2.2 岗位与职责
 
