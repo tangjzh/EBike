@@ -165,31 +165,31 @@ ISO14143 IFPUG
 
 #### 3.3.1 ILF功能点数
 
-<table data-full-width="true"><thead><tr><th>ILF</th><th>RET</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>电动车信息</td><td>品牌、类型、价钱、评分、商品介绍、发布日期，共6个</td><td>12</td><td>平均</td><td>10</td></tr><tr><td>社交帖子评论信息</td><td>文本、点赞量，共2个</td><td>4</td><td>简单</td><td>6</td></tr><tr><td>社交帖子信息</td><td>标题、文本、创建时间、提交时间、浏览量、点赞量，共6个</td><td>8</td><td>平均</td><td>7</td></tr><tr><td>用户信息</td><td>密码、最近登录时间、昵称、实名姓名、加入日期、性别、生日、邮箱、电话，共9个</td><td>20</td><td>复杂</td><td>12</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th>ILF</th><th>RET</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>电动车信息</td><td>品牌、类型、价钱、评分、商品介绍、发布日期，共6个</td><td>12</td><td>平均</td><td>10</td></tr><tr><td>社交帖子评论信息</td><td>文本、点赞量，共2个</td><td>4</td><td>简单</td><td>6</td></tr><tr><td>社交帖子信息</td><td>标题、文本、创建时间、提交时间、浏览量、点赞量，共6个</td><td>8</td><td>平均</td><td>7</td></tr><tr><td>用户信息</td><td>密码、最近登录时间、昵称、实名姓名、加入日期、性别、生日、邮箱、电话，共9个</td><td>20</td><td>复杂</td><td>12</td></tr></tbody></table>
 
 合计 = 7+10+10+15 = 42。
 
 #### 3.3.2 ELF功能点数
 
-<table data-full-width="true"><thead><tr><th>EIF</th><th>RET</th><th>DET</th><th>复杂度</th><th>未调整的FP个数</th></tr></thead><tbody><tr><td>Follower表</td><td>用户信息、用户<br>信息，共2个</td><td>8</td><td>简单</td><td>7</td></tr><tr><td>Following表</td><td>用户信息、用户信息，共2个</td><td>10</td><td>简单</td><td>9</td></tr><tr><td>Comment表</td><td>社交帖子信息、<br>社交帖子评论信息，共2个</td><td>12</td><td>简单</td><td>7</td></tr><tr><td>exchange表</td><td>电动车信息、<br>用户信息，共2个</td><td>8</td><td>简单</td><td>5</td></tr><tr><td>post_user表</td><td>用户信息、社交帖子信息，共2个</td><td>10</td><td>简单</td><td>7</td></tr><tr><td>bike_user表</td><td>用户信息、电动车信息，共2个</td><td>10</td><td>简单</td><td>5</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th>EIF</th><th>RET</th><th>DET</th><th>复杂度</th><th>未调整的FP个数</th></tr></thead><tbody><tr><td>Follower表</td><td>用户信息、用户<br>信息，共2个</td><td>8</td><td>简单</td><td>7</td></tr><tr><td>Following表</td><td>用户信息、用户信息，共2个</td><td>10</td><td>简单</td><td>9</td></tr><tr><td>Comment表</td><td>社交帖子信息、<br>社交帖子评论信息，共2个</td><td>12</td><td>简单</td><td>7</td></tr><tr><td>exchange表</td><td>电动车信息、<br>用户信息，共2个</td><td>8</td><td>简单</td><td>5</td></tr><tr><td>post_user表</td><td>用户信息、社交帖子信息，共2个</td><td>10</td><td>简单</td><td>7</td></tr><tr><td>bike_user表</td><td>用户信息、电动车信息，共2个</td><td>10</td><td>简单</td><td>5</td></tr></tbody></table>
 
 合计 = 5+5+5+5+5+5 = 30。
 
 #### 3.3.3 EI功能点数
 
-<table data-full-width="true"><thead><tr><th>EI</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>添加用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>6</td></tr><tr><td>修改用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>6</td></tr><tr><td>删除用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>4</td></tr><tr><td>添加社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>4</td></tr><tr><td>修改社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>3</td></tr><tr><td>删除社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>3</td></tr><tr><td>添加社交帖子信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>3</td></tr><tr><td>修改社交帖子信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>3</td></tr><tr><td>删除社交帖子<br>信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>4</td></tr><tr><td>添加电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>4</td></tr><tr><td>修改电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>6</td></tr><tr><td>删除电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>3</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th>EI</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>添加用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>6</td></tr><tr><td>修改用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>6</td></tr><tr><td>删除用户信息</td><td>用户信息、following表/follower表</td><td>24</td><td>复杂</td><td>4</td></tr><tr><td>添加社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>4</td></tr><tr><td>修改社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>3</td></tr><tr><td>删除社交帖子评论信息</td><td>用户信息、社交帖子评论信息、comment表</td><td>18</td><td>复杂</td><td>3</td></tr><tr><td>添加社交帖子信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>3</td></tr><tr><td>修改社交帖子信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>3</td></tr><tr><td>删除社交帖子<br>信息</td><td>用户信息、社交帖子信息、post_user表</td><td>22</td><td>复杂</td><td>4</td></tr><tr><td>添加电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>4</td></tr><tr><td>修改电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>6</td></tr><tr><td>删除电动车信息</td><td>电动车信息、用户信息、bike_user表</td><td>18</td><td>复杂</td><td>3</td></tr></tbody></table>
 
 合计 = 6+6+6+6+6+6+6+6+6+6+6+6 = 72。
 
 #### 3.3.4 EQ功能点数
 
-<table data-full-width="true"><thead><tr><th>EQ</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>查询用户信息</td><td>用户信息</td><td>2</td><td>简单</td><td>3</td></tr><tr><td>查询follower信息</td><td>用户信息、following表</td><td>20</td><td>复杂</td><td>4</td></tr><tr><td>查询follower信息</td><td>用户信息、follower表</td><td>20</td><td>复杂</td><td>4</td></tr><tr><td>查询帖子信息</td><td>社交帖子信息</td><td>2</td><td>简单</td><td>3</td></tr><tr><td>查询电动车信息</td><td>电动车信息、bike_user表</td><td>18</td><td>复杂</td><td>3</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th>EQ</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>查询用户信息</td><td>用户信息</td><td>2</td><td>简单</td><td>3</td></tr><tr><td>查询follower信息</td><td>用户信息、following表</td><td>20</td><td>复杂</td><td>4</td></tr><tr><td>查询follower信息</td><td>用户信息、follower表</td><td>20</td><td>复杂</td><td>4</td></tr><tr><td>查询帖子信息</td><td>社交帖子信息</td><td>2</td><td>简单</td><td>3</td></tr><tr><td>查询电动车信息</td><td>电动车信息、bike_user表</td><td>18</td><td>复杂</td><td>3</td></tr></tbody></table>
 
 合计 = 3+3+6+6+6 = 24。
 
 #### 3.3.5 EO功能点数
 
-<table data-full-width="true"><thead><tr><th>EO</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>统计商家入驻情况</td><td>用户信息</td><td>2个</td><td>简单</td><td>4</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th>EO</th><th>FTR</th><th>DET</th><th>复杂度</th><th>未调整FP个数</th></tr></thead><tbody><tr><td>统计商家入驻情况</td><td>用户信息</td><td>2个</td><td>简单</td><td>4</td></tr></tbody></table>
 
 合计 = 4。
 
