@@ -40,7 +40,13 @@
 
 ### 2.2 发布动态与转让
 
-用户可以通过【我的】-【发布】-【发布动态】功能来发布自己的动态，<mark style="color:blue;">如图（整体页面）：</mark>
+用户可以通过【我的】-【发布】-【发布动态】功能来发布自己的动态，如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/4ae234d721d25503ccd95c7e89c9f94.png" alt="" width="261"><figcaption><p>【我的】-【发布】-【发布动态】界面</p></figcaption></figure>
+
+</div>
 
 每条动态支持图片上传，用户可以自定义标题与正文描述，并且可以选择添加标签，以发现更多共同话题。
 
@@ -62,15 +68,37 @@
 
 ### 4.1 易维修
 
-用户可以通过【服务】-【易维修】功能来查看校园周边电动车维修点和预约维修。<mark style="color:blue;">如图（整体图）：</mark>
+用户可以通过【服务】-【易维修】功能来查看校园周边电动车维修点和预约维修。如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/fd98865f826d4eaaea6a8ce2c711c85 (1).png" alt="" width="261"><figcaption><p>【服务】-【易维修】功能界面</p></figcaption></figure>
+
+</div>
 
 本平台提供了校园周边维修点地图，用户可以点开维修点标识符，查看每个维修商家的具体信息和联系方式，<mark style="color:blue;">如图（展示地图和地图点开维修点标识后的页面）：</mark><mark style="color:red;">（我觉得这个功能我们没有时间做了，可能只能做个示意图出来或者含糊过去了\~）</mark>
 
-用户可以填写信息进行电动车维修预约，商家会及时接单。商家接单后，会在下面的聊天框中与用户联系。<mark style="color:blue;">如图（展示下面的聊天框与聊天具体界面）：</mark>
+用户可以填写信息进行电动车维修预约，商家会及时接单。比如，选择维修地点：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/6abf022bf9e872987dc676465594126.png" alt="" width="261"><figcaption><p>【服务】-【易维修】-“选择维修地点”界面</p></figcaption></figure>
+
+</div>
+
+商家接单后，会在下面的聊天框中与用户联系。<mark style="color:blue;">如图（展示下面的聊天框与聊天具体界面）：</mark>
 
 ### 4.2 易反馈
 
-发现电动自行车违规停放、违规充电等情况，用户可以通过该平台的【服务】-【易反馈】功能进行反馈，<mark style="color:blue;">如图（展示整体界面）：</mark>
+发现电动自行车违规停放、违规充电等情况，用户可以通过该平台的【服务】-【易反馈】功能进行反馈，如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/70154e56463c33d811a8726cdbf954d.png" alt="" width="261"><figcaption><p>【服务】-【易反馈】功能界面</p></figcaption></figure>
+
+</div>
+
+用户必须添加反馈描述，否则页面会提示“请填写反馈描述”，如图中红字。
 
 该反馈信息将交至学校保卫处，保卫处会第一时间处理。
 
@@ -121,6 +149,14 @@
 <div align="left">
 
 <figure><img src=".gitbook/assets/52c83d8f986ba2c517789fbb47d6f34 (1).png" alt="" width="261"><figcaption><p>【我的】-【设置】界面</p></figcaption></figure>
+
+</div>
+
+比如，“个性签名”选项的修改：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/f3078772f22886f7162449ade3fdc83.png" alt="" width="261"><figcaption><p>“个性签名”选项修改界面</p></figcaption></figure>
 
 </div>
 
