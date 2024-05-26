@@ -237,13 +237,97 @@ UI原型设计平台
 
 #### **2.4.3 服务**
 
+在【服务】部分中，我们主要设置了4个主界面，分别是“易维修”，“易反馈”，“易安行”，“易转让”。
 
+其中，“易转让”界面设计参考了【首页】-【广场】，但其标题和详情页中，需要给出预设转让金额。
 
+<div>
 
+<figure><img src=".gitbook/assets/3.1.png" alt=""><figcaption><p>【服务】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/3.5.png" alt=""><figcaption><p>【服务】-【易维修】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/3.4.png" alt=""><figcaption><p>【服务】-【易反馈】</p></figcaption></figure>
+
+</div>
+
+<div>
+
+<figure><img src=".gitbook/assets/3.2.png" alt=""><figcaption><p>【服务】-【易安行】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/3.3.png" alt=""><figcaption><p>【服务】-【易转让】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/3.6.png" alt=""><figcaption><p>【服务】-【易转让】-详情页</p></figcaption></figure>
+
+</div>
 
 #### **2.4.4 我的**
 
+在【我的】界面，主要是进行用户个人隐私设置，并提供一些功能性服务。点击所有的用户头像都会跳转到对应的用户主页界面，该界面中可以展示当前用户的动态和二手转让发布信息，并且还可以对该用户进行关注和私信。
 
+此外，【我的】-【设置】界面中，用户可以修改个人昵称，头像，性别，个性签名，车牌绑定以及联系方式，并且还可以切换账号或退出登录。
+
+【我的】-【客服】界面主要参照微信聊天界面进行设计。而在【我的】-【发布】界面中，可以发布动态或二手转让信息，二手转让的发布界面相较于发布动态的界面，要多一个预想价格的设置。
+
+<div>
+
+<figure><img src=".gitbook/assets/4.1.png" alt=""><figcaption><p>【我的】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/4.3.png" alt=""><figcaption><p>【我的】-头像-点击跳转用户主页-用户动态</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/4.4.png" alt=""><figcaption><p>【我的】-头像-点击跳转用户主页-二手转让</p></figcaption></figure>
+
+</div>
+
+<div>
+
+<figure><img src=".gitbook/assets/4.2.png" alt=""><figcaption><p>【我的】-【收藏】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/4.5.png" alt=""><figcaption><p>【我的】-【消息】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/4.6.png" alt=""><figcaption><p>【我的】-【用户协议】</p></figcaption></figure>
+
+</div>
+
+<div>
+
+<figure><img src=".gitbook/assets/4.9.png" alt=""><figcaption><p>【我的】-【设置】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/4.8.png" alt=""><figcaption><p>【我的】-【客服】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/4.7.png" alt=""><figcaption><p>【我的】-【隐私政策】</p></figcaption></figure>
+
+</div>
+
+<div>
+
+<figure><img src=".gitbook/assets/4.10.png" alt="" width="291"><figcaption><p>【我的】-【发布】-【发布动态】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/4.11.png" alt="" width="293"><figcaption><p>【我的】-【发布】-【二手转让】</p></figcaption></figure>
+
+</div>
 
 ## 3 支持信息
 
