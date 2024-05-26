@@ -2537,10 +2537,10 @@ const Service = () => import('./views/Service.vue')
     {
         "success": True,
         "data": {
-            "post_list": [post_id],
-            "user": "user_id",
-            "description": "当前兴趣列表中的前100个post",
-            "timestamp": "2024-05-01T00:00:00Z",
+        "post_list": ["post_id1", ... "post_id100"],
+        "user": "user_id",
+        "description": "当前兴趣列表中的前100个post",
+        "timestamp": "2024-05-01T00:00:00Z",
         }
     }
     ```
