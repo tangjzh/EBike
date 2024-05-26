@@ -82,7 +82,7 @@ description: 本说明书使用Rotional Co. Ltd的RUP版本。
     * 为每款电动车提供购买渠道和售后渠道等
     * 按某种指标排序
     * 按条件筛选和搜索
-    * 智能推荐（？）
+    * 智能推荐算法
   * 模块设计
     * 作为软件主要的子功能放在首页Tab里
     * 后端
@@ -176,6 +176,10 @@ UI原型设计平台
 {% endembed %}
 
 下面展示一些原型设计图。
+
+1\) 首页
+
+
 
 <figure><img src=".gitbook/assets/image (18).png" alt=""><figcaption><p>首页与广场</p></figcaption></figure>
 
