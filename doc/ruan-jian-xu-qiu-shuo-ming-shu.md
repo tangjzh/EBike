@@ -4,7 +4,7 @@ description: 本说明书使用Rotional Co. Ltd的RUP版本。
 
 # 📝 软件需求说明书
 
-## 1 概述
+## 我的1 概述
 
 ### 1.1 目的
 
@@ -167,9 +167,29 @@ description: 本说明书使用Rotional Co. Ltd的RUP版本。
       * 对接校方通行证
       * 消息sessions列表数据库
 
-### 2.4 用例描述
+### 2.4 原型设计
 
-### 2.5 补充需求
+本项目开发的UI原型设计使用如下开源平台，点击外部连接，登录后即可查看设计部门的UI原型设计。
+
+{% embed url="https://rp.mockplus.cn/team/invitation/nh5ZqoVSo/yqhfczcroq/" %}
+UI原型设计平台
+{% endembed %}
+
+下面展示一些原型设计图。
+
+<figure><img src=".gitbook/assets/image (18).png" alt=""><figcaption><p>首页与广场</p></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (21).png" alt=""><figcaption><p>用户主页</p></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (22).png" alt=""><figcaption><p>我的中心</p></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption><p>监控模块</p></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (20).png" alt=""><figcaption><p>充电模块</p></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (23).png" alt=""><figcaption><p>维修与消防安全反馈</p></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (24).png" alt=""><figcaption><p>二手转让模块</p></figcaption></figure>
 
 ## 3 支持信息
 
