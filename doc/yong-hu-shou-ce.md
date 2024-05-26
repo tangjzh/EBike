@@ -20,7 +20,13 @@
 
 #### 2.1.1 主页推荐
 
-用户可以浏览实时更新的动态，<mark style="color:blue;">如图（展示广场页面）：</mark>
+用户可以浏览实时更新的动态，如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/5d897b0b496cc0e8d1624298aaeba6e.png" alt="" width="260"><figcaption><p>【首页】界面</p></figcaption></figure>
+
+</div>
 
 动态来源说明：广场动态来源为所有满足身份认定的用户。本平台主要面向对象为在校学生，故会对第三方商家的动态发布进行数量和内容上的一定限制，以保证在校学生的用户体验。
 
@@ -196,7 +202,13 @@
 
 #### 5.2.7 使用手册
 
-即本文档所展示内容。
+即本文档所展示内容，本手册介绍了小程序的按键使用逻辑，如下图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/7444e206d150f25a02092f186f54e56.png" alt="" width="261"><figcaption><p>“使用手册”示意图</p></figcaption></figure>
+
+</div>
 
 #### 5.2.8 客服&#x20;
 
