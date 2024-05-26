@@ -167,10 +167,14 @@ description: 本说明书使用Rotional Co. Ltd的RUP版本。
 
 ### 2.4 原型设计
 
-本项目开发的UI原型设计使用如下开源平台，点击外部连接，登录后即可查看设计部门的UI原型设计。
+本项目开发的UI原型设计使用如下开源平台，点击外部连接，即可查看设计部门的UI原型设计。
 
 {% embed url="https://rp.mockplus.cn/team/invitation/nh5ZqoVSo/yqhfczcroq/" %}
-UI原型设计平台
+UI原型设计平台-慕客
+{% endembed %}
+
+{% embed url="https://modao.cc/proto/EiYlRfdMsc8eivPninfTSb/sharing?view_mode=read_only" %}
+UI原型设计平台-墨刀
 {% endembed %}
 
 下面展示一些原型设计图，小程序的最终界面设计详见用户手册。在UI设计中，我们将小程序分为“首页”，“充电”，“服务”，“我的”这4个主界面。
