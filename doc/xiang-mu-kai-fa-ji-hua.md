@@ -504,7 +504,7 @@ ISO14143 IFPUG.
 
 #### 3.9.4 项目信息计划
 
-<table><thead><tr><th width="313" align="center">报表名称</th><th align="center">填报人</th></tr></thead><tbody><tr><td align="center">《项目开发计划》</td><td align="center">项目全体成员</td></tr><tr><td align="center">《软件需求说明书》</td><td align="center">项目全体成员</td></tr><tr><td align="center">《问题定义及可行性分析》</td><td align="center">刘畅</td></tr><tr><td align="center">《后端接口定义》</td><td align="center">唐锦洲</td></tr><tr><td align="center">《设计说明书》</td><td align="center">刘书睿、唐锦洲、刘畅、沈鹏飞</td></tr><tr><td align="center">《软件测试计划》</td><td align="center">黄楚丹、吴恺云</td></tr><tr><td align="center">《测试分析报告》</td><td align="center">黄楚丹、吴恺云</td></tr><tr><td align="center">《用户手册》</td><td align="center">刘畅、沈鹏飞、刘子豪</td></tr></tbody></table>
+<table><thead><tr><th width="313" align="center">报表名称</th><th align="center">填报人</th></tr></thead><tbody><tr><td align="center">《项目开发计划》</td><td align="center">项目全体成员</td></tr><tr><td align="center">《软件需求说明书》</td><td align="center">项目全体成员</td></tr><tr><td align="center">《问题定义及可行性分析》</td><td align="center">刘畅</td></tr><tr><td align="center">《后端接口定义》</td><td align="center">唐锦洲</td></tr><tr><td align="center">《设计说明书》</td><td align="center">刘书睿、唐锦洲、刘畅</td></tr><tr><td align="center">《软件测试计划》</td><td align="center">黄楚丹、吴恺云</td></tr><tr><td align="center">《测试分析报告》</td><td align="center">黄楚丹、吴恺云</td></tr><tr><td align="center">《用户手册》</td><td align="center">刘畅、沈鹏飞、刘子豪</td></tr></tbody></table>
 
 #### 3.9.5 会议管理
 
