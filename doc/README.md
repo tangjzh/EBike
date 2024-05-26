@@ -19,7 +19,9 @@ layout:
 
 # 🏡 Home
 
-{% embed url="https://www.youtube.com/watch?v=eSfLcwl7lmA" %}
+{% embed url="https://www.bilibili.com/video/BV1bs421A7wf/?spm_id_from=333.1007.tianma.1-1-1.click&vd_source=78051d66f8cae2e9fc24ee421fd075ed" %}
+Ebike宣传视频
+{% endembed %}
 
 ## 1 易拜 E-bike
 
