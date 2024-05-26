@@ -2536,7 +2536,6 @@ const Service = () => import('./views/Service.vue')
     ```json
     {
         "success": True,
-        "data": {
         "post_list": ["post_id1", ... "post_id100"],
         "user": "user_id",
         "description": "当前兴趣列表中的前100个post",
