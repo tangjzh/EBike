@@ -2523,4 +2523,38 @@ const Service = () => import('./views/Service.vue')
 
 #### 3.6.3 接口
 
+该模块的接口前缀为`/recommendation`
+
+**获取兴趣列表中的100个推荐post**
+
+* URL: `/get_recommendation/<str:pk>/`
+* 方法: GET
+*   响应:
+
+    * 成功: 200
+
+    ```json
+    {
+        "success": True,
+        "data": {
+            "post_list": [post_id],
+            "user": "user_id",
+            "description": "当前兴趣列表中的前100个post",
+            "timestamp": "2024-05-01T00:00:00Z",
+        }
+    }
+    ```
+
+    * 失败: 404
+
+    ```json
+    {
+        "success": False,
+        "error": "post未找到"
+    }
+    ```
+
 #### 3.6.4 性能
+
+* **数据存储**: 所有举报报告的信息存储在关系型数据库中，支持高效的查询和存储操作。
+* **请求处理**: 通过DRF提供的泛型视图，实现标准的RESTful API接口，支持高并发访问
