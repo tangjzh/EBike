@@ -71,7 +71,7 @@ Ebike宣传视频
 
 ## 4 团队价值观
 
-
+<figure><img src=".gitbook/assets/c8d48e66663f8b627f719060fcf9e71.jpg" alt="" width="375"><figcaption><p>SevenAutomen价值观</p></figcaption></figure>
 
 ## 5 联系我们
 
