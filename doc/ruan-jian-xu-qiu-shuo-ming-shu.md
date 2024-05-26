@@ -167,7 +167,7 @@ description: 本说明书使用Rotional Co. Ltd的RUP版本。
 
 ### 2.4 原型设计
 
-本项目开发的UI原型设计使用如下开源平台，点击外部连接，即可查看设计部门的UI原型设计。
+针对以上具体的功能需求分析，我们也进行了初步的UI界面设计。本项目开发的UI原型设计使用如下开源平台，点击外部连接，即可查看设计部门的UI原型设计。
 
 {% embed url="https://rp.mockplus.cn/team/invitation/nh5ZqoVSo/yqhfczcroq/" %}
 UI原型设计平台-慕客
