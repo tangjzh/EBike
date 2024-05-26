@@ -4,7 +4,7 @@ description: 本说明书使用Rotional Co. Ltd的RUP版本。
 
 # 📝 软件需求说明书
 
-## 我的1 概述
+## 1 概述
 
 ### 1.1 目的
 
