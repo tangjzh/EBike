@@ -175,25 +175,75 @@ description: 本说明书使用Rotional Co. Ltd的RUP版本。
 UI原型设计平台
 {% endembed %}
 
-下面展示一些原型设计图。
+下面展示一些原型设计图，小程序的最终界面设计详见用户手册。在UI设计中，我们将小程序分为“首页”，“充电”，“服务”，“我的”这4个主界面。
 
-1\) 首页
+#### **2.4.1 首页**
+
+在【首页】中，若我们下滑界面，则用户头像，搜索框和广告位都会隐藏，此时只有页眉和滑动工具栏一直置顶。
+
+<div>
+
+<figure><img src=".gitbook/assets/1.1.png" alt="" width="368"><figcaption><p>【首页】-【广场】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/1.4.png" alt="" width="285"><figcaption><p>【首页】-【广场】-下滑页</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/1.7.png" alt="" width="277"><figcaption><p>【首页】-【广场】-详情页</p></figcaption></figure>
+
+</div>
+
+<div>
+
+<figure><img src=".gitbook/assets/1.2.png" alt="" width="289"><figcaption><p>【首页】-【热榜】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/1.5.png" alt="" width="287"><figcaption><p>【首页】-【热榜】-下滑页</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/1.6.png" alt="" width="295"><figcaption><p>【首页】-【搜索】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/1.3 (1).png" alt="" width="287"><figcaption><p>【首页】-【搜索】-详情页</p></figcaption></figure>
+
+</div>
+
+#### **2.4.2 充电**
+
+在【充电】页面中，我们首先放置了校内充电柜选择按键，并介绍了充电柜的具体位置。同时，放置公告栏和详情电话，直观展示阴雨天气或特殊情况的信息通知。
+
+点击校内对应电动车辆充电位置，可看到该处当前的充电柜占用信息，其中充电柜的颜色变化和进度条代表当前占用的拥挤程度。红色代表极度拥挤，绿色代表当前充电柜的空闲位置较多。
+
+进一步点击充电柜可得充电信息详情页，其中绿色，灰色，红色三个图例分别代表正常，占用和故障信息显示。“车位情况”的按键用于查询当前充电柜附近的车辆摆放情况，避免出现即使有空闲充电口，也因为该充电柜附近车辆过于拥挤而无法充电，导致白跑一趟的情况。
+
+<div>
+
+<figure><img src=".gitbook/assets/2.1.png" alt=""><figcaption><p>【充电】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/2.2.png" alt=""><figcaption><p>【充电】-【充电桩】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/2.3.png" alt=""><figcaption><p>【充电】-【充电桩】-详情页</p></figcaption></figure>
+
+</div>
+
+#### **2.4.3 服务**
 
 
 
-<figure><img src=".gitbook/assets/image (18).png" alt=""><figcaption><p>首页与广场</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (21).png" alt=""><figcaption><p>用户主页</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (22).png" alt=""><figcaption><p>我的中心</p></figcaption></figure>
+#### **2.4.4 我的**
 
-<figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption><p>监控模块</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (20).png" alt=""><figcaption><p>充电模块</p></figcaption></figure>
-
-<figure><img src=".gitbook/assets/image (23).png" alt=""><figcaption><p>维修与消防安全反馈</p></figcaption></figure>
-
-<figure><img src=".gitbook/assets/image (24).png" alt=""><figcaption><p>二手转让模块</p></figcaption></figure>
 
 ## 3 支持信息
 
