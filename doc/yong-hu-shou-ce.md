@@ -48,7 +48,17 @@
 
 #### 3.1.2 热榜
 
-用户可以通过“热榜”栏查看当前排行榜，包括“车型评分榜”和“品牌热度榜”，<mark style="color:blue;">如图（展示榜单）：</mark>
+用户可以通过“热榜”栏查看当前排行榜，包括“车型评分榜”和“品牌热度榜”，如图：
+
+<div>
+
+<figure><img src=".gitbook/assets/8b267b0ac6e2466004db7107dfbeac2f_ (1).png" alt="" width="260"><figcaption><p>【主页】-【热榜】界面</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/7fd89b9f6e30fde0a19eec8de39b66d5_.png" alt="" width="260"><figcaption><p>【主页】-【热榜】下拉界面</p></figcaption></figure>
+
+</div>
 
 热榜规则算法说明：热榜根据用户的评分、点赞数、评论数以及转发次数等多维度数据进行综合排名。车型评分榜主要依据用户对电动车各方面性能的评分进行排名，而品牌热度榜则根据品牌在平台上的综合活跃度、讨论热度和用户关注度进行排序。此规则确保榜单能够反映出当前最受用户欢迎和讨论度最高的车型和品牌，帮助用户快速了解市场趋势。
 
@@ -156,15 +166,23 @@
 
 ### 5.3 易安行
 
-【服务】-【易安行】功能专为校方发布关于校园电动车通知与文件所设计。如校园电动车停放地点安排、电动车安全隐患统一排查、充电桩的维修公示等。点击待查看内容可跳转到官方发布的对应文件发布详情页，<mark style="color:blue;">如图：</mark>
+【服务】-【易安行】功能专为校方发布关于校园电动车通知与文件所设计。如校园电动车停放地点安排、电动车安全隐患统一排查、充电桩的维修公示等。点击待查看内容可跳转到官方发布的对应文件发布详情页，如图：
 
+<div align="left">
 
+<figure><img src=".gitbook/assets/06b74b060a37b21440c7652a7efc0ca6_.png" alt="" width="261"><figcaption><p>【服务】-【易安行】界面</p></figcaption></figure>
+
+</div>
 
 ### 5.4 易转让
 
-用户可以通过【服务】-【易转让】功能查看用户发布的电动自行车转让信息，<mark style="color:blue;">如图（展示整体界面和点开某一条后的界面）：</mark>
+用户可以通过【服务】-【易转让】功能查看用户发布的电动自行车转让信息，如图：
 
+<div align="left">
 
+<figure><img src=".gitbook/assets/eca62ced12a86206b288af40f23ca5d3_.png" alt="" width="260"><figcaption><p>【服务】-【易转让】界面</p></figcaption></figure>
+
+</div>
 
 ## 6 我的
 
@@ -196,7 +214,13 @@
 
 #### 6.2.1 收藏
 
-点击收藏图标即可查看个人收藏内容，<mark style="color:blue;">如图（展示点击收藏、收藏夹内容界面）：</mark>
+点击收藏图标即可查看个人收藏内容，如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/932c844343961976b9be09c9031ce3be_.png" alt="" width="261"><figcaption><p>【我的】-【收藏】界面</p></figcaption></figure>
+
+</div>
 
 #### 6.2.2 消息
 
