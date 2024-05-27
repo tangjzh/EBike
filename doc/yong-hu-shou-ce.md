@@ -10,7 +10,23 @@
 
 ## 2 注册登录
 
-<mark style="color:blue;">注册界面   登录界面</mark>
+若用户是首次使用“易拜 E-bike”小程序，则需要先注册账号。其中，在进行注册操作时，需要确保两次输入的密码相同，方可成功注册并直接登陆。
+
+若用户此前已注册过账号，则可以直接使用注册过的账号登录我们的“易拜 E-bike”小程序，登陆成功后会跳转到【我的】-【设置】界面，进行个人隐私的设置修改。
+
+<div>
+
+<figure><img src=".gitbook/assets/注册.png" alt=""><figcaption><p>【注册】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/登录.png" alt=""><figcaption><p>【登录】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/登录成功.png" alt=""><figcaption><p>【登陆成功】</p></figcaption></figure>
+
+</div>
 
 ## 3 广场动态
 
@@ -86,9 +102,13 @@
 
 </div>
 
-进一步点开其中一个充电柜按键，可得到该充电柜的所有充电口的具体占用状态。我们在图中给出了图例，红色代表故障，灰色代表已被占用，而绿色代表可以正常使用的具体充电口。此外，我们还添加了查看充电柜附近监控图像的按键，点击可以查看充电柜的周边环境信息，<mark style="color:blue;">如图：</mark>
+进一步点开其中一个充电柜按键，可得到该充电柜的所有充电口的具体占用状态。我们在图中给出了图例，红色代表故障，灰色代表已被占用，而绿色代表可以正常使用的具体充电口。此外，我们还添加了查看充电柜附近监控图像的按键，点击可以查看充电柜的周边环境信息，如图：
 
+<div align="left">
 
+<figure><img src=".gitbook/assets/充电-详情.jpg" alt="" width="232"><figcaption><p>【充电】-【西区宿舍】-【充电桩1】</p></figcaption></figure>
+
+</div>
 
 ## 5 服务
 
