@@ -21,7 +21,7 @@ layout:
 
 您可以通过我们的简介视频了解Ebike的主要功能。
 
-如无法正常播放，请关闭代理或前往bilibili观看。
+如无法正常播放，请关闭代理或前往bilibili观看。（配合bgm观看更佳）
 
 {% embed url="https://www.bilibili.com/video/BV1pD42137yu/?vd_source=c7562a484efcf560a7643c6f2e965076" %}
 Ebike宣传视频
