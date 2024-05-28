@@ -212,8 +212,6 @@
 
 </div>
 
-点击其他用户的头像或昵称即可进入其个人主页<mark style="color:blue;">如图（展示别的用户的个人主页）：</mark>
-
 ### 6.2 个人信息
 
 #### 6.2.1 收藏
@@ -228,7 +226,13 @@
 
 #### 6.2.2 消息
 
-点击消息图标即可查看互动消息（包括私信、点赞、收藏、关注等），<mark style="color:blue;">如图（展示点击消息、互动消息内容界面）：</mark>
+点击消息图标即可查看互动消息（包括私信、点赞、收藏、关注等），如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/消息.png" alt="" width="261"><figcaption><p>【我的】-【消息】界面</p></figcaption></figure>
+
+</div>
 
 #### 6.2.3 发布
 
@@ -236,11 +240,19 @@
 
 #### 6.2.4 设置
 
-点击【我的】-【设置】图标即可进行用户设置，如图：
+未登录状态点击【我的】-【设置】图标即可进行用户注册或登录，如图：
 
 <div align="left">
 
-<figure><img src=".gitbook/assets/52c83d8f986ba2c517789fbb47d6f34 (1).png" alt="" width="261"><figcaption><p>【我的】-【设置】界面</p></figcaption></figure>
+<figure><img src=".gitbook/assets/设置-未登录.png" alt="" width="261"><figcaption><p>未登录【我的】-【设置】界面</p></figcaption></figure>
+
+</div>
+
+登录用户后点击【我的】-【设置】图标即可进行用户设置，如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/52c83d8f986ba2c517789fbb47d6f34 (1).png" alt="" width="261"><figcaption><p>已登陆【我的】-【设置】界面</p></figcaption></figure>
 
 </div>
 
