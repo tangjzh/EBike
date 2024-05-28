@@ -38,7 +38,11 @@
 
 <div align="left">
 
-<figure><img src=".gitbook/assets/5d897b0b496cc0e8d1624298aaeba6e.png" alt="" width="260"><figcaption><p>【首页】界面</p></figcaption></figure>
+<figure><img src=".gitbook/assets/5d897b0b496cc0e8d1624298aaeba6e.png" alt="" width="260"><figcaption><p>【首页】-【广场】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/广场详情页.png" alt="" width="261"><figcaption><p>【首页】-【广场】-详情页</p></figcaption></figure>
 
 </div>
 
@@ -50,7 +54,7 @@
 
 用户可以通过“热榜”栏查看当前排行榜，包括“车型评分榜”和“品牌热度榜”，如图：
 
-<div>
+<div align="left">
 
 <figure><img src=".gitbook/assets/8b267b0ac6e2466004db7107dfbeac2f_ (1).png" alt="" width="260"><figcaption><p>【主页】-【热榜】界面</p></figcaption></figure>
 
@@ -200,7 +204,7 @@
 
 <div align="left">
 
-<figure><img src=".gitbook/assets/个人主页.png" alt="" width="260"><figcaption><p>【个人主页】</p></figcaption></figure>
+<figure><img src=".gitbook/assets/个人主页 (1).png" alt="" width="260"><figcaption><p>【个人主页】</p></figcaption></figure>
 
  
 
@@ -296,15 +300,45 @@
 
 ### 7.1 点赞
 
-点击点赞图标即可对动态内容进行点赞，动态页面会展示点赞数量。<mark style="color:blue;">如图（点击点赞图标和点赞数量展示）：</mark>
+点击点赞图标即可对动态或评论内容进行点赞，动态详情页面会展示点赞数量。如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/点赞前.png" alt="" width="261"><figcaption><p>评论-点赞前</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/点赞后.png" alt="" width="261"><figcaption><p>评论-点赞后</p></figcaption></figure>
+
+</div>
 
 ### 7.2 收藏
 
-点击收藏图标即收藏动态内容，动态页面会展示收藏数量，个人收藏内容可以在【我的】-【收藏】，或者在【我的】界面点击个人头像，进入到个人主页里查看。<mark style="color:blue;">如图（点击收藏图标、收藏数量展示、收藏夹展示）：</mark>
+点击收藏图标即收藏动态内容，动态页面会展示收藏数量，个人收藏内容可以在【我的】-【收藏】，或者在【我的】界面点击个人头像，进入到个人主页里查看。如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/我的-收藏.png" alt="" width="261"><figcaption><p>【我的】-【收藏】</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/个人主页.png" alt="" width="260"><figcaption><p>【个人主页】-【个人收藏】</p></figcaption></figure>
+
+</div>
 
 ### 7.3 关注与粉丝
 
-点击关注图标即可关注其他用户，个人关注的用户可以在【我的】-【关注】里看到，个人自己的粉丝可以在【我的】-【粉丝】中查看。<mark style="color:blue;">如图（点击关注图标、粉丝数量展示、主页中关注的用户展示，粉丝展示）：</mark>
+点击广场详情页或用户主页的关注图标即可关注其他用户，个人关注的用户可以在【我的】-【关注】里看到，个人自己的粉丝可以在【我的】-【粉丝】中查看。如图：
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/关注前.png" alt="" width="261"><figcaption><p>用户关注前</p></figcaption></figure>
+
+ 
+
+<figure><img src=".gitbook/assets/关注后.png" alt="" width="261"><figcaption><p>用户关注后</p></figcaption></figure>
+
+</div>
 
 ### 7.4 私信
 
@@ -312,8 +346,7 @@
 
 ### 7.5 评论
 
-在动态下，用户可以评论和回复评论，<mark style="color:blue;">如图（展示评论效果）：</mark>\
-
+在动态下，用户可以评论和回复评论，具体图例见此前展示的广场动态详情图。
 
 ## 8 总结
 
