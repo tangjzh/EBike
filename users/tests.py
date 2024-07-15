@@ -4,7 +4,6 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from users.models import BikeUser, VehiclePermit
 from users.serializers import UserSerializer, VehiclePermitSerializer
-from models import BikeUser
 from rest_framework.test import APIClient
 from rest_framework import status
 from django.utils import timezone
